@@ -1,40 +1,35 @@
-const passwordInput = document.getElementById('admin-password');
-const loginBtn = document.getElementById('login-btn');
-const dashboard = document.getElementById('dashboard');
-const loginSection = document.getElementById('login-section');
+import { useState } from 'react';
 
-loginBtn.addEventListener('click', async () => {
-  const password = passwordInput.value;
-  const res = await fetch('/api/admin-login', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ password })
-  });
-  const data = await res.json();
-  if (data.success) {
-    loginSection.style.display = 'none';
-    dashboard.style.display = 'block';
-    loadCourses();
-  } else {
-    alert('Incorrect Password');
+export default function Admin() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    if(username === 'admin' && password === '1234'){ // change credentials
+      setLoggedIn(true);
+    } else {
+      alert('Invalid credentials');
+    }
   }
-});
 
-function loadCourses() {
-  fetch('/api/courses')
-    .then(res => res.json())
-    .then(data => {
-      const list = document.getElementById('course-list');
-      list.innerHTML = '';
-      data.forEach(course => {
-        const div = document.createElement('div');
-        div.innerHTML = `<strong>${course.title}</strong> - <button onclick="deleteCourse(${course.id})">Delete</button>`;
-        list.appendChild(div);
-      });
-    });
-}
+  if(!loggedIn){
+    return (
+      <div style={{ padding: '50px', textAlign: 'center' }}>
+        <h1>Admin Login</h1>
+        <input placeholder="Username" value={username} onChange={e => setUsername(e.target.value)}/>
+        <br/><br/>
+        <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}/>
+        <br/><br/>
+        <button onClick={handleLogin}>Login</button>
+      </div>
+    )
+  }
 
-function deleteCourse(id) {
-  fetch(`/api/courses?id=eq.${id}`, { method: 'DELETE' })
-    .then(() => loadCourses());
+  return (
+    <div style={{ padding: '50px', textAlign: 'center' }}>
+      <h1>Admin Dashboard</h1>
+      <p>Yahan se aap courses add, delete, ya update kar sakte hain.</p>
+    </div>
+  )
 }
