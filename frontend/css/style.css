@@ -1,12 +1,12 @@
 :root {
     --primary: #0066CC; 
     --primary-hover: #005BB5;
-    --text-main: #111;         /* Dark text for light background */
+    --text-main: #111;         /* Dark text for readability */
     --text-muted: #555;        /* Muted gray for secondary text */
-    --bg: #F9FAFB;             /* Light soft background */
+    --bg: #F5F5F5;             /* Soft, light background */
     --card-bg: #FFFFFF;        /* White cards for contrast */
     --card-radius: 10px;
-    --card-shadow: 0 4px 15px rgba(0,0,0,0.08); /* softer shadow for light BG */
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.08);
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Segoe UI', sans-serif;
 }
@@ -15,12 +15,12 @@ body {
     font-family: var(--font-body);
     margin:0;
     background-color: var(--bg); /* Soft light background */
-    color: var(--text-main);
+    color: var(--text-main);      /* Dark text */
 }
 
 /* HERO */
 header.hero {
-    background: var(--bg); /* Light background */
+    background: var(--bg); 
     padding: 80px 20px;
     text-align: center;
 }
@@ -29,11 +29,12 @@ header.hero h1 {
     font-family: var(--font-heading);
     font-size: 2.8rem;
     margin-bottom: 20px;
+    color: var(--text-main);      /* Dark hero text */
 }
 
 header.hero p {
     font-size: 1.2rem;
-    color: var(--text-muted);
+    color: var(--text-muted);     /* Secondary muted text */
     margin-bottom: 25px;
 }
 
@@ -60,6 +61,7 @@ header.hero .cta-btn:hover {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
+    color: var(--text-main);
 }
 
 .feature-card {
@@ -69,6 +71,7 @@ header.hero .cta-btn:hover {
     box-shadow: var(--card-shadow);
     text-align: center;
     font-weight: 500;
+    color: var(--text-main);
 }
 
 /* GRID */
@@ -86,6 +89,7 @@ header.hero .cta-btn:hover {
     padding: 20px;
     text-align: left;
     transition: transform 0.3s;
+    color: var(--text-main);
 }
 
 #course-cards .card:hover {
@@ -101,6 +105,7 @@ header.hero .cta-btn:hover {
 #course-cards h3 {
     font-size: 1.3rem;
     margin-bottom: 10px;
+    color: var(--text-main);
 }
 
 #course-cards p {
