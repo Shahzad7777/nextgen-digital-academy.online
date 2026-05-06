@@ -1,27 +1,26 @@
 :root {
-    --primary: #0066CC; 
+    --primary: #0066CC;
     --primary-hover: #005BB5;
-    --text-main: #111;         /* Dark text for readability */
-    --text-muted: #555;        /* Muted gray for secondary text */
-    --bg: #F5F5F5;             /* Soft, light background */
-    --card-bg: #FFFFFF;        /* White cards for contrast */
-    --card-radius: 10px;
-    --card-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    --text-main: #111;
+    --text-muted: #555;
+    --bg: #F5F5F5;
+    --card-bg: #FFFFFF;
+    --card-radius: 12px;
+    --card-shadow: 0 6px 20px rgba(0,0,0,0.08);
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Segoe UI', sans-serif;
 }
 
 body {
     font-family: var(--font-body);
-    margin:0;
-    background-color: var(--bg); /* Soft light background */
-    color: var(--text-main);      /* Dark text */
+    margin: 0;
+    background-color: var(--bg);
+    color: var(--text-main);
 }
 
-/* HERO */
 header.hero {
-    background: var(--bg); 
-    padding: 80px 20px;
+    background: var(--bg);
+    padding: 100px 20px;
     text-align: center;
 }
 
@@ -29,12 +28,11 @@ header.hero h1 {
     font-family: var(--font-heading);
     font-size: 2.8rem;
     margin-bottom: 20px;
-    color: var(--text-main);      /* Dark hero text */
 }
 
 header.hero p {
     font-size: 1.2rem;
-    color: var(--text-muted);     /* Secondary muted text */
+    color: var(--text-muted);
     margin-bottom: 25px;
 }
 
@@ -42,17 +40,23 @@ header.hero .cta-btn {
     display: inline-block;
     background: var(--primary);
     color: #fff;
-    padding: 15px 30px;
-    border-radius: 8px;
+    padding: 15px 40px;
+    border-radius: 12px;
     font-weight: bold;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 header.hero .cta-btn:hover {
     background: var(--primary-hover);
+    transform: translateY(-3px);
 }
 
-/* FEATURES / TRUST SIGNALS */
+header.hero .scarcity {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #EF4444;
+}
+
 .features {
     padding: 60px 20px;
 }
@@ -61,7 +65,6 @@ header.hero .cta-btn:hover {
     text-align: center;
     font-size: 2rem;
     margin-bottom: 40px;
-    color: var(--text-main);
 }
 
 .feature-card {
@@ -74,31 +77,33 @@ header.hero .cta-btn:hover {
     color: var(--text-main);
 }
 
-/* GRID */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
     gap: 20px;
 }
 
-/* COURSES CARDS */
 #course-cards .card {
     background: var(--card-bg);
     border-radius: var(--card-radius);
     box-shadow: var(--card-shadow);
     padding: 20px;
     text-align: left;
-    transition: transform 0.3s;
-    color: var(--text-main);
+    transition: transform 0.3s ease;
+    position: relative;
 }
 
 #course-cards .card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    border-top: 4px solid var(--primary);
 }
 
 #course-cards img {
     width: 100%;
-    border-radius: 8px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
     margin-bottom: 15px;
 }
 
@@ -124,10 +129,10 @@ header.hero .cta-btn:hover {
     display: block;
     width: 100%;
     text-align: center;
-    padding: 10px;
+    padding: 12px;
     margin-top: 10px;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     background: var(--primary);
     color: #fff;
     font-weight: bold;
@@ -138,7 +143,6 @@ header.hero .cta-btn:hover {
     background: var(--primary-hover);
 }
 
-/* TESTIMONIALS */
 #testimonial-cards .card {
     background: var(--card-bg);
     padding: 20px;
@@ -149,8 +153,9 @@ header.hero .cta-btn:hover {
     color: var(--text-muted);
 }
 
-/* RESPONSIVE */
 @media (max-width:768px){
     header.hero h1 { font-size: 2rem; }
     header.hero p { font-size: 1rem; }
+    #course-cards .card { padding: 15px; }
+    #testimonial-cards .card { padding: 15px; }
 }
