@@ -1,100 +1,391 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NextGen Digital Academy</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; img-src 'self' https: data:; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+  />
+  <meta name="theme-color" content="#0B0F19" />
+  <meta
+    name="description"
+    content="NextGen Digital Academy is a premium digital skills academy for Pakistani students, freelancers, creators, job seekers, and local business owners."
+  />
+  <title>NextGen Digital Academy | Premium Digital Skills for Pakistan</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+  <div class="mesh mesh-a" aria-hidden="true"></div>
+  <div class="mesh mesh-b" aria-hidden="true"></div>
+  <div class="mesh mesh-c" aria-hidden="true"></div>
 
-<!-- Onboarding Survey -->
-<div id="onboarding" class="onboarding-container">
-  <h2>Welcome to NextGen Digital Academy</h2>
-  <form id="surveyForm">
-    <div class="survey-step">
-      <label>What is your main goal?</label>
-      <select required>
-        <option>Freelancing</option>
-        <option>Digital Marketing</option>
-        <option>Video Editing</option>
-        <option>Programming</option>
-        <option>Graphic Design</option>
-      </select>
-    </div>
-    <div class="survey-step">
-      <label>Preferred Learning Style?</label>
-      <select required>
-        <option>Videos</option>
-        <option>Articles</option>
-        <option>Interactive Labs</option>
-      </select>
-    </div>
-    <div class="survey-step">
-      <label>Time Commitment per Week?</label>
-      <select required>
-        <option>1-2 hours</option>
-        <option>3-5 hours</option>
-        <option>5+ hours</option>
-      </select>
-    </div>
-    <div class="survey-step">
-      <label>Skill Level?</label>
-      <select required>
-        <option>Beginner</option>
-        <option>Intermediate</option>
-        <option>Advanced</option>
-      </select>
-    </div>
-    <div class="survey-step">
-      <label>Interested Categories?</label>
-      <select required multiple>
-        <option>Freelancing</option>
-        <option>Marketing</option>
-        <option>Video</option>
-        <option>Programming</option>
-        <option>Design</option>
-      </select>
-    </div>
-    <button type="submit">Start Learning</button>
-  </form>
-</div>
+  <nav class="premium-nav container-fluid" aria-label="Primary navigation">
+    <ul>
+      <li>
+        <a class="brand-link" href="#top" aria-label="NextGen Academy home">
+          <span class="brand-mark">N</span>
+          <strong class="brand-text">NextGen Academy</strong>
+        </a>
+      </li>
+    </ul>
 
-<!-- Main Content -->
-<div id="mainContent" class="hidden">
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="brand">NextGen Digital Academy</div>
-    <input type="text" id="searchBar" placeholder="Search courses..." />
+    <form class="nav-search" role="search" aria-label="Search courses">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M10.8 4.2a6.6 6.6 0 0 1 5.21 10.65l3.52 3.52a.9.9 0 0 1-1.27 1.27l-3.52-3.52A6.6 6.6 0 1 1 10.8 4.2Zm0 1.8a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Z"></path>
+      </svg>
+      <input id="globalSearch" type="search" autocomplete="off" aria-label="Search all courses" />
+    </form>
+
+    <ul class="nav-actions">
+      <li><a href="#courses">Explore</a></li>
+      <li><a href="#outcomes">Outcomes</a></li>
+      <li><a href="#faq" role="button">FAQ</a></li>
+    </ul>
   </nav>
 
-  <!-- Category Tabs -->
-  <div class="tabs">
-    <button class="tab active" data-category="All">All</button>
-    <button class="tab" data-category="Freelancing">Freelancing</button>
-    <button class="tab" data-category="Marketing">Marketing</button>
-    <button class="tab" data-category="Video">Video</button>
-    <button class="tab" data-category="Programming">Programming</button>
-    <button class="tab" data-category="Design">Design</button>
-  </div>
+  <section id="onboardingFunnel" class="onboarding-layer" aria-labelledby="onboardingTitle" aria-hidden="true">
+    <div class="onboarding-panel">
+      <div id="stageOne" class="funnel-stage is-active">
+        <p class="eyebrow">Premium digital-income assessment</p>
+        <h1 id="onboardingTitle">What is your ultimate financial goal?</h1>
+        <p class="stage-copy">
+          Your answer personalizes your homepage, recommended skill paths, and earning-focused course direction.
+        </p>
 
-  <!-- Course Grid -->
-  <div id="courseGrid" class="course-grid"></div>
-</div>
+        <div class="goal-grid" role="group" aria-label="Financial goal selection">
+          <button type="button" class="goal-card" data-goal="average">
+            <span class="goal-emoji">🌟</span>
+            <strong>Main Sirf Apna Shook Poora Karna Chahta Hoon</strong>
+            <small>Keep me average</small>
+          </button>
 
-<!-- Checkout Modal -->
-<div id="checkoutModal" class="modal hidden">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Enroll Now</h2>
-    <form id="checkoutForm">
-      <input type="text" id="leadName" placeholder="Your Name" required />
-      <input type="email" id="leadEmail" placeholder="Your Email" required />
-      <button type="submit">Enroll</button>
-    </form>
-  </div>
-</div>
+          <button type="button" class="goal-card goal-card-hot" data-goal="freedom">
+            <span class="goal-emoji">🔥</span>
+            <strong>Main Dollar Kama Kar Real Freedom Aur Millionaire Banna Chahta Hoon</strong>
+            <small>Serious skill-building path for USD-focused growth</small>
+          </button>
+        </div>
+      </div>
 
-<script src="js/main.js"></script>
+      <div id="stageTwo" class="funnel-stage">
+        <p class="eyebrow">Choose your exact learner profile</p>
+        <h2>Which background matches you right now?</h2>
+        <p class="stage-copy">
+          Pick one path so NextGen Academy can show the strongest income-focused message for your situation.
+        </p>
+
+        <div class="persona-grid" role="group" aria-label="Learner persona selection">
+          <button type="button" class="persona-card" data-persona="student">
+            <span>🎓</span>
+            <strong>Matric / Intermediate Student</strong>
+            <small>Earn pocket money & cover fees</small>
+          </button>
+
+          <button type="button" class="persona-card" data-persona="graduate">
+            <span>💼</span>
+            <strong>Fresh Graduate / Job Seeker</strong>
+            <small>Build a high-paying agency career</small>
+          </button>
+
+          <button type="button" class="persona-card" data-persona="beginner">
+            <span>🛠️</span>
+            <strong>Absolute Beginner in Tech</strong>
+            <small>Zero background, start from absolute scratch</small>
+          </button>
+
+          <button type="button" class="persona-card" data-persona="creator">
+            <span>📱</span>
+            <strong>Social Media Enthusiast</strong>
+            <small>Video Editing, Reels, YouTube Automation</small>
+          </button>
+
+          <button type="button" class="persona-card" data-persona="freelancer">
+            <span>💻</span>
+            <strong>Part-Time Freelancer</strong>
+            <small>Master advanced Upwork bidding & earn pure USD</small>
+          </button>
+
+          <button type="button" class="persona-card" data-persona="owner">
+            <span>🏢</span>
+            <strong>Local Business Owner / Store</strong>
+            <small>Scale sales via advanced local ads</small>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main id="top" class="container app-main">
+    <section class="hero-section">
+      <div class="hero-copy">
+        <p class="eyebrow">Pakistan’s high-ticket digital skills academy</p>
+        <h1 id="heroHeadline">
+          Inflation is destroying savings. Master digital assets before you get left behind.
+        </h1>
+        <p id="heroSubcopy">
+          Learn freelancing, digital marketing, video content, AI workflows, and local business growth systems through premium execution-based courses designed for Pakistan’s next digital earners.
+        </p>
+
+        <div class="hero-actions">
+          <a class="primary-cta" href="#courses">Explore Premium Courses</a>
+          <button id="restartFunnel" class="secondary-cta" type="button">Personalize My Path</button>
+        </div>
+
+        <div class="trust-strip" aria-label="Academy trust metrics">
+          <span>⚡ 4-week execution plans</span>
+          <span>💸 USD-focused skill tracks</span>
+          <span>📚 Free syllabus preview</span>
+        </div>
+      </div>
+
+      <aside class="hero-graphic" aria-label="Digital skills growth graphic">
+        <div class="orbital-core"></div>
+
+        <article class="floating-widget widget-one">
+          <span>🎯</span>
+          <strong>Skill-to-income clarity</strong>
+          <small>Learn exactly what to practice each week</small>
+        </article>
+
+        <article class="floating-widget widget-two">
+          <span>🚀</span>
+          <strong>Premium learner path</strong>
+          <small>Freelancing, ads, content, AI systems</small>
+        </article>
+
+        <article class="hero-progress-card">
+          <div>
+            <span>Execution Readiness</span>
+            <strong>94%</strong>
+          </div>
+          <div class="progress-track"><span></span></div>
+        </article>
+      </aside>
+    </section>
+
+    <section id="outcomes" class="metrics-grid" aria-label="Platform highlights">
+      <article>
+        <span class="metric-icon">📌</span>
+        <strong id="liveCourseCount">0</strong>
+        <small>Live premium courses</small>
+      </article>
+
+      <article>
+        <span class="metric-icon">🧭</span>
+        <strong>4 Weeks</strong>
+        <small>Structured weekly roadmap</small>
+      </article>
+
+      <article>
+        <span class="metric-icon">🔥</span>
+        <strong>100%</strong>
+        <small>Practical execution focus</small>
+      </article>
+    </section>
+
+    <section id="courses" class="courses-section" aria-labelledby="coursesTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Premium course catalog</p>
+          <h2 id="coursesTitle">Choose the skill track that can change your next 12 months.</h2>
+        </div>
+        <p>
+          Read the full syllabus for free before enrolling. Every course is designed around clear weekly execution, practical skills, and Pakistan-focused earning pathways.
+        </p>
+      </div>
+
+      <div class="category-tabs" role="tablist" aria-label="Course category filters">
+        <button type="button" class="tab-pill is-active" data-category="All Courses">All Courses</button>
+        <button type="button" class="tab-pill" data-category="Freelancing">Freelancing</button>
+        <button type="button" class="tab-pill" data-category="Digital Marketing">Digital Marketing</button>
+        <button type="button" class="tab-pill" data-category="Video & Content Creation">Video & Content Creation</button>
+      </div>
+
+      <div id="courseGrid" class="course-grid" aria-live="polite"></div>
+
+      <div id="emptyState" class="empty-state" hidden>
+        <span>🔎</span>
+        <h3>No course matched your filter.</h3>
+        <p>Search another skill or return to All Courses.</p>
+      </div>
+    </section>
+
+    <section id="about" class="info-section" aria-labelledby="aboutTitle">
+      <div>
+        <p class="eyebrow">Why NextGen exists</p>
+        <h2 id="aboutTitle">Pakistan’s youth do not need more motivation. They need marketable skills and a practical execution system.</h2>
+      </div>
+      <p>
+        NextGen Digital Academy focuses on real digital skills: freelancing, paid ads, video content systems, AI-assisted workflows, and local business growth. The goal is simple: replace confusion with a premium roadmap that serious learners can follow.
+      </p>
+    </section>
+
+    <section id="faq" class="faq-section" aria-labelledby="faqTitle">
+      <div class="section-heading compact-heading">
+        <div>
+          <p class="eyebrow">Common questions</p>
+          <h2 id="faqTitle">Before you enroll</h2>
+        </div>
+      </div>
+
+      <div class="faq-grid">
+        <details>
+          <summary>Can beginners join?</summary>
+          <p>Yes. Every course includes a Week 1 foundation layer so beginners can start with clear steps before moving into execution.</p>
+        </details>
+
+        <details>
+          <summary>Is the syllabus visible before payment?</summary>
+          <p>Yes. Every course card contains a free detailed Week 1 to Week 4 syllabus preview.</p>
+        </details>
+
+        <details>
+          <summary>How does enrollment work?</summary>
+          <p>Click Enroll Now, enter your name and email, send payment through JazzCash, EasyPaisa, or Meezan Bank, then confirm through WhatsApp.</p>
+        </details>
+      </div>
+    </section>
+
+    <section id="terms" class="legal-section" aria-labelledby="termsTitle">
+      <h2 id="termsTitle">Terms of Service</h2>
+      <p>
+        Course enrollment is confirmed after payment verification. Students are responsible for completing assigned practice tasks. Course access, support format, timing, and learning outcomes depend on the selected course and the student’s consistency.
+      </p>
+    </section>
+
+    <section id="privacy" class="legal-section" aria-labelledby="privacyTitle">
+      <h2 id="privacyTitle">Privacy Policy</h2>
+      <p>
+        Student name, email, selected course, and enrollment status are stored in the browser’s LocalStorage for this serverless demo workflow. Do not use this static LocalStorage setup for sensitive production records without a real authenticated backend.
+      </p>
+    </section>
+  </main>
+
+  <section id="checkoutModal" class="modal-layer" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+
+    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="modal-close" type="button" aria-label="Close enrollment modal" data-close-modal>×</button>
+
+      <div class="modal-title-row">
+        <span class="modal-badge">💳</span>
+        <div>
+          <p class="eyebrow">Frictionless checkout</p>
+          <h2 id="checkoutTitle">Confirm Your Enrollment</h2>
+        </div>
+      </div>
+
+      <div class="selected-course">
+        <small>Selected course</small>
+        <strong id="modalCourseTitle">Course</strong>
+        <span id="modalCoursePrice">PKR 0</span>
+      </div>
+
+      <div class="payment-panel">
+        <article>
+          <span>👤</span>
+          <strong>Account Title</strong>
+          <small>Shahzad Hassan</small>
+        </article>
+
+        <article>
+          <span>📲</span>
+          <strong>JazzCash</strong>
+          <small>Send payment and share screenshot</small>
+        </article>
+
+        <article>
+          <span>💚</span>
+          <strong>EasyPaisa</strong>
+          <small>Fast local transfer supported</small>
+        </article>
+
+        <article>
+          <span>🏦</span>
+          <strong>Meezan Bank</strong>
+          <small>Bank transfer accepted</small>
+        </article>
+      </div>
+
+      <form id="checkoutForm" class="checkout-form" novalidate>
+        <label for="studentName">Student Name</label>
+        <input id="studentName" name="studentName" type="text" minlength="2" maxlength="80" autocomplete="name" required />
+
+        <label for="studentEmail">Email Address</label>
+        <input id="studentEmail" name="studentEmail" type="email" maxlength="120" autocomplete="email" required />
+
+        <button class="primary-cta full-width" type="submit">Log Lead & Continue to WhatsApp</button>
+        <p class="form-note">Your enrollment request is stored locally and a formatted WhatsApp confirmation opens immediately.</p>
+      </form>
+    </div>
+  </section>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <section id="cookieBanner" class="cookie-banner" aria-label="Cookie consent" hidden>
+    <div>
+      <strong>🍪 Cookies & local preferences</strong>
+      <p>
+        NextGen Academy uses browser storage to remember your course filters, onboarding choice, cookie consent, and enrollment requests.
+      </p>
+    </div>
+    <button id="acceptCookies" type="button">Accept</button>
+  </section>
+
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div>
+        <a class="brand-link footer-brand" href="#top">
+          <span class="brand-mark">N</span>
+          <strong class="brand-text">NextGen Academy</strong>
+        </a>
+        <p>
+          Premium digital skills training for Pakistan’s serious students, freelancers, creators, job seekers, and business owners.
+        </p>
+      </div>
+
+      <div>
+        <h3>Academy</h3>
+        <a href="#about">About Us</a>
+        <a href="#courses">Courses</a>
+        <a href="#outcomes">Outcomes</a>
+      </div>
+
+      <div>
+        <h3>Legal</h3>
+        <a href="#terms">Terms of Service</a>
+        <a href="#privacy">Privacy Policy</a>
+        <a href="#faq">Enrollment FAQ</a>
+      </div>
+
+      <div>
+        <h3>Social</h3>
+        <div class="social-row">
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
+          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+        </div>
+        <a class="admin-link" href="admin.html">Admin Panel</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <small>© <span id="footerYear"></span> NextGen Digital Academy. All rights reserved.</small>
+      <small>Built for serverless deployment on Vercel.</small>
+    </div>
+  </footer>
+
+  <script src="main.js" defer></script>
 </body>
 </html>
