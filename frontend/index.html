@@ -1,57 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NextGen Digital Academy | Onboarding</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Learning Platform</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Onboarding Screen -->
+  <div id="onboarding-screen">
+    <div class="onboarding-card">
+      <h2>Select your background or target digital skill to customize your learning track:</h2>
+      <div class="options">
+        <button data-track="student">🎓 Matric / Intermediate Student</button>
+        <button data-track="graduate">💼 Fresh Graduate / Job Seeker</button>
+        <button data-track="beginner">🛠️ Absolute Beginner in Tech</button>
+        <button data-track="social">📱 Social Media Enthusiast</button>
+        <button data-track="freelancer">💻 Part-Time Freelancer</button>
+        <button data-track="business">🏢 Local Business Owner / Store</button>
+      </div>
+    </div>
+  </div>
 
-    <div id="onboarding-container" class="hero" style="padding: 60px 20px; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-        <h1 style="font-size: 2.5rem; margin-bottom: 10px;">Welcome to <span style="color: #0070F3;">NextGen Academy</span></h1>
-        <p class="hero-sub" style="font-size: 1.3rem; margin-bottom: 40px;">What is your primary learning goal today?</p>
-        
-        <div class="grid" style="max-width: 900px; width: 100%; margin-bottom: 30px;">
-            <div class="card goal-card" onclick="selectGoal('change_career')" style="cursor: pointer; text-align: left; border: 2px solid transparent; transition: all 0.3s;">
-                <h3 style="color: #0070F3; margin-bottom: 8px;">🚀 Change My Career</h3>
-                <p style="color: #94A3B8; margin: 0; font-size: 0.95rem;">I want to switch from a boring job or zero income to a high-paying digital skill.</p>
-            </div>
-            
-            <div class="card goal-card" onclick="selectGoal('freelance_income')" style="cursor: pointer; text-align: left; border: 2px solid transparent; transition: all 0.3s;">
-                <h3 style="color: #10B981; margin-bottom: 8px;">💰 Start Freelancing</h3>
-                <p style="color: #94A3B8; margin: 0; font-size: 0.95rem;">I already have basic skills but want to launch on Fiverr/Upwork and earn in USD.</p>
-            </div>
-            
-            <div class="card goal-card" onclick="selectGoal('side_hustle')" style="cursor: pointer; text-align: left; border: 2px solid transparent; transition: all 0.3s;">
-                <h3 style="color: #FFE200; margin-bottom: 8px;">🔥 Build a Side Hustle</h3>
-                <p style="color: #94A3B8; margin: 0; font-size: 0.95rem;">I am a student/professional looking to build a secondary income stream in Pakistan.</p>
-            </div>
+  <!-- Main Site -->
+  <div id="main-site" class="hidden">
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="nav-left">
+        <div class="logo">DigitalAcademy</div>
+        <div class="dropdown">
+          <button class="dropbtn">Explore ▼</button>
+          <div class="dropdown-content">
+            <a href="#">All Courses</a>
+            <a href="#">Freelancing</a>
+            <a href="#">Digital Marketing</a>
+            <a href="#">Video & Content Creation</a>
+          </div>
         </div>
+      </div>
+      <div class="nav-center">
+        <input type="text" id="search-bar" placeholder="Search courses...">
+      </div>
+      <div class="nav-right">
+        <button class="login-btn">Login</button>
+        <button class="join-btn">Join for Free</button>
+      </div>
+    </nav>
+
+    <!-- Hero Hook -->
+    <header id="hero-hook">
+      <h1>Welcome to Your Personalized Digital Learning Journey</h1>
+      <p id="hero-subtext">Courses recommended for your background will appear below.</p>
+    </header>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-category="all">All Courses</button>
+      <button class="filter-btn" data-category="freelancing">Freelancing</button>
+      <button class="filter-btn" data-category="marketing">Digital Marketing</button>
+      <button class="filter-btn" data-category="video">Video & Content Creation</button>
     </div>
 
-    <main id="main-academy-content" style="display: none;">
-        <header class="hero">
-            <h1 id="dynamic-hook-title">Escape Financial Stress.<br><span style="color: #0070F3;">Master Digital Skills.</span></h1>
-            <p class="hero-sub" id="dynamic-hook-sub">Join thousands of Pakistani youth making real income online.</p>
-            <a href="#courses" class="cta-btn"><button>View Personalized Courses</button></a>
-            <p class="scarcity">🔥 Limited slots left for your selected track!</p>
-        </header>
+    <!-- Courses Container -->
+    <div id="courses-container"></div>
+  </div>
 
-        <section id="courses">
-            <h2 id="dynamic-course-heading">Recommended Tracks For You</h2>
-            <div class="grid" id="course-cards">
-                </div>
-        </section>
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Enroll Now</h2>
+      <p>Send payment via JazzCash, EasyPaisa, or Meezan Bank</p>
+      <ul>
+        <li>Account Title: Shahzad Hassan</li>
+        <li>JazzCash / EasyPaisa / Meezan Bank</li>
+      </ul>
+      <form id="payment-form">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <button type="submit">Confirm via WhatsApp</button>
+      </form>
+    </div>
+  </div>
 
-        <section id="testimonials">
-            <h2>Student Success Stories</h2>
-            <div class="grid" id="testimonial-cards">
-                </div>
-        </section>
-    </main>
-
-    <script src="js/main.js"></script>
+  <script src="main.js"></script>
 </body>
 </html>
