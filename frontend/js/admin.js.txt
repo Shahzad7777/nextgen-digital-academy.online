@@ -1,0 +1,40 @@
+const passwordInput = document.getElementById('admin-password');
+const loginBtn = document.getElementById('login-btn');
+const dashboard = document.getElementById('dashboard');
+const loginSection = document.getElementById('login-section');
+
+loginBtn.addEventListener('click', async () => {
+  const password = passwordInput.value;
+  const res = await fetch('/api/admin-login', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ password })
+  });
+  const data = await res.json();
+  if (data.success) {
+    loginSection.style.display = 'none';
+    dashboard.style.display = 'block';
+    loadCourses();
+  } else {
+    alert('Incorrect Password');
+  }
+});
+
+function loadCourses() {
+  fetch('/api/courses')
+    .then(res => res.json())
+    .then(data => {
+      const list = document.getElementById('course-list');
+      list.innerHTML = '';
+      data.forEach(course => {
+        const div = document.createElement('div');
+        div.innerHTML = `<strong>${course.title}</strong> - <button onclick="deleteCourse(${course.id})">Delete</button>`;
+        list.appendChild(div);
+      });
+    });
+}
+
+function deleteCourse(id) {
+  fetch(`/api/courses?id=eq.${id}`, { method: 'DELETE' })
+    .then(() => loadCourses());
+}

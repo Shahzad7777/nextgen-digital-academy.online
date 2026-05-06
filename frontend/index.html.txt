@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGen Digital Academy</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header>
+  <h1>NextGen Digital Academy</h1>
+  <p>Empowering Pakistan's Next Generation with In-Demand Digital Skills & Online Earning Strategies</p>
+  <a href="courses.html" class="cta-btn">Browse Courses</a>
+</header>
+
+<section id="trust-signals">
+  <h2>Why Choose Us</h2>
+  <div class="grid">
+    <div>Expert Instructors</div>
+    <div>Beginner Friendly</div>
+    <div>Flexible Learning</div>
+  </div>
+</section>
+
+<section id="testimonials">
+  <h2>Student Success Stories</h2>
+  <div class="grid" id="testimonial-cards"></div>
+</section>
+
+<section id="faq">
+  <h2>FAQ</h2>
+  <ul>
+    <li>Do I need a laptop? – Mobile works for some courses.</li>
+    <li>Internet speed required? – 2Mbps+ recommended.</li>
+  </ul>
+</section>
+
+<script src="js/main.js"></script>
+</body>
+</html>
