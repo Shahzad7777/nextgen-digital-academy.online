@@ -1,208 +1,98 @@
-/* ========================================
-   NextGen Digital Academy - Premium Dark Theme
-======================================== */
+/* Reset & Base */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+body { background: #0B0F19; color: #F8FAFC; }
+.hidden { display: none; }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+/* Animations */
+.fade-in { animation: fadeIn 0.5s ease forwards; }
+.fade-out { animation: fadeOut 0.5s ease forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+.slide-down { animation: slideDown 0.3s ease forwards; }
+@keyframes slideDown { from { max-height: 0; opacity: 0; } to { max-height: 500px; opacity: 1; } }
 
-body {
-    background-color: #0B0F19; /* Deep Premium Dark Blue */
-    color: #F8FAFC;
-    overflow-x: hidden;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* 1. ONBOARDING SCREEN (COURSERA STYLE) */
+/* Onboarding Screen */
 #onboarding-screen {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    display: flex; justify-content: center; align-items: center;
-    background: radial-gradient(circle at center, #1E293B 0%, #0B0F19 100%);
-    z-index: 9999;
-    padding: 20px;
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; justify-content: center; align-items: center;
+  background: rgba(0,0,0,0.85); z-index: 1000;
 }
-
 .onboarding-card {
-    background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 3rem 2rem;
-    border-radius: 20px;
-    width: 95%; max-width: 650px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0, 180, 255, 0.4);
+  backdrop-filter: blur(12px);
+  padding: 2rem; border-radius: 16px; width: 90%; max-width: 600px; text-align: center;
+  box-shadow: 0 0 25px rgba(0, 180, 255, 0.3);
+  opacity: 0; transform: translateY(10px);
+  animation: fadeIn 0.6s ease forwards;
+}
+.onboarding-card h2 { margin-bottom: 1.5rem; font-size: 1.4rem; color: #FFF; }
+.onboarding-card .options button {
+  display: block; margin: 0.6rem auto; padding: 0.8rem 1rem; border: none; border-radius: 12px;
+  cursor: pointer; font-size: 1rem; background: rgba(255,255,255,0.05);
+  color: #0BF; border: 1px solid rgba(0,180,255,0.6);
+  transition: 0.3s all;
+}
+.onboarding-card .options button:hover {
+  background: rgba(0,180,255,0.2);
+  box-shadow: 0 0 15px #0BF, 0 0 30px rgba(0,180,255,0.4);
+  color: #FFF;
+  transform: translateY(-2px);
 }
 
-.onboarding-card h2 {
-    font-size: 1.6rem;
-    margin-bottom: 2rem;
-    color: #FFF;
-    font-weight: 700;
-}
-
-.options {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.options button {
-    width: 100%;
-    text-align: left;
-    padding: 16px 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1.05rem;
-    background: rgba(255, 255, 255, 0.02);
-    color: #E2E8F0;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.options button:hover {
-    background: linear-gradient(135deg, #0070F3 0%, #0051B3 100%);
-    color: #FFF;
-    border-color: #0070F3;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 112, 243, 0.3);
-}
-
-/* 2. PREMIUM NAVBAR */
+/* Navbar */
 .navbar {
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(11, 15, 25, 0.8);
-    backdrop-filter: blur(12px);
-    padding: 1.2rem 5%;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    position: sticky; top: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(11,15,25,0.7);
+  backdrop-filter: blur(12px);
+  padding: 1rem 2rem; box-shadow: 0 0 10px rgba(0,180,255,0.3);
 }
+.nav-left, .nav-center, .nav-right { display: flex; align-items: center; }
+.logo { font-weight: bold; font-size: 1.5rem; color: #0BF; margin-right: 1rem; }
+.dropdown { position: relative; }
+.dropbtn { background: none; border: none; cursor: pointer; font-size: 1rem; color: #FFF; }
+.dropdown-content { display: none; position: absolute; background: rgba(0,0,0,0.9); border-radius: 12px; min-width: 160px; backdrop-filter: blur(8px); }
+.dropdown-content a { display: block; padding: 0.5rem 1rem; text-decoration: none; color: #0BF; transition: 0.3s; }
+.dropdown-content a:hover { color: #FFF; background: rgba(0,180,255,0.2); }
+.dropdown:hover .dropdown-content { display: block; }
+#search-bar { padding: 0.5rem; border-radius: 12px; border: 1px solid #0BF; background: rgba(255,255,255,0.05); color: #FFF; }
+.nav-right button { margin-left: 1rem; padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid #0BF; cursor: pointer; transition: 0.3s; background: rgba(255,255,255,0.05); color: #0BF; }
+.nav-right button:hover { background: rgba(0,180,255,0.2); color: #FFF; }
 
-.logo {
-    font-weight: 700;
-    font-size: 1.4rem;
-    color: #FFF;
-    letter-spacing: -0.5px;
-}
+/* Hero */
+#hero-hook { padding: 2rem; text-align: center; }
+#hero-hook h1 { font-size: 2rem; color: #FFF; margin-bottom: 0.5rem; }
+#hero-hook p { color: #AAA; }
 
-.logo span { color: #0070F3; }
+/* Filter Tabs */
+.filter-tabs { display: flex; justify-content: center; margin: 1rem 0; }
+.filter-tabs button { margin: 0 0.5rem; padding: 0.5rem 1rem; border-radius: 12px; border: 1px solid #0BF; background: rgba(255,255,255,0.05); color: #0BF; cursor: pointer; transition: 0.3s; }
+.filter-tabs button.active, .filter-tabs button:hover { background: rgba(0,180,255,0.2); color: #FFF; }
 
-#search-bar {
-    padding: 10px 18px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    color: #FFF;
-    width: 280px;
-    transition: 0.3s;
-}
-
-#search-bar:focus {
-    width: 350px;
-    border-color: #0070F3;
-    outline: none;
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.join-btn {
-    background: #0070F3; color: #FFF;
-    padding: 10px 20px; border: none; border-radius: 8px;
-    font-weight: 600; cursor: pointer; transition: 0.3s;
-}
-.join-btn:hover { background: #10B981; }
-
-/* 3. HERO & TABS */
-#hero-hook {
-    padding: 4rem 5% 2rem 5%;
-    text-align: center;
-}
-#hero-hook h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
-#hero-hook p { color: #94A3B8; font-size: 1.1rem; }
-
-.filter-tabs {
-    display: flex; justify-content: center; gap: 10px; margin: 2rem 0; flex-wrap: wrap;
-}
-.filter-tabs button {
-    padding: 10px 20px; border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 30px; cursor: pointer; background: rgba(255,255,255,0.03);
-    color: #94A3B8; font-weight: 600; transition: 0.3s;
-}
-.filter-tabs button.active, .filter-tabs button:hover {
-    background: #0070F3; color: #FFF; border-color: #0070F3;
-}
-
-/* 4. GLASSMORPHISM COURSE CARDS */
-#courses-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px; padding: 2rem 5%; max-width: 1200px; margin: 0 auto;
-}
-
+/* Courses */
+#courses-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; padding: 1rem; }
 .course-card {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
-    padding: 25px;
-    display: flex; flex-direction: column; gap: 15px;
-    transition: 0.3s;
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(0,180,255,0.4); backdrop-filter: blur(12px);
+  width: 300px; border-radius: 16px; box-shadow: 0 0 15px rgba(0,180,255,0.3); padding: 1rem;
+  opacity: 0; transform: translateY(10px); animation: fadeIn 0.5s ease forwards;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
-.course-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(0, 112, 243, 0.4);
-    background: rgba(255, 255, 255, 0.04);
-}
+.course-card:hover { transform: translateY(-5px); box-shadow: 0 0 25px #0BF, 0 0 40px rgba(0,180,255,0.5); }
+.course-card h3 { margin-bottom: 0.5rem; color: #FFF; }
+.course-card p { color: #AAA; margin-bottom: 0.5rem; }
+.course-card button { padding: 0.5rem 1rem; border: none; border-radius: 12px; cursor: pointer; background: rgba(0,180,255,0.2); color: #FFF; transition: 0.3s; margin-top: 0.5rem; }
+.course-card button:hover { background: #0BF; box-shadow: 0 0 15px #0BF; }
 
-.course-card h3 { font-size: 1.3rem; color: #FFF; }
-.course-card p { color: #94A3B8; font-size: 0.95rem; }
+/* Accordion */
+.accordion { cursor: pointer; padding: 0.5rem; border: none; text-align: left; outline: none; width: 100%; background: rgba(255,255,255,0.05); margin-top: 0.5rem; border-radius: 12px; color: #0BF; transition: 0.3s; }
+.accordion:hover { background: rgba(0,180,255,0.2); color: #FFF; }
+.panel { padding: 0 1rem; display: none; background-color: rgba(255,255,255,0.05); overflow: hidden; border-radius: 0 0 12px 12px; margin-bottom: 0.5rem; }
 
-/* 5. SYLLABUS ACCORDION */
-.accordion {
-    background: rgba(255,255,255,0.04);
-    color: #0070F3; font-weight: 600; text-align: left;
-    padding: 12px; border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 8px; width: 100%; cursor: pointer;
-}
-.panel {
-    padding: 0 10px; display: none; background: rgba(0,0,0,0.2);
-    border-radius: 8px; margin-top: -5px; border: 1px solid rgba(255,255,255,0.02);
-}
-.panel p { padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.02); color: #E2E8F0; }
-
-.enroll-btn {
-    background: #10B981; color: #FFF; font-weight: 700;
-    padding: 12px; border: none; border-radius: 8px; width: 100%;
-    cursor: pointer; margin-top: auto; transition: 0.3s;
-}
-.enroll-btn:hover { background: #059669; }
-
-/* 6. MODAL WINDOW */
-.modal {
-    position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center;
-}
-.modal-content {
-    background: #111827; border: 1px solid rgba(255,255,255,0.1);
-    padding: 2.5rem; border-radius: 20px; width: 90%; max-width: 440px;
-    text-align: center; position: relative; color: #FFF;
-}
-.modal .close { position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: #94A3B8; }
-
-.modal ul {
-    background: rgba(0, 112, 243, 0.1); text-align: left; list-style: none;
-    padding: 15px; border-radius: 10px; border-left: 4px solid #0070F3; margin: 15px 0;
-}
-
-.modal input {
-    width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #FFF;
-}
-
-.modal button {
-    background: #0070F3; font-weight: 700; padding: 12px; width: 100%; border-radius: 8px; color: #FFF; border: none; cursor: pointer;
-}
+/* Modal */
+.modal { position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s; }
+.modal.show { opacity: 1; }
+.modal-content { background: rgba(11,15,25,0.85); backdrop-filter: blur(15px); padding: 2rem; border-radius: 16px; width: 90%; max-width: 400px; text-align: center; transform: translateY(-20px); transition: transform 0.3s; color: #FFF; }
+.modal.show .modal-content { transform: translateY(0); }
+.modal .close { position: absolute; top: 1rem; right: 1rem; font-size: 1.5rem; cursor: pointer; color: #0BF; }
+.modal button { background: #0BF; color: #FFF; border: none; padding: 0.5rem 1rem; border-radius: 12px; cursor: pointer; margin-top: 1rem; width: 100%; transition: 0.3s; }
+.modal button:hover { background: #00FFFF; }
