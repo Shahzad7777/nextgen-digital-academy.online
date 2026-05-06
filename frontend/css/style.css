@@ -1,391 +1,1186 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self'; img-src 'self' https: data:; style-src 'self' https://fonts.googleapis.com https://cdn.jsdelivr.net; font-src https://fonts.gstatic.com; script-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
-  />
-  <meta name="theme-color" content="#0B0F19" />
-  <meta
-    name="description"
-    content="NextGen Digital Academy is a premium digital skills academy for Pakistani students, freelancers, creators, job seekers, and local business owners."
-  />
-  <title>NextGen Digital Academy | Premium Digital Skills for Pakistan</title>
+:root {
+  --bg: #0b0f19;
+  --bg-soft: #111827;
+  --panel: rgba(255, 255, 255, 0.02);
+  --panel-strong: rgba(255, 255, 255, 0.055);
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --muted-strong: #cbd5e1;
+  --emerald: #34d399;
+  --cyan: #38bdf8;
+  --blue: #60a5fa;
+  --violet: #a78bfa;
+  --rose: #fb7185;
+  --amber: #fbbf24;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+  --radius-xl: 28px;
+  --radius-lg: 22px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet"
-  />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
-  <link rel="stylesheet" href="style.css" />
-</head>
+* {
+  box-sizing: border-box;
+}
 
-<body>
-  <div class="mesh mesh-a" aria-hidden="true"></div>
-  <div class="mesh mesh-b" aria-hidden="true"></div>
-  <div class="mesh mesh-c" aria-hidden="true"></div>
+html {
+  scroll-behavior: smooth;
+}
 
-  <nav class="premium-nav container-fluid" aria-label="Primary navigation">
-    <ul>
-      <li>
-        <a class="brand-link" href="#top" aria-label="NextGen Academy home">
-          <span class="brand-mark">N</span>
-          <strong class="brand-text">NextGen Academy</strong>
-        </a>
-      </li>
-    </ul>
+body {
+  min-height: 100vh;
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 10%, rgba(56, 189, 248, 0.18), transparent 33rem),
+    radial-gradient(circle at 78% 14%, rgba(52, 211, 153, 0.16), transparent 30rem),
+    radial-gradient(circle at 48% 48%, rgba(167, 139, 250, 0.11), transparent 42rem),
+    radial-gradient(circle at 88% 74%, rgba(251, 113, 133, 0.10), transparent 28rem),
+    #0b0f19;
+  overflow-x: hidden;
+}
 
-    <form class="nav-search" role="search" aria-label="Search courses">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M10.8 4.2a6.6 6.6 0 0 1 5.21 10.65l3.52 3.52a.9.9 0 0 1-1.27 1.27l-3.52-3.52A6.6 6.6 0 1 1 10.8 4.2Zm0 1.8a4.8 4.8 0 1 0 0 9.6 4.8 4.8 0 0 0 0-9.6Z"></path>
-      </svg>
-      <input id="globalSearch" type="search" autocomplete="off" aria-label="Search all courses" />
-    </form>
+body::before,
+body::after {
+  position: fixed;
+  inset: auto;
+  z-index: -2;
+  width: 42rem;
+  height: 42rem;
+  content: "";
+  pointer-events: none;
+  border-radius: 999px;
+  filter: blur(28px);
+  opacity: 0.45;
+  animation: meshFloat 18s ease-in-out infinite alternate;
+}
 
-    <ul class="nav-actions">
-      <li><a href="#courses">Explore</a></li>
-      <li><a href="#outcomes">Outcomes</a></li>
-      <li><a href="#faq" role="button">FAQ</a></li>
-    </ul>
-  </nav>
+body::before {
+  top: -18rem;
+  left: -14rem;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.35), transparent 65%);
+}
 
-  <section id="onboardingFunnel" class="onboarding-layer" aria-labelledby="onboardingTitle" aria-hidden="true">
-    <div class="onboarding-panel">
-      <div id="stageOne" class="funnel-stage is-active">
-        <p class="eyebrow">Premium digital-income assessment</p>
-        <h1 id="onboardingTitle">What is your ultimate financial goal?</h1>
-        <p class="stage-copy">
-          Your answer personalizes your homepage, recommended skill paths, and earning-focused course direction.
-        </p>
+body::after {
+  right: -18rem;
+  bottom: 8rem;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.28), transparent 66%);
+  animation-delay: -7s;
+}
 
-        <div class="goal-grid" role="group" aria-label="Financial goal selection">
-          <button type="button" class="goal-card" data-goal="average">
-            <span class="goal-emoji">🌟</span>
-            <strong>Main Sirf Apna Shook Poora Karna Chahta Hoon</strong>
-            <small>Keep me average</small>
-          </button>
+@keyframes meshFloat {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(46px, 28px, 0) scale(1.08);
+  }
+}
 
-          <button type="button" class="goal-card goal-card-hot" data-goal="freedom">
-            <span class="goal-emoji">🔥</span>
-            <strong>Main Dollar Kama Kar Real Freedom Aur Millionaire Banna Chahta Hoon</strong>
-            <small>Serious skill-building path for USD-focused growth</small>
-          </button>
-        </div>
-      </div>
+a {
+  color: var(--muted-strong);
+  text-decoration: none;
+}
 
-      <div id="stageTwo" class="funnel-stage">
-        <p class="eyebrow">Choose your exact learner profile</p>
-        <h2>Which background matches you right now?</h2>
-        <p class="stage-copy">
-          Pick one path so NextGen Academy can show the strongest income-focused message for your situation.
-        </p>
+a:hover {
+  color: var(--text);
+}
 
-        <div class="persona-grid" role="group" aria-label="Learner persona selection">
-          <button type="button" class="persona-card" data-persona="student">
-            <span>🎓</span>
-            <strong>Matric / Intermediate Student</strong>
-            <small>Earn pocket money & cover fees</small>
-          </button>
+button,
+input {
+  font-family: inherit;
+}
 
-          <button type="button" class="persona-card" data-persona="graduate">
-            <span>💼</span>
-            <strong>Fresh Graduate / Job Seeker</strong>
-            <small>Build a high-paying agency career</small>
-          </button>
+img {
+  display: block;
+  max-width: 100%;
+}
 
-          <button type="button" class="persona-card" data-persona="beginner">
-            <span>🛠️</span>
-            <strong>Absolute Beginner in Tech</strong>
-            <small>Zero background, start from absolute scratch</small>
-          </button>
+.container {
+  width: min(1180px, calc(100% - 32px));
+}
 
-          <button type="button" class="persona-card" data-persona="creator">
-            <span>📱</span>
-            <strong>Social Media Enthusiast</strong>
-            <small>Video Editing, Reels, YouTube Automation</small>
-          </button>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
 
-          <button type="button" class="persona-card" data-persona="freelancer">
-            <span>💻</span>
-            <strong>Part-Time Freelancer</strong>
-            <small>Master advanced Upwork bidding & earn pure USD</small>
-          </button>
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: min(1280px, calc(100% - 24px));
+  margin: 12px auto 0;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(11, 15, 25, 0.76);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.28);
+}
 
-          <button type="button" class="persona-card" data-persona="owner">
-            <span>🏢</span>
-            <strong>Local Business Owner / Store</strong>
-            <small>Scale sales via advanced local ads</small>
-          </button>
-        </div>
-      </div>
-    </div>
-  </section>
+.app-nav ul {
+  align-items: center;
+  margin: 0;
+}
 
-  <main id="top" class="container app-main">
-    <section class="hero-section">
-      <div class="hero-copy">
-        <p class="eyebrow">Pakistan’s high-ticket digital skills academy</p>
-        <h1 id="heroHeadline">
-          Inflation is destroying savings. Master digital assets before you get left behind.
-        </h1>
-        <p id="heroSubcopy">
-          Learn freelancing, digital marketing, video content, AI workflows, and local business growth systems through premium execution-based courses designed for Pakistan’s next digital earners.
-        </p>
+.brand-mark {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  letter-spacing: -0.03em;
+}
 
-        <div class="hero-actions">
-          <a class="primary-cta" href="#courses">Explore Premium Courses</a>
-          <button id="restartFunnel" class="secondary-cta" type="button">Personalize My Path</button>
-        </div>
+.brand-mark strong {
+  font-size: clamp(0.98rem, 2vw, 1.15rem);
+  font-weight: 900;
+  color: transparent;
+  background: linear-gradient(120deg, #f8fafc, #60a5fa 42%, #34d399);
+  background-clip: text;
+  -webkit-background-clip: text;
+  text-shadow: 0 0 28px rgba(52, 211, 153, 0.28);
+}
 
-        <div class="trust-strip" aria-label="Academy trust metrics">
-          <span>⚡ 4-week execution plans</span>
-          <span>💸 USD-focused skill tracks</span>
-          <span>📚 Free syllabus preview</span>
-        </div>
-      </div>
+.brand-orb {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  border-radius: 12px;
+  color: #34d399;
+  background: linear-gradient(145deg, rgba(52, 211, 153, 0.16), rgba(56, 189, 248, 0.10));
+  box-shadow: 0 0 34px rgba(52, 211, 153, 0.22);
+}
 
-      <aside class="hero-graphic" aria-label="Digital skills growth graphic">
-        <div class="orbital-core"></div>
+.nav-search-wrap {
+  flex: 1;
+  justify-content: center;
+}
 
-        <article class="floating-widget widget-one">
-          <span>🎯</span>
-          <strong>Skill-to-income clarity</strong>
-          <small>Learn exactly what to practice each week</small>
-        </article>
+.nav-search {
+  position: relative;
+  width: min(480px, 42vw);
+  margin: 0;
+  transition: width 240ms ease;
+}
 
-        <article class="floating-widget widget-two">
-          <span>🚀</span>
-          <strong>Premium learner path</strong>
-          <small>Freelancing, ads, content, AI systems</small>
-        </article>
+.nav-search:focus-within {
+  width: min(580px, 48vw);
+}
 
-        <article class="hero-progress-card">
-          <div>
-            <span>Execution Readiness</span>
-            <strong>94%</strong>
-          </div>
-          <div class="progress-track"><span></span></div>
-        </article>
-      </aside>
-    </section>
+.nav-search svg {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
+  fill: var(--muted);
+  transform: translateY(-50%);
+}
 
-    <section id="outcomes" class="metrics-grid" aria-label="Platform highlights">
-      <article>
-        <span class="metric-icon">📌</span>
-        <strong id="liveCourseCount">0</strong>
-        <small>Live premium courses</small>
-      </article>
+.nav-search input {
+  height: 46px;
+  margin: 0;
+  padding: 0 18px 0 44px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.035);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
 
-      <article>
-        <span class="metric-icon">🧭</span>
-        <strong>4 Weeks</strong>
-        <small>Structured weekly roadmap</small>
-      </article>
+.nav-search input:focus {
+  border-color: rgba(56, 189, 248, 0.48);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.12), 0 0 40px rgba(56, 189, 248, 0.12);
+}
 
-      <article>
-        <span class="metric-icon">🔥</span>
-        <strong>100%</strong>
-        <small>Practical execution focus</small>
-      </article>
-    </section>
+.nav-links a {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
 
-    <section id="courses" class="courses-section" aria-labelledby="coursesTitle">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Premium course catalog</p>
-          <h2 id="coursesTitle">Choose the skill track that can change your next 12 months.</h2>
-        </div>
-        <p>
-          Read the full syllabus for free before enrolling. Every course is designed around clear weekly execution, practical skills, and Pakistan-focused earning pathways.
-        </p>
-      </div>
+.nav-links a[role="button"] {
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  color: #04111f;
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  box-shadow: 0 14px 36px rgba(52, 211, 153, 0.22);
+}
 
-      <div class="category-tabs" role="tablist" aria-label="Course category filters">
-        <button type="button" class="tab-pill is-active" data-category="All Courses">All Courses</button>
-        <button type="button" class="tab-pill" data-category="Freelancing">Freelancing</button>
-        <button type="button" class="tab-pill" data-category="Digital Marketing">Digital Marketing</button>
-        <button type="button" class="tab-pill" data-category="Video & Content Creation">Video & Content Creation</button>
-      </div>
+.page-shell {
+  padding-top: 46px;
+  padding-bottom: 64px;
+}
 
-      <div id="courseGrid" class="course-grid" aria-live="polite"></div>
+.eyebrow {
+  margin-bottom: 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #67e8f9;
+  text-transform: uppercase;
+}
 
-      <div id="emptyState" class="empty-state" hidden>
-        <span>🔎</span>
-        <h3>No course matched your filter.</h3>
-        <p>Search another skill or return to All Courses.</p>
-      </div>
-    </section>
+.onboarding-shell {
+  position: relative;
+  margin-bottom: 52px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.018));
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
 
-    <section id="about" class="info-section" aria-labelledby="aboutTitle">
-      <div>
-        <p class="eyebrow">Why NextGen exists</p>
-        <h2 id="aboutTitle">Pakistan’s youth do not need more motivation. They need marketable skills and a practical execution system.</h2>
-      </div>
-      <p>
-        NextGen Digital Academy focuses on real digital skills: freelancing, paid ads, video content systems, AI-assisted workflows, and local business growth. The goal is simple: replace confusion with a premium roadmap that serious learners can follow.
-      </p>
-    </section>
+.onboarding-shell::before {
+  position: absolute;
+  inset: -1px;
+  content: "";
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.22), transparent 34%),
+    radial-gradient(circle at 88% 15%, rgba(52, 211, 153, 0.20), transparent 35%);
+  opacity: 0.85;
+}
 
-    <section id="faq" class="faq-section" aria-labelledby="faqTitle">
-      <div class="section-heading compact-heading">
-        <div>
-          <p class="eyebrow">Common questions</p>
-          <h2 id="faqTitle">Before you enroll</h2>
-        </div>
-      </div>
+.onboarding-shell.is-collapsed {
+  display: none;
+}
 
-      <div class="faq-grid">
-        <details>
-          <summary>Can beginners join?</summary>
-          <p>Yes. Every course includes a Week 1 foundation layer so beginners can start with clear steps before moving into execution.</p>
-        </details>
+.onboarding-stage {
+  position: relative;
+  z-index: 1;
+  padding: clamp(28px, 5vw, 56px);
+  transition: opacity 260ms ease, transform 260ms ease;
+}
 
-        <details>
-          <summary>Is the syllabus visible before payment?</summary>
-          <p>Yes. Every course card contains a free detailed Week 1 to Week 4 syllabus preview.</p>
-        </details>
+.onboarding-stage.is-hidden {
+  opacity: 0;
+  transform: translateY(-16px) scale(0.98);
+}
 
-        <details>
-          <summary>How does enrollment work?</summary>
-          <p>Click Enroll Now, enter your name and email, send payment through JazzCash, EasyPaisa, or Meezan Bank, then confirm through WhatsApp.</p>
-        </details>
-      </div>
-    </section>
+.stage-one h1,
+.stage-two h2,
+.hero-copy h1,
+.section-heading h2 {
+  margin: 0;
+  color: var(--text);
+  font-weight: 900;
+  letter-spacing: -0.065em;
+  line-height: 0.96;
+}
 
-    <section id="terms" class="legal-section" aria-labelledby="termsTitle">
-      <h2 id="termsTitle">Terms of Service</h2>
-      <p>
-        Course enrollment is confirmed after payment verification. Students are responsible for completing assigned practice tasks. Course access, support format, timing, and learning outcomes depend on the selected course and the student’s consistency.
-      </p>
-    </section>
+.stage-one h1 {
+  max-width: 760px;
+  font-size: clamp(2.25rem, 6vw, 5.5rem);
+}
 
-    <section id="privacy" class="legal-section" aria-labelledby="privacyTitle">
-      <h2 id="privacyTitle">Privacy Policy</h2>
-      <p>
-        Student name, email, selected course, and enrollment status are stored in the browser’s LocalStorage for this serverless demo workflow. Do not use this static LocalStorage setup for sensitive production records without a real authenticated backend.
-      </p>
-    </section>
-  </main>
+.stage-two h2,
+.section-heading h2 {
+  max-width: 820px;
+  font-size: clamp(2rem, 5vw, 4.4rem);
+}
 
-  <section id="checkoutModal" class="modal-layer" aria-hidden="true">
-    <div class="modal-backdrop" data-close-modal></div>
+.stage-copy,
+.section-heading p,
+.hero-copy p,
+.faq-grid p,
+.modal-note {
+  color: var(--muted);
+}
 
-    <div class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-      <button class="modal-close" type="button" aria-label="Close enrollment modal" data-close-modal>×</button>
+.goal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 32px;
+}
 
-      <div class="modal-title-row">
-        <span class="modal-badge">💳</span>
-        <div>
-          <p class="eyebrow">Frictionless checkout</p>
-          <h2 id="checkoutTitle">Confirm Your Enrollment</h2>
-        </div>
-      </div>
+.psych-button,
+.persona-card,
+.ghost-cta,
+.category-pill,
+.syllabus-toggle,
+.enroll-btn {
+  cursor: pointer;
+}
 
-      <div class="selected-course">
-        <small>Selected course</small>
-        <strong id="modalCourseTitle">Course</strong>
-        <span id="modalCoursePrice">PKR 0</span>
-      </div>
+.psych-button {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  min-height: 188px;
+  padding: 24px;
+  overflow: hidden;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.025);
+  backdrop-filter: blur(14px);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
 
-      <div class="payment-panel">
-        <article>
-          <span>👤</span>
-          <strong>Account Title</strong>
-          <small>Shahzad Hassan</small>
-        </article>
+.psych-button::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  opacity: 0.8;
+  transition: opacity 220ms ease;
+}
 
-        <article>
-          <span>📲</span>
-          <strong>JazzCash</strong>
-          <small>Send payment and share screenshot</small>
-        </article>
+.psych-button.average::before {
+  background: radial-gradient(circle at 20% 10%, rgba(251, 191, 36, 0.18), transparent 44%);
+}
 
-        <article>
-          <span>💚</span>
-          <strong>EasyPaisa</strong>
-          <small>Fast local transfer supported</small>
-        </article>
+.psych-button.freedom::before {
+  background: radial-gradient(circle at 24% 5%, rgba(52, 211, 153, 0.26), transparent 46%),
+              radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.22), transparent 42%);
+}
 
-        <article>
-          <span>🏦</span>
-          <strong>Meezan Bank</strong>
-          <small>Bank transfer accepted</small>
-        </article>
-      </div>
+.psych-button:hover,
+.persona-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(52, 211, 153, 0.44);
+  box-shadow: 0 20px 70px rgba(52, 211, 153, 0.14);
+}
 
-      <form id="checkoutForm" class="checkout-form" novalidate>
-        <label for="studentName">Student Name</label>
-        <input id="studentName" name="studentName" type="text" minlength="2" maxlength="80" autocomplete="name" required />
+.psych-button span,
+.psych-button small {
+  position: relative;
+  z-index: 1;
+}
 
-        <label for="studentEmail">Email Address</label>
-        <input id="studentEmail" name="studentEmail" type="email" maxlength="120" autocomplete="email" required />
+.button-icon {
+  font-size: 2.2rem;
+}
 
-        <button class="primary-cta full-width" type="submit">Log Lead & Continue to WhatsApp</button>
-        <p class="form-note">Your enrollment request is stored locally and a formatted WhatsApp confirmation opens immediately.</p>
-      </form>
-    </div>
-  </section>
+.psych-button span:not(.button-icon) {
+  max-width: 620px;
+  font-size: clamp(1.1rem, 2vw, 1.55rem);
+  font-weight: 900;
+  line-height: 1.15;
+}
 
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+.psych-button small {
+  color: var(--muted-strong);
+}
 
-  <section id="cookieBanner" class="cookie-banner" aria-label="Cookie consent" hidden>
-    <div>
-      <strong>🍪 Cookies & local preferences</strong>
-      <p>
-        NextGen Academy uses browser storage to remember your course filters, onboarding choice, cookie consent, and enrollment requests.
-      </p>
-    </div>
-    <button id="acceptCookies" type="button">Accept</button>
-  </section>
+.persona-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
 
-  <footer class="site-footer">
-    <div class="footer-grid">
-      <div>
-        <a class="brand-link footer-brand" href="#top">
-          <span class="brand-mark">N</span>
-          <strong class="brand-text">NextGen Academy</strong>
-        </a>
-        <p>
-          Premium digital skills training for Pakistan’s serious students, freelancers, creators, job seekers, and business owners.
-        </p>
-      </div>
+.persona-card {
+  display: grid;
+  gap: 9px;
+  min-height: 174px;
+  padding: 22px;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018)),
+    radial-gradient(circle at 18% 12%, rgba(56, 189, 248, 0.12), transparent 55%);
+  animation: slidePersona 520ms ease both;
+}
 
-      <div>
-        <h3>Academy</h3>
-        <a href="#about">About Us</a>
-        <a href="#courses">Courses</a>
-        <a href="#outcomes">Outcomes</a>
-      </div>
+.persona-card:nth-child(2) { animation-delay: 70ms; }
+.persona-card:nth-child(3) { animation-delay: 140ms; }
+.persona-card:nth-child(4) { animation-delay: 210ms; }
+.persona-card:nth-child(5) { animation-delay: 280ms; }
+.persona-card:nth-child(6) { animation-delay: 350ms; }
 
-      <div>
-        <h3>Legal</h3>
-        <a href="#terms">Terms of Service</a>
-        <a href="#privacy">Privacy Policy</a>
-        <a href="#faq">Enrollment FAQ</a>
-      </div>
+.persona-card span {
+  font-size: 2rem;
+}
 
-      <div>
-        <h3>Social</h3>
-        <div class="social-row">
-          <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a>
-          <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube">▶</a>
-          <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
-        </div>
-        <a class="admin-link" href="admin.html">Admin Panel</a>
-      </div>
-    </div>
+.persona-card strong {
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
 
-    <div class="footer-bottom">
-      <small>© <span id="footerYear"></span> NextGen Digital Academy. All rights reserved.</small>
-      <small>Built for serverless deployment on Vercel.</small>
-    </div>
-  </footer>
+.persona-card small {
+  color: var(--muted);
+}
 
-  <script src="main.js" defer></script>
-</body>
-</html>
+@keyframes slidePersona {
+  from {
+    opacity: 0;
+    transform: translateX(-24px) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 82px;
+}
+
+.hero-copy,
+.hero-visual,
+.catalog-section,
+.conversion-band article,
+.faq-grid article,
+.modal-card {
+  border: 1px solid var(--border);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.052), rgba(255, 255, 255, 0.018));
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.hero-copy {
+  padding: clamp(28px, 5vw, 56px);
+  border-radius: var(--radius-xl);
+}
+
+.hero-copy h1 {
+  max-width: 900px;
+  font-size: clamp(2.35rem, 6vw, 5.9rem);
+}
+
+.hero-copy > p:not(.eyebrow) {
+  max-width: 720px;
+  margin-top: 22px;
+  font-size: clamp(1.02rem, 2vw, 1.18rem);
+  line-height: 1.75;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 30px 0;
+}
+
+.primary-cta,
+.ghost-cta,
+.enroll-btn,
+.modal-submit,
+.conversion-band button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 900;
+}
+
+.primary-cta,
+.enroll-btn,
+.modal-submit,
+.conversion-band button {
+  border: 0;
+  color: #04111f;
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  box-shadow: 0 18px 42px rgba(52, 211, 153, 0.22);
+}
+
+.ghost-cta {
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.metric-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.metric-card {
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.metric-card span {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-size: 1.35rem;
+}
+
+.metric-card strong {
+  display: block;
+  color: var(--text);
+  font-size: 1.25rem;
+}
+
+.metric-card small {
+  color: var(--muted);
+}
+
+.hero-visual {
+  position: relative;
+  display: grid;
+  min-height: 560px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.hero-visual::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    radial-gradient(circle at 50% 48%, rgba(52, 211, 153, 0.22), transparent 33%),
+    radial-gradient(circle at 22% 20%, rgba(56, 189, 248, 0.18), transparent 30%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.03), transparent);
+}
+
+.hologram {
+  position: relative;
+  width: min(360px, 74vw);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.holo-ring,
+.holo-core,
+.holo-line {
+  position: absolute;
+  border-radius: 999px;
+}
+
+.holo-ring {
+  inset: 8%;
+  border: 1px solid rgba(56, 189, 248, 0.38);
+  box-shadow: 0 0 70px rgba(56, 189, 248, 0.16), inset 0 0 70px rgba(52, 211, 153, 0.10);
+  animation: spin 18s linear infinite;
+}
+
+.holo-ring::before,
+.holo-ring::after {
+  position: absolute;
+  inset: 14%;
+  content: "";
+  border: 1px dashed rgba(52, 211, 153, 0.38);
+  border-radius: inherit;
+}
+
+.holo-ring::after {
+  inset: 28%;
+  border-style: solid;
+  border-color: rgba(167, 139, 250, 0.34);
+}
+
+.holo-core {
+  display: grid;
+  width: 108px;
+  height: 108px;
+  place-items: center;
+  color: #06121f;
+  font-size: 2rem;
+  font-weight: 1000;
+  background: linear-gradient(135deg, var(--cyan), var(--emerald));
+  box-shadow: 0 0 60px rgba(52, 211, 153, 0.34);
+}
+
+.holo-line {
+  width: 76%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.7), transparent);
+  animation: pulseLine 2.6s ease-in-out infinite;
+}
+
+.holo-line.one { transform: rotate(28deg); }
+.holo-line.two { transform: rotate(-38deg); animation-delay: -0.8s; }
+.holo-line.three { transform: rotate(88deg); animation-delay: -1.5s; }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseLine {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
+
+.orbital-card {
+  position: absolute;
+  z-index: 2;
+  width: min(300px, 80%);
+  padding: 18px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: rgba(11, 15, 25, 0.72);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.34);
+}
+
+.orbital-card span {
+  font-size: 1.4rem;
+}
+
+.orbital-card strong {
+  display: block;
+  margin-top: 8px;
+}
+
+.orbital-card small {
+  color: var(--muted);
+}
+
+.top-card {
+  top: 32px;
+  left: 28px;
+}
+
+.bottom-card {
+  right: 28px;
+  bottom: 32px;
+}
+
+.catalog-section {
+  padding: clamp(24px, 4vw, 42px);
+  border-radius: var(--radius-xl);
+}
+
+.section-heading {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.section-heading p {
+  max-width: 780px;
+  line-height: 1.7;
+}
+
+.category-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.category-pill {
+  padding: 12px 18px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted-strong);
+  background: rgba(255, 255, 255, 0.025);
+  transition: border-color 200ms ease, box-shadow 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.category-pill:hover,
+.category-pill.active {
+  color: var(--text);
+  border-color: rgba(52, 211, 153, 0.45);
+  box-shadow: 0 0 35px rgba(52, 211, 153, 0.13);
+  transform: translateY(-2px);
+}
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.course-card {
+  position: relative;
+  display: flex;
+  min-height: 100%;
+  overflow: hidden;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.025);
+  transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+}
+
+.course-card::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(135deg, rgba(52, 211, 153, 0.18), transparent 28%),
+    linear-gradient(315deg, rgba(56, 189, 248, 0.14), transparent 35%);
+  transition: opacity 240ms ease;
+}
+
+.course-card:hover {
+  transform: translateY(-7px) scale(1.01);
+  border-color: rgba(52, 211, 153, 0.44);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.36), 0 0 44px rgba(52, 211, 153, 0.12);
+}
+
+.course-card:hover::before {
+  opacity: 1;
+}
+
+.course-media {
+  position: relative;
+  height: 214px;
+  overflow: hidden;
+  background: #0f172a;
+  clip-path: polygon(0 0, 100% 0, 100% 84%, 0 100%);
+}
+
+.course-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(1.04) contrast(1.06) brightness(0.78);
+  transition: transform 520ms ease, filter 520ms ease;
+}
+
+.course-card:hover .course-media img {
+  transform: scale(1.08);
+  filter: saturate(1.18) contrast(1.12) brightness(0.92);
+}
+
+.course-media::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    radial-gradient(circle at 18% 20%, rgba(56, 189, 248, 0.28), transparent 42%),
+    linear-gradient(180deg, transparent, rgba(11, 15, 25, 0.82));
+}
+
+.course-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(11, 15, 25, 0.74);
+  backdrop-filter: blur(12px);
+  font-size: 0.76rem;
+  font-weight: 900;
+}
+
+.course-body {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 22px;
+}
+
+.course-title {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.28rem;
+  line-height: 1.16;
+  letter-spacing: -0.035em;
+}
+
+.course-summary {
+  margin: 12px 0 18px;
+  color: var(--muted);
+  line-height: 1.62;
+}
+
+.course-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.course-meta span {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted-strong);
+  background: rgba(255, 255, 255, 0.025);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.course-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: auto;
+}
+
+.price {
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 1000;
+  letter-spacing: -0.04em;
+}
+
+.syllabus-wrap {
+  margin-top: 16px;
+}
+
+.syllabus-toggle {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  border-radius: 14px;
+  color: var(--text);
+  background: rgba(56, 189, 248, 0.06);
+  font-weight: 900;
+  transition: border-color 200ms ease, background 200ms ease;
+}
+
+.syllabus-toggle:hover {
+  border-color: rgba(56, 189, 248, 0.48);
+  background: rgba(56, 189, 248, 0.10);
+}
+
+.syllabus-panel {
+  display: grid;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.week-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.024);
+}
+
+.week-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+
+.week-card ul {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.week-card li {
+  margin: 4px 0;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  padding: 34px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.conversion-band {
+  margin: 52px 0 28px;
+}
+
+.conversion-band .container {
+  width: 100%;
+}
+
+.conversion-band article {
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: var(--radius-xl);
+}
+
+.conversion-band h2,
+.conversion-band h3 {
+  color: var(--text);
+}
+
+.conversion-band h3 {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.conversion-band input {
+  min-height: 50px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.faq-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.faq-grid article {
+  margin: 0;
+  padding: 24px;
+  border-radius: var(--radius-lg);
+}
+
+.faq-grid span {
+  font-size: 1.8rem;
+}
+
+.faq-grid h3 {
+  margin: 12px 0 8px;
+  color: var(--text);
+}
+
+.checkout-modal {
+  width: min(720px, calc(100% - 28px));
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.checkout-modal::backdrop {
+  background: rgba(2, 6, 23, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.modal-card {
+  position: relative;
+  margin: 0;
+  padding: clamp(22px, 4vw, 34px);
+  border-radius: var(--radius-xl);
+  color: var(--text);
+}
+
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 1.5rem;
+}
+
+.modal-header {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.modal-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 auto;
+  place-items: center;
+  border: 1px solid rgba(52, 211, 153, 0.32);
+  border-radius: 18px;
+  background: rgba(52, 211, 153, 0.10);
+  font-size: 1.55rem;
+}
+
+.modal-card h2 {
+  margin: 0;
+  color: var(--text);
+}
+
+.payment-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.payment-panel div {
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.payment-panel small {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+}
+
+.payment-panel strong {
+  color: var(--text);
+}
+
+.modal-card label {
+  color: var(--muted-strong);
+  font-weight: 800;
+}
+
+.modal-card input {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.modal-submit {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.modal-note {
+  margin: 14px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.toast {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 100;
+  max-width: min(420px, calc(100vw - 44px));
+  padding: 14px 16px;
+  border: 1px solid var(--border-strong);
+  border-radius: 16px;
+  color: var(--text);
+  background: rgba(11, 15, 25, 0.88);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 220ms ease, transform 220ms ease;
+  pointer-events: none;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.footer {
+  padding-bottom: 34px;
+  text-align: center;
+}
+
+.footer small {
+  color: var(--muted);
+}
+
+.footer a {
+  color: var(--muted-strong);
+}
+
+@media (max-width: 1040px) {
+  .course-grid,
+  .persona-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    min-height: 460px;
+  }
+}
+
+@media (max-width: 760px) {
+  .app-nav {
+    display: grid;
+    gap: 12px;
+    border-radius: 26px;
+  }
+
+  .app-nav ul {
+    justify-content: center;
+  }
+
+  .nav-search-wrap {
+    width: 100%;
+    order: 3;
+  }
+
+  .nav-search,
+  .nav-search:focus-within {
+    width: 100%;
+  }
+
+  .nav-links {
+    gap: 8px;
+  }
+
+  .goal-grid,
+  .persona-grid,
+  .metric-strip,
+  .course-grid,
+  .faq-grid,
+  .payment-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .primary-cta,
+  .ghost-cta {
+    width: 100%;
+  }
+
+  .course-price-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .enroll-btn {
+    width: 100%;
+  }
+
+  .top-card,
+  .bottom-card {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: calc(100% - 38px);
+    margin: 18px auto;
+  }
+
+  .hero-visual {
+    display: block;
+    min-height: auto;
+    padding: 20px 0;
+  }
+
+  .hologram {
+    margin: 0 auto;
+  }
+}
