@@ -3,40 +3,34 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; navigate-to 'self' https://api.whatsapp.com https://wa.me;"
-  />
-  <meta name="description" content="NextGen Digital Academy helps Pakistani students, freelancers, creators, and businesses learn premium digital skills for online income and career growth." />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self'; navigate-to 'self' https://api.whatsapp.com https://wa.me;">
+  <meta name="description" content="NextGen Digital Academy is a premium Pakistani digital skills academy for freelancing, digital marketing, video creation, AI content, and online income skills." />
   <title>NextGen Digital Academy | Premium Digital Skills for Pakistan</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <link rel="stylesheet" href="style.css">
   <script defer src="main.js"></script>
 </head>
 
 <body>
-  <nav class="container-fluid app-nav" aria-label="Primary navigation">
+  <nav class="container-fluid app-nav">
     <ul>
       <li>
-        <a class="brand-mark" href="#" aria-label="NextGen Academy home">
-          <span class="brand-orb" aria-hidden="true">◆</span>
+        <a href="#home" class="brand">
+          <span class="brand-icon">◆</span>
           <strong>NextGen Academy</strong>
         </a>
       </li>
     </ul>
 
-    <ul class="nav-search-wrap">
+    <ul class="search-zone">
       <li>
-        <form class="nav-search" role="search" id="siteSearchForm">
+        <form id="searchForm" class="search-form" role="search">
           <label class="sr-only" for="courseSearch">Search courses</label>
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M10.7 4.2a6.5 6.5 0 0 1 5.2 10.4l3.5 3.5a1 1 0 0 1-1.4 1.4L14.5 16a6.5 6.5 0 1 1-3.8-11.8Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z" />
-          </svg>
-          <input id="courseSearch" name="courseSearch" type="search" autocomplete="off" placeholder="Search freelancing, ads, video editing..." />
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10.7 4.2a6.5 6.5 0 0 1 5.2 10.4l3.5 3.5a1 1 0 0 1-1.4 1.4L14.5 16a6.5 6.5 0 1 1-3.8-11.8Zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9Z"/></svg>
+          <input id="courseSearch" type="search" placeholder="Search freelancing, ads, video editing..." autocomplete="off">
         </form>
       </li>
     </ul>
@@ -48,236 +42,137 @@
     </ul>
   </nav>
 
-  <main class="container page-shell">
-    <section class="onboarding-shell" id="onboardingShell" aria-live="polite">
-      <div class="onboarding-stage stage-one" id="stageOne">
+  <main class="container" id="home">
+    <section class="onboarding" id="onboarding">
+      <div class="stage" id="stageOne">
         <p class="eyebrow">Start with brutal clarity</p>
         <h1>What is your ultimate financial goal?</h1>
-        <p class="stage-copy">
-          Your answer personalizes the academy experience, course recommendations, and the career path shown below.
-        </p>
+        <p class="lead">Your answer personalizes your homepage, course recommendations, and digital earning path.</p>
 
         <div class="goal-grid">
-          <button class="psych-button average" type="button" data-goal="average">
-            <span class="button-icon">🌟</span>
-            <span>Main Sirf Apna Shook Poora Karna Chahta Hoon</span>
+          <button class="goal-card average" type="button" data-goal="average">
+            <span>🌟</span>
+            <strong>Main Sirf Apna Shook Poora Karna Chahta Hoon</strong>
             <small>Keep me average</small>
           </button>
 
-          <button class="psych-button freedom" type="button" data-goal="freedom">
-            <span class="button-icon">🔥</span>
-            <span>Main Dollar Kama Kar Real Freedom Aur Millionaire Banna Chahta Hoon</span>
-            <small>Build a serious digital-income path</small>
+          <button class="goal-card freedom" type="button" data-goal="freedom">
+            <span>🔥</span>
+            <strong>Main Dollar Kama Kar Real Freedom Aur Millionaire Banna Chahta Hoon</strong>
+            <small>Build serious digital income skills</small>
           </button>
         </div>
       </div>
 
-      <div class="onboarding-stage stage-two" id="stageTwo" hidden>
+      <div class="stage" id="stageTwo" hidden>
         <p class="eyebrow">Choose your current reality</p>
         <h2>Which background describes you best?</h2>
-        <p class="stage-copy">
-          Pick one path. Your homepage will adapt instantly with focused courses and conversion guidance.
-        </p>
+        <p class="lead">Pick one path. Your homepage will instantly adapt to your situation.</p>
 
         <div class="persona-grid" id="personaGrid">
-          <button type="button" class="persona-card" data-persona="student">
-            <span>🎓</span>
-            <strong>Matric / Intermediate Student</strong>
-            <small>Earn pocket money & cover fees</small>
-          </button>
-
-          <button type="button" class="persona-card" data-persona="graduate">
-            <span>💼</span>
-            <strong>Fresh Graduate / Job Seeker</strong>
-            <small>Build a high-paying agency career</small>
-          </button>
-
-          <button type="button" class="persona-card" data-persona="beginner">
-            <span>🛠️</span>
-            <strong>Absolute Beginner in Tech</strong>
-            <small>Zero background, start from absolute scratch</small>
-          </button>
-
-          <button type="button" class="persona-card" data-persona="creator">
-            <span>📱</span>
-            <strong>Social Media Enthusiast</strong>
-            <small>Video Editing, Reels, YouTube Automation</small>
-          </button>
-
-          <button type="button" class="persona-card" data-persona="freelancer">
-            <span>💻</span>
-            <strong>Part-Time Freelancer</strong>
-            <small>Master Upwork bidding & earn pure USD</small>
-          </button>
-
-          <button type="button" class="persona-card" data-persona="business">
-            <span>🏢</span>
-            <strong>Local Business Owner / Store</strong>
-            <small>Scale sales via advanced local ads</small>
-          </button>
+          <button type="button" class="persona-card" data-persona="student"><span>🎓</span><strong>Matric / Intermediate Student</strong><small>Earn pocket money & cover fees</small></button>
+          <button type="button" class="persona-card" data-persona="graduate"><span>💼</span><strong>Fresh Graduate / Job Seeker</strong><small>Build a high-paying agency career</small></button>
+          <button type="button" class="persona-card" data-persona="beginner"><span>🛠️</span><strong>Absolute Beginner in Tech</strong><small>Zero background, start from scratch</small></button>
+          <button type="button" class="persona-card" data-persona="creator"><span>📱</span><strong>Social Media Enthusiast</strong><small>Video Editing, Reels, YouTube Automation</small></button>
+          <button type="button" class="persona-card" data-persona="freelancer"><span>💻</span><strong>Part-Time Freelancer</strong><small>Master Upwork bidding & earn USD</small></button>
+          <button type="button" class="persona-card" data-persona="business"><span>🏢</span><strong>Local Business Owner / Store</strong><small>Scale sales via local ads</small></button>
         </div>
       </div>
     </section>
 
-    <section class="hero-grid" id="home">
+    <section class="hero">
       <div class="hero-copy">
         <p class="eyebrow">Pakistan-focused premium digital skills academy</p>
-        <h1 id="heroHeadline">Inflation will not wait for your degree. Build a digital skill stack before the market leaves you behind.</h1>
-        <p id="heroSubheadline">
-          Learn freelancing, digital marketing, and content systems through practical 4-week roadmaps built for Pakistani students, creators, freelancers, and business owners.
-        </p>
+        <h1 id="heroHeadline">Inflation is destroying savings. Master digital assets before you get left behind.</h1>
+        <p id="heroSubheadline">Learn freelancing, digital marketing, video creation, and AI content systems through practical 4-week skill roadmaps designed for Pakistani learners.</p>
 
         <div class="hero-actions">
           <a href="#catalog" role="button" class="primary-cta">Explore Courses</a>
-          <button type="button" class="ghost-cta" id="resetOnboardingBtn">Retake Skill Path Quiz</button>
+          <button type="button" class="secondary-cta" id="resetQuiz">Retake Skill Path Quiz</button>
         </div>
 
-        <div class="metric-strip" aria-label="Academy highlights">
-          <div class="metric-card">
-            <span>⚡</span>
-            <strong id="metricCourses">0</strong>
-            <small>Live skill programs</small>
-          </div>
-          <div class="metric-card">
-            <span>🧠</span>
-            <strong>4 Weeks</strong>
-            <small>Every syllabus is readable before enrollment</small>
-          </div>
-          <div class="metric-card">
-            <span>💸</span>
-            <strong>PKR</strong>
-            <small>JazzCash, EasyPaisa, Meezan Bank</small>
-          </div>
+        <div class="metric-grid">
+          <article><span>⚡</span><strong id="courseMetric">0</strong><small>Live programs</small></article>
+          <article><span>🧠</span><strong>4 Weeks</strong><small>Clear syllabus before payment</small></article>
+          <article><span>💸</span><strong>PKR</strong><small>JazzCash, EasyPaisa, Meezan Bank</small></article>
         </div>
       </div>
 
-      <aside class="hero-visual" aria-label="Digital academy visual dashboard">
-        <div class="orbital-card top-card">
-          <span>📈</span>
-          <strong>Career Momentum</strong>
-          <small>Skill → Portfolio → Client → Income</small>
-        </div>
-        <div class="hologram">
-          <div class="holo-ring"></div>
-          <div class="holo-core">NG</div>
-          <div class="holo-line one"></div>
-          <div class="holo-line two"></div>
-          <div class="holo-line three"></div>
-        </div>
-        <div class="orbital-card bottom-card">
-          <span>🚀</span>
-          <strong>Pakistan to Global</strong>
-          <small>Learn skills built for remote digital markets</small>
-        </div>
+      <aside class="hero-graphic">
+        <div class="floating-card top"><span>📈</span><strong>Skill → Proof → Client → Income</strong></div>
+        <div class="hologram"><div class="ring"></div><div class="core">NG</div><i></i><i></i><i></i></div>
+        <div class="floating-card bottom"><span>🚀</span><strong>Pakistan to Global Digital Markets</strong></div>
       </aside>
     </section>
 
-    <section class="catalog-section" id="catalog">
-      <div class="section-heading">
+    <section class="catalog" id="catalog">
+      <div class="section-head">
         <p class="eyebrow">Premium catalog</p>
         <h2>Choose the skill that can change your next 12 months.</h2>
-        <p>
-          Filter by category, search live, read the full week-by-week syllabus for free, then enroll through a frictionless WhatsApp confirmation flow.
-        </p>
+        <p>Search live, filter by category, read the full syllabus free, and enroll through a WhatsApp confirmation flow.</p>
       </div>
 
-      <div class="category-tabs" id="categoryTabs" role="tablist" aria-label="Course categories">
-        <button type="button" class="category-pill active" data-category="All Courses">All Courses</button>
-        <button type="button" class="category-pill" data-category="Freelancing">Freelancing</button>
-        <button type="button" class="category-pill" data-category="Digital Marketing">Digital Marketing</button>
-        <button type="button" class="category-pill" data-category="Video & Content Creation">Video & Content Creation</button>
+      <div class="tabs" id="categoryTabs">
+        <button type="button" class="tab active" data-category="All Courses">All Courses</button>
+        <button type="button" class="tab" data-category="Freelancing">Freelancing</button>
+        <button type="button" class="tab" data-category="Digital Marketing">Digital Marketing</button>
+        <button type="button" class="tab" data-category="Video & Content Creation">Video & Content Creation</button>
       </div>
 
-      <div class="course-grid" id="courses" aria-live="polite"></div>
+      <div class="course-grid" id="courses"></div>
     </section>
 
-    <section class="conversion-band" aria-label="Subscribe example">
+    <section aria-label="Subscribe example" class="subscribe">
       <div class="container">
         <article>
           <hgroup>
             <h2>Stop guessing. Start building marketable skills.</h2>
-            <h3>Get course updates and enrollment reminders from NextGen Digital Academy.</h3>
+            <h3>Get NextGen course updates and enrollment reminders.</h3>
           </hgroup>
           <form class="grid" id="newsletterForm">
-            <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name" required />
-            <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required />
+            <input type="text" id="firstname" name="firstname" placeholder="First name" aria-label="First name" required>
+            <input type="email" id="email" name="email" placeholder="Email address" aria-label="Email address" required>
             <button type="submit">Notify Me</button>
           </form>
         </article>
       </div>
     </section>
 
-    <section class="faq-grid" id="faq" aria-label="Common questions">
-      <article>
-        <span>🔍</span>
-        <h3>Can I read the syllabus before paying?</h3>
-        <p>Yes. Every course card includes the full 4-week syllabus dropdown for free.</p>
-      </article>
-      <article>
-        <span>📲</span>
-        <h3>How does enrollment work?</h3>
-        <p>Click Enroll Now, enter your name and email, then WhatsApp opens with your formatted course confirmation.</p>
-      </article>
-      <article>
-        <span>🛡️</span>
-        <h3>Where are leads stored?</h3>
-        <p>Enrollment requests are stored in LocalStorage and become visible in the companion admin panel on the same origin.</p>
-      </article>
-    </section>
-
-    <dialog class="checkout-modal" id="checkoutModal" aria-labelledby="checkoutTitle">
-      <form method="dialog" class="modal-card" id="checkoutForm">
-        <button class="modal-close" type="button" id="closeModalBtn" aria-label="Close checkout">×</button>
-
-        <div class="modal-header">
-          <span class="modal-icon">💳</span>
+    <dialog id="checkoutModal" class="checkout-modal">
+      <form method="dialog" id="checkoutForm" class="modal-card">
+        <button type="button" class="modal-close" id="closeModal" aria-label="Close">×</button>
+        <div class="modal-head">
+          <span>💳</span>
           <div>
-            <p class="eyebrow">Secure enrollment confirmation</p>
-            <h2 id="checkoutTitle">Enroll in Course</h2>
-            <p id="checkoutSubtitle">Submit your details and confirm through WhatsApp.</p>
+            <p class="eyebrow">Enrollment confirmation</p>
+            <h2 id="modalTitle">Enroll Now</h2>
+            <p id="modalSubtitle">Submit your details and confirm through WhatsApp.</p>
           </div>
         </div>
 
-        <div class="payment-panel">
-          <div>
-            <small>Account Title</small>
-            <strong>Shahzad Hassan</strong>
-          </div>
-          <div>
-            <small>Payment Channels</small>
-            <strong>JazzCash / EasyPaisa / Meezan Bank</strong>
-          </div>
-          <div>
-            <small>Selected Course</small>
-            <strong id="modalCourseName">Course Name</strong>
-          </div>
-          <div>
-            <small>Fee</small>
-            <strong id="modalCoursePrice">PKR 0</strong>
-          </div>
+        <div class="payment-grid">
+          <div><small>Account Title</small><strong>Shahzad Hassan</strong></div>
+          <div><small>Channels</small><strong>JazzCash / EasyPaisa / Meezan Bank</strong></div>
+          <div><small>Course</small><strong id="modalCourse">Selected Course</strong></div>
+          <div><small>Fee</small><strong id="modalPrice">PKR 0</strong></div>
         </div>
 
         <label for="studentName">Student Name</label>
-        <input type="text" id="studentName" name="studentName" autocomplete="name" minlength="2" maxlength="80" required />
+        <input id="studentName" name="studentName" type="text" minlength="2" maxlength="80" autocomplete="name" required>
 
         <label for="studentEmail">Email Address</label>
-        <input type="email" id="studentEmail" name="studentEmail" autocomplete="email" maxlength="120" required />
+        <input id="studentEmail" name="studentEmail" type="email" maxlength="120" autocomplete="email" required>
 
         <button type="submit" class="modal-submit">Save Lead & Open WhatsApp</button>
-        <p class="modal-note">
-          Your enrollment request will be saved locally and your WhatsApp message will include course title, price, payment channels, and student details.
-        </p>
+        <p class="fine-print">Your request is saved locally and WhatsApp opens with a formatted confirmation message.</p>
       </form>
     </dialog>
 
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
   </main>
 
-  <footer class="container footer">
-    <small>
-      <a href="#home">NextGen Digital Academy</a> •
-      <a href="admin.html">Admin Panel</a>
-    </small>
+  <footer class="container">
+    <small><a href="#home">NextGen Digital Academy</a> • <a href="admin.html">Admin Panel</a></small>
   </footer>
 </body>
 </html>
