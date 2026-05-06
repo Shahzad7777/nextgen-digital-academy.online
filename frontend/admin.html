@@ -3,25 +3,322 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin Dashboard - NextGen Digital Academy</title>
+<title>NextGen Admin Dashboard</title>
 <link rel="stylesheet" href="css/style.css">
+<style>
+/* =====================
+   Admin Dashboard Premium Styles
+===================== */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #0F172A; /* Ultra-sleek dark */
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+}
+
+header.admin-header {
+    padding: 25px 20px;
+    background-color: #0B0F19;
+    text-align: center;
+    border-bottom: 1px solid #1E293B;
+}
+
+header.admin-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 600;
+}
+
+section {
+    padding: 40px 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    color: #FFFFFF;
+}
+
+.admin-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border: 1px solid #1E293B;
+    background-color: rgba(255,255,255,0.05);
+    color: #FFFFFF;
+}
+
+button {
+    background-color: #0070F3; /* Electric Blue primary CTA */
+    color: #FFFFFF;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #10B981; /* Neon Emerald hover for clicks */
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    color: #FFFFFF;
+}
+
+table th, table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #1E293B;
+}
+
+table th {
+    text-align: left;
+    color: #94A3B8; /* muted slate gray for secondary text */
+}
+
+.status-pending {
+    color: #FBBF24; /* Amber for pending */
+}
+
+.status-approved {
+    color: #10B981; /* Neon green for approved */
+}
+
+.status-rejected {
+    color: #EF4444; /* Red for rejected */
+}
+
+/* PASSWORD LOGIN MODAL */
+#login-modal {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+#login-modal .login-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(12px);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+}
+
+#login-modal input {
+    margin-bottom: 20px;
+}
+
+#login-modal button {
+    width: 100%;
+}
+</style>
 </head>
 <body>
-<header>
-  <h1>Admin Dashboard</h1>
+
+<!-- LOGIN MODAL -->
+<div id="login-modal">
+    <div class="login-card">
+        <h2>Admin Login</h2>
+        <input type="password" id="admin-password" placeholder="Enter password">
+        <button id="login-btn">Login</button>
+    </div>
+</div>
+
+<header class="admin-header">
+    <h1>NextGen Digital Academy - Admin Dashboard</h1>
 </header>
 
-<section id="login-section">
-  <input type="password" id="admin-password" placeholder="Enter Admin Password">
-  <button id="login-btn">Login</button>
+<section class="admin-section">
+    <!-- Add/Edit Courses -->
+    <div class="card">
+        <h2>Add New Course</h2>
+        <input type="text" id="course-title" placeholder="Course Title">
+        <textarea id="course-desc" placeholder="Course Description"></textarea>
+        <input type="number" id="course-price" placeholder="Price (PKR)">
+        <input type="text" id="course-image" placeholder="Image URL">
+        <button id="add-course-btn">Add Course</button>
+    </div>
+
+    <!-- Courses Table -->
+    <div class="card">
+        <h2>Manage Courses</h2>
+        <table id="courses-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price (PKR)</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pending Enrollments -->
+    <div class="card">
+        <h2>Pending Enrollments</h2>
+        <table id="enrollments-table">
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Course</th>
+                    <th>Payment Proof</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic -->
+            </tbody>
+        </table>
+    </div>
 </section>
 
-<section id="dashboard" style="display:none;">
-  <h2>Courses</h2>
-  <div id="course-list"></div>
-  <button id="add-course-btn">Add Course</button>
-</section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+const SUPABASE_URL = "https://YOUR_PROJECT.supabase.co";
+const SUPABASE_ANON_KEY = "YOUR_ANON_KEY";
+const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-<script src="js/admin.js"></script>
+// -----------------
+// ADMIN LOGIN
+// -----------------
+const PASSWORD = "EliteAdmin2026"; // Change to strong secret
+const loginModal = document.getElementById("login-modal");
+document.getElementById("login-btn").addEventListener("click", () => {
+    const input = document.getElementById("admin-password").value;
+    if(input === PASSWORD){
+        loginModal.style.display = "none";
+        loadCourses();
+        loadEnrollments();
+    } else {
+        alert("Incorrect password!");
+    }
+});
+
+// -----------------
+// COURSES MANAGEMENT
+// -----------------
+async function loadCourses() {
+    const { data: courses } = await supabase.from("courses").select("*").order("id");
+    const tbody = document.querySelector("#courses-table tbody");
+    tbody.innerHTML = "";
+    courses.forEach(c => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${c.title}</td>
+            <td>${c.price}</td>
+            <td>
+                <button onclick="editCourse(${c.id})">Edit</button>
+                <button onclick="deleteCourse(${c.id})">Delete</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+document.getElementById("add-course-btn").addEventListener("click", async () => {
+    const title = document.getElementById("course-title").value;
+    const desc = document.getElementById("course-desc").value;
+    const price = document.getElementById("course-price").value;
+    const image = document.getElementById("course-image").value;
+    if(!title || !desc || !price || !image){ alert("All fields required"); return; }
+
+    await supabase.from("courses").insert([{title, description: desc, price, image_url: image}]);
+    loadCourses();
+    document.getElementById("course-title").value = "";
+    document.getElementById("course-desc").value = "";
+    document.getElementById("course-price").value = "";
+    document.getElementById("course-image").value = "";
+});
+
+async function deleteCourse(id){
+    if(confirm("Delete this course?")){
+        await supabase.from("courses").delete().eq("id", id);
+        loadCourses();
+    }
+}
+
+async function editCourse(id){
+    const newTitle = prompt("New Title:");
+    const newDesc = prompt("New Description:");
+    const newPrice = prompt("New Price (PKR):");
+    const newImage = prompt("New Image URL:");
+    await supabase.from("courses").update({
+        title: newTitle,
+        description: newDesc,
+        price: newPrice,
+        image_url: newImage
+    }).eq("id", id);
+    loadCourses();
+}
+
+// -----------------
+// ENROLLMENTS MANAGEMENT
+// -----------------
+async function loadEnrollments() {
+    const { data: enrollments } = await supabase.from("enrollments").select("*, courses(title)").eq("status","pending").order("id");
+    const tbody = document.querySelector("#enrollments-table tbody");
+    tbody.innerHTML = "";
+    enrollments.forEach(e => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td>${e.student_name}</td>
+            <td>${e.courses.title}</td>
+            <td><a href="${e.payment_proof}" target="_blank">View</a></td>
+            <td>
+                <button onclick="approveEnrollment(${e.id})">Approve</button>
+                <button onclick="rejectEnrollment(${e.id})">Reject</button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+async function approveEnrollment(id){
+    await supabase.from("enrollments").update({status:"approved"}).eq("id", id);
+    loadEnrollments();
+}
+
+async function rejectEnrollment(id){
+    await supabase.from("enrollments").update({status:"rejected"}).eq("id", id);
+    loadEnrollments();
+}
+</script>
+
 </body>
 </html>
