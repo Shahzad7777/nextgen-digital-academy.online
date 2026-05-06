@@ -1,274 +1,151 @@
-/* ==============================
-   NextGen Digital Academy - Premium Dark/Light Hybrid Stylesheet
-   Unified for index.html + admin.html
-   Glassmorphism, Modern SaaS UI, High-Contrast CTA, Mobile Responsive
-============================== */
-
-/* -------------------------------
-   GLOBAL VARIABLES
----------------------------------*/
 :root {
-    --bg-dark: #0F172A;          /* Primary background */
-    --bg-darker: #0B0F19;        /* Secondary dark background */
-    --primary: #0070F3;          /* CTA primary blue */
-    --primary-hover: #10B981;    /* Neon emerald hover */
-    --text-main: #FFFFFF;        /* Main text */
-    --text-muted: #94A3B8;       /* Secondary muted text */
-    --card-bg: rgba(255,255,255,0.05); /* Glassmorphism card bg */
-    --card-radius: 15px;
-    --card-shadow: 0 8px 25px rgba(0,0,0,0.6);
+    --primary: #0066CC; 
+    --primary-hover: #005BB5;
+    --text-main: #111;         /* Dark text for light background */
+    --text-muted: #555;        /* Muted gray for secondary text */
+    --bg: #F9FAFB;             /* Light soft background */
+    --card-bg: #FFFFFF;        /* White cards for contrast */
+    --card-radius: 10px;
+    --card-shadow: 0 4px 15px rgba(0,0,0,0.08); /* softer shadow for light BG */
     --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body: 'Segoe UI', sans-serif;
 }
 
-/* -------------------------------
-   GLOBAL STYLES
----------------------------------*/
 body {
     font-family: var(--font-body);
-    margin: 0;
-    padding: 0;
-    background-color: var(--bg-dark);
+    margin:0;
+    background-color: var(--bg); /* Soft light background */
     color: var(--text-main);
 }
 
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    margin: 0 0 15px 0;
-}
-
-a {
-    text-decoration: none;
-    color: var(--primary);
-}
-
-button {
-    cursor: pointer;
-    font-weight: bold;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 25px;
-    background-color: var(--primary);
-    color: var(--text-main);
-    transition: all 0.3s ease;
-}
-
-button:hover {
-    background-color: var(--primary-hover);
-    transform: scale(1.05);
-}
-
-/* -------------------------------
-   HEADER / HERO
----------------------------------*/
+/* HERO */
 header.hero {
-    background: linear-gradient(135deg, #0B0F19, #0F172A);
-    text-align: center;
+    background: var(--bg); /* Light background */
     padding: 80px 20px;
-    color: var(--text-main);
+    text-align: center;
 }
 
 header.hero h1 {
+    font-family: var(--font-heading);
     font-size: 2.8rem;
-    line-height: 1.2;
     margin-bottom: 20px;
 }
 
-.hero-sub {
+header.hero p {
     font-size: 1.2rem;
     color: var(--text-muted);
     margin-bottom: 25px;
 }
 
-.cta-btn {
+header.hero .cta-btn {
     display: inline-block;
-    text-decoration: none;
-    margin-top: 15px;
-}
-
-/* Scarcity / trust signals */
-.scarcity {
-    margin-top: 15px;
+    background: var(--primary);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
     font-weight: bold;
-    color: #FFE200;
+    transition: all 0.3s;
 }
 
-/* -------------------------------
-   SECTIONS
----------------------------------*/
-section {
+header.hero .cta-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* FEATURES / TRUST SIGNALS */
+.features {
     padding: 60px 20px;
+}
+
+.features h2 {
     text-align: center;
-}
-
-section h2 {
     font-size: 2rem;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
-/* -------------------------------
-   GRID / CARDS
----------------------------------*/
+.feature-card {
+    background: var(--card-bg);
+    padding: 25px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    text-align: center;
+    font-weight: 500;
+}
+
+/* GRID */
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
     gap: 20px;
-    padding: 0 20px;
 }
 
-.card {
+/* COURSES CARDS */
+#course-cards .card {
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
     border-radius: var(--card-radius);
-    padding: 25px 20px;
     box-shadow: var(--card-shadow);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 20px;
+    text-align: left;
+    transition: transform 0.3s;
 }
 
-.card:hover {
+#course-cards .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
 }
 
-/* Courses Cards */
-#course-cards .card img {
+#course-cards img {
     width: 100%;
     border-radius: 8px;
     margin-bottom: 15px;
 }
 
-#course-cards .card h3 {
+#course-cards h3 {
     font-size: 1.3rem;
     margin-bottom: 10px;
 }
 
-#course-cards .card p {
+#course-cards p {
+    color: var(--text-muted);
     font-size: 0.95rem;
     margin-bottom: 10px;
 }
 
-#course-cards .card .price {
+#course-cards .price {
     font-weight: bold;
     font-size: 1.1rem;
     color: var(--primary);
 }
 
-/* Testimonials Cards */
+#course-cards .enroll-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#course-cards .enroll-btn:hover {
+    background: var(--primary-hover);
+}
+
+/* TESTIMONIALS */
 #testimonial-cards .card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    text-align: center;
     font-style: italic;
     color: var(--text-muted);
 }
 
-/* -------------------------------
-   ADMIN DASHBOARD STYLES
----------------------------------*/
-header.admin-header {
-    padding: 25px 20px;
-    background-color: var(--bg-darker);
-    text-align: center;
-    border-bottom: 1px solid #1E293B;
-}
-
-header.admin-header h1 {
-    font-size: 2rem;
-    font-weight: 600;
-}
-
-/* Admin Cards / Forms */
-.admin-section {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    border: 1px solid #1E293B;
-    background-color: rgba(255,255,255,0.05);
-    color: var(--text-main);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    color: var(--text-main);
-}
-
-table th, table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #1E293B;
-}
-
-table th {
-    text-align: left;
-    color: var(--text-muted);
-}
-
-.status-pending {
-    color: #FBBF24; /* Amber */
-}
-
-.status-approved {
-    color: var(--primary-hover); /* Neon green */
-}
-
-.status-rejected {
-    color: #EF4444; /* Red */
-}
-
-/* Password login modal */
-#login-modal {
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
-
-#login-modal .login-card {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(12px);
-    padding: 40px;
-    border-radius: var(--card-radius);
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-
-/* -------------------------------
-   FAQ
----------------------------------*/
-#faq ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-#faq li {
-    margin-bottom: 12px;
-}
-
-/* -------------------------------
-   RESPONSIVE
----------------------------------*/
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-    .hero-sub {
-        font-size: 1rem;
-    }
-    .cta-btn, button {
-        padding: 12px 20px;
-    }
-    table th, table td {
-        font-size: 0.9rem;
-    }
+/* RESPONSIVE */
+@media (max-width:768px){
+    header.hero h1 { font-size: 2rem; }
+    header.hero p { font-size: 1rem; }
 }
