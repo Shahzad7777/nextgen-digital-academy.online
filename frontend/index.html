@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NextGen Digital Academy</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-<!-- Onboarding Survey -->
+<!-- Onboarding Survey (5 questions) -->
 <div id="onboarding" class="onboarding-container">
   <h2>Welcome to NextGen Digital Academy</h2>
   <form id="surveyForm">
@@ -19,7 +10,6 @@
         <option>Video Editing</option>
         <option>Programming</option>
         <option>Graphic Design</option>
-        <option>Other</option>
       </select>
     </div>
     <div class="survey-step">
@@ -47,14 +37,6 @@
       </select>
     </div>
     <div class="survey-step">
-      <label>Preferred Device?</label>
-      <select required>
-        <option>Laptop</option>
-        <option>Tablet</option>
-        <option>Mobile</option>
-      </select>
-    </div>
-    <div class="survey-step">
       <label>Interested Categories?</label>
       <select required multiple>
         <option>Freelancing</option>
@@ -67,48 +49,3 @@
     <button type="submit">Start Learning</button>
   </form>
 </div>
-
-<!-- Main Content -->
-<div id="mainContent" class="hidden">
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="brand">NextGen Digital Academy</div>
-    <input type="text" id="searchBar" placeholder="Search courses..." />
-  </nav>
-
-  <!-- Category Tabs -->
-  <div class="tabs">
-    <button class="tab active" data-category="All">All</button>
-    <button class="tab" data-category="Freelancing">Freelancing</button>
-    <button class="tab" data-category="Marketing">Marketing</button>
-    <button class="tab" data-category="Video">Video</button>
-    <button class="tab" data-category="Programming">Programming</button>
-    <button class="tab" data-category="Design">Design</button>
-  </div>
-
-  <!-- Course Grid -->
-  <div id="courseGrid" class="course-grid"></div>
-</div>
-
-<!-- Checkout Modal -->
-<div id="checkoutModal" class="modal hidden">
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <h2>Checkout</h2>
-    <form id="checkoutForm">
-      <input type="text" id="leadName" placeholder="Your Name" required />
-      <input type="email" id="leadEmail" placeholder="Your Email" required />
-      <select id="paymentMethod" required>
-        <option value="">Select Payment</option>
-        <option>JazzCash</option>
-        <option>EasyPaisa</option>
-        <option>Meezan Bank</option>
-      </select>
-      <button type="submit">Pay & Enroll</button>
-    </form>
-  </div>
-</div>
-
-<script src="js/main.js"></script>
-</body>
-</html>
