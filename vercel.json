@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "public": true,
   "cleanUrls": true,
   "rewrites": [
     { "source": "/", "destination": "/frontend/index.html" },
     { "source": "/admin", "destination": "/frontend/admin.html" },
-    { "source": "/js/(.*)", "destination": "/frontend/js/$1" },
-    { "source": "/css/(.*)", "destination": "/frontend/css/$1" }
+    { "source": "/css/(.*)", "destination": "/frontend/css/$1" },
+    { "source": "/js/(.*)", "destination": "/frontend/js/$1" }
   ]
 }
