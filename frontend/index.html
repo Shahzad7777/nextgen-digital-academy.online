@@ -1,28 +1,134 @@
 <!DOCTYPE html>
 <html lang="en-PK">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NextGen Digital Academy | Skills & AI Courses</title>
-    <link rel="stylesheet" href="/css/style.css" />
-    <script defer src="/js/main.js"></script>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>NextGen Digital Academy | Premium Digital Skills for Pakistani Youth</title>
+<meta name="description" content="NextGen Digital Academy helps Pakistani students, freelancers, creators, and entrepreneurs master digital skills, freelancing, AI, and marketing." />
+<meta name="theme-color" content="#0B0F19">
+
+<!-- Fonts & Icons -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<!-- Main CSS -->
+<link rel="stylesheet" href="/css/style.css">
+
+<!-- Main JS -->
+<script defer src="/js/main.js"></script>
 </head>
+
 <body>
-    <div class="site-shell">
-        <header>
-            <nav>
-                <a href="/">Home</a>
-                <a href="/admin">Admin</a>
-            </nav>
-            <h1>NextGen Digital Academy</h1>
-        </header>
-        <main>
-            <section id="hero">
-                <h2>Don't just scroll. Learn to earn.</h2>
-                <p>Built for ambitious Pakistani youth.</p>
-            </section>
-        </main>
-        <footer><p>© 2026 NextGen Digital Academy</p></footer>
+<!-- Cookie Consent Banner -->
+<div id="cookieBanner" class="cookie-banner glass-card">
+  <div class="cookie-text">
+    <strong>We use cookies for a personalized learning experience.</strong>
+    <p>This stores your funnel choice and course interactions on this device.</p>
+  </div>
+  <button id="acceptCookiesBtn" class="btn btn-primary">Accept</button>
+</div>
+
+<!-- Premium Sticky Header -->
+<header class="site-header glass-card">
+  <div class="header-inner">
+    <a href="/" class="brand"><span class="brand-glow">NextGen Academy</span></a>
+    <nav class="primary-nav">
+      <a href="#funnel">Choose Path</a>
+      <a href="#courses">Courses</a>
+      <a href="#pricing">Enroll</a>
+    </nav>
+    <form id="globalSearchForm" class="search-bar">
+      <input type="search" placeholder="Search courses..." />
+    </form>
+    <a href="/admin" class="admin-link">Admin Panel</a>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 id="heroTitle">Inflation is destroying savings. Master digital assets before you get left behind.</h1>
+      <p id="heroSubtitle">Pick your path, discover your persona, and start a 4-week premium skill sprint.</p>
+      <a class="btn btn-primary" href="#funnel">Start Free Skill Match →</a>
     </div>
+    <div class="hero-visual">
+      <div class="neon-gradient-bg"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Onboarding Funnel -->
+<section id="funnel" class="funnel-section section-pad">
+  <div id="funnelStage1" class="funnel-stage glass-card active">
+    <h2>What is your ultimate financial goal?</h2>
+    <div class="goal-options">
+      <button class="goal-btn" data-goal="average">🌟 Keep me average</button>
+      <button class="goal-btn" data-goal="millionaire">🔥 Real Freedom & Millionaire</button>
+    </div>
+  </div>
+
+  <div id="funnelStage2" class="funnel-stage glass-card">
+    <h2>Who are you?</h2>
+    <div class="persona-options">
+      <button data-persona="student">🎓 Matric / Intermediate Student</button>
+      <button data-persona="graduate">💼 Fresh Graduate / Job Seeker</button>
+      <button data-persona="beginner">🛠️ Absolute Beginner in Tech</button>
+      <button data-persona="social">📱 Social Media Enthusiast</button>
+      <button data-persona="freelancer">💻 Part-Time Freelancer</button>
+      <button data-persona="business">🏢 Local Business Owner / Store</button>
+    </div>
+  </div>
+</section>
+
+<!-- Courses Section -->
+<section id="courses" class="courses-section section-pad">
+  <h2>Course Library</h2>
+  <div class="category-tabs">
+    <button data-filter="all" class="active">All Courses</button>
+    <button data-filter="freelancing">Freelancing</button>
+    <button data-filter="marketing">Digital Marketing</button>
+    <button data-filter="video">Video & Content Creation</button>
+  </div>
+  <div id="coursesGrid" class="course-grid">
+    <!-- Dynamic course cards populated via JS -->
+  </div>
+</section>
+
+<!-- Pricing & Enrollment -->
+<section id="pricing" class="pricing-section section-pad">
+  <h2>Pricing & Enrollment</h2>
+  <div id="pricingContainer" class="pricing-container">
+    <!-- Enroll Now Modals handled via JS -->
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer glass-card">
+  <div class="footer-columns">
+    <div>
+      <h3>About Us</h3>
+      <a href="#">Our Story</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div>
+      <h3>Follow Us</h3>
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">YouTube</a>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <a href="mailto:hello@nextgendigitalacademy.pk">hello@nextgendigitalacademy.pk</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 NextGen Digital Academy</span>
+  </div>
+</footer>
+
 </body>
 </html>
