@@ -1,125 +1,544 @@
-/* RESET & BASE */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: #121212;
-  color: #f0f0f0;
-  line-height: 1.5;
-}
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
+<!DOCTYPE html>
+<html lang="en-PK">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-/* HEADER */
-.admin-header {
-  background: #1f1f1f;
-  padding: 20px;
-  text-align: center;
-  border-bottom: 2px solid #333;
-}
-.admin-header h1 {
-  font-size: 1.8rem;
-  color: #00bfff;
-}
+  <title>Admin Panel | NextGen Digital Academy</title>
+  <meta
+    name="description"
+    content="NextGen Digital Academy admin dashboard for course CRUD, lead management, analytics, and CSV export."
+  />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#0B0F19" />
 
-/* ANALYTICS ROW */
-.analytics-row {
-  display: flex;
-  justify-content: space-between;
-  margin: 20px 0;
-}
-.analytics-card {
-  flex: 1;
-  background: #1f1f1f;
-  margin: 0 10px;
-  padding: 20px;
-  border-radius: 6px;
-  text-align: center;
-}
-.analytics-card h3 {
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-}
-.analytics-card p {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #00bfff;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/css/admin-style.css" />
+  <script defer src="/js/admin.js"></script>
+</head>
 
-/* COURSE CRUD FORM */
-.course-crud {
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 6px;
-  margin-bottom: 30px;
-}
-.course-crud h2 {
-  margin-bottom: 15px;
-}
-.course-crud form label {
-  display: block;
-  margin-bottom: 10px;
-}
-.course-crud input, .course-crud select {
-  width: 100%;
-  padding: 8px;
-  border-radius: 4px;
-  border: 1px solid #333;
-  margin-top: 5px;
-  background: #222;
-  color: #f0f0f0;
-}
-.course-crud fieldset {
-  border: 1px solid #333;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-.course-crud button {
-  padding: 10px 15px;
-  background: #00bfff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
+<body>
+  <div class="admin-shell">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="ambient ambient-three" aria-hidden="true"></div>
+    <div class="noise-layer" aria-hidden="true"></div>
 
-/* LEAD MANAGEMENT TABLE */
-.lead-management {
-  background: #1f1f1f;
-  padding: 20px;
-  border-radius: 6px;
-}
-.lead-management h2 {
-  margin-bottom: 10px;
-}
-#downloadCSV {
-  background: #00bfff;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-#leadsTable {
-  width: 100%;
-  border-collapse: collapse;
-}
-#leadsTable th, #leadsTable td {
-  padding: 10px;
-  border: 1px solid #333;
-  text-align: left;
-}
-#leadsTable th {
-  background: #222;
-  color: #00bfff;
-}
-#leadsTable tr:nth-child(even) {
-  background: #1a1a1a;
-}
+    <aside class="admin-sidebar" id="adminSidebar">
+      <div class="sidebar-top">
+        <a class="brand" href="/" aria-label="Back to NextGen Digital Academy website">
+          <span class="brand-mark" aria-hidden="true">
+            <span class="brand-orbit"></span>
+            <span class="brand-core">N</span>
+          </span>
+          <span class="brand-copy">
+            <strong>NextGen</strong>
+            <small>Admin OS</small>
+          </span>
+        </a>
+
+        <button class="sidebar-close" id="sidebarCloseBtn" type="button" aria-label="Close sidebar">×</button>
+      </div>
+
+      <nav class="admin-nav" aria-label="Admin navigation">
+        <a class="active" href="#dashboard" data-admin-nav="dashboard">
+          <span>◆</span>
+          Dashboard
+        </a>
+        <a href="#courses" data-admin-nav="courses">
+          <span>▣</span>
+          Course CRUD
+        </a>
+        <a href="#leads" data-admin-nav="leads">
+          <span>◉</span>
+          Lead Management
+        </a>
+        <a href="#settings" data-admin-nav="settings">
+          <span>◇</span>
+          Data Tools
+        </a>
+      </nav>
+
+      <div class="sidebar-card glass-card">
+        <span class="eyebrow">Live deployment</span>
+        <strong>Standalone LocalStorage CMS</strong>
+        <p>
+          Courses and leads sync with the public frontend on this browser using the same storage keys.
+        </p>
+        <a class="sidebar-cta" href="/" target="_blank" rel="noopener noreferrer">
+          View Website
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </aside>
+
+    <div class="admin-main">
+      <header class="admin-header glass-card">
+        <button class="menu-toggle" id="menuToggleBtn" type="button" aria-label="Open sidebar">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="header-copy">
+          <span class="eyebrow">Control room</span>
+          <h1>NextGen Digital Academy Admin</h1>
+        </div>
+
+        <div class="header-actions">
+          <form class="admin-search" id="adminSearchForm" role="search" autocomplete="off">
+            <label class="sr-only" for="adminGlobalSearch">Search dashboard</label>
+            <span aria-hidden="true">⌕</span>
+            <input
+              id="adminGlobalSearch"
+              type="search"
+              name="adminGlobalSearch"
+              placeholder="Search courses or leads..."
+              aria-label="Search courses or leads"
+            />
+          </form>
+
+          <button class="btn btn-secondary" id="exportTopBtn" type="button">
+            Export Leads
+          </button>
+          <a class="btn btn-primary" href="/">
+            Website
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="admin-section" id="dashboard" aria-labelledby="dashboardTitle">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Analytics overview</span>
+              <h2 id="dashboardTitle">Performance Snapshot</h2>
+            </div>
+            <p id="lastUpdatedLabel">Last updated: Just now</p>
+          </div>
+
+          <div class="analytics-grid">
+            <article class="metric-card glass-card">
+              <div class="metric-icon">▣</div>
+              <div>
+                <span>Total Courses</span>
+                <strong id="coursesCounter">0</strong>
+                <p id="coursesMetricHint">Active skill tracks in frontend library.</p>
+              </div>
+            </article>
+
+            <article class="metric-card glass-card">
+              <div class="metric-icon">◉</div>
+              <div>
+                <span>Total Leads</span>
+                <strong id="leadsCounter">0</strong>
+                <p id="leadsMetricHint">Enrollment submissions saved locally.</p>
+              </div>
+            </article>
+
+            <article class="metric-card glass-card">
+              <div class="metric-icon">₨</div>
+              <div>
+                <span>Potential Revenue</span>
+                <strong id="revenueCounter">PKR 0</strong>
+                <p id="revenueMetricHint">Sum of selected course fees from leads.</p>
+              </div>
+            </article>
+
+            <article class="metric-card glass-card">
+              <div class="metric-icon">★</div>
+              <div>
+                <span>Avg. Rating</span>
+                <strong id="ratingCounter">0.0</strong>
+                <p id="ratingMetricHint">Average rating across all courses.</p>
+              </div>
+            </article>
+          </div>
+
+          <div class="dashboard-grid">
+            <article class="panel glass-card">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Category intelligence</span>
+                  <h3>Course Distribution</h3>
+                </div>
+              </div>
+              <div class="category-bars" id="categoryBars"></div>
+            </article>
+
+            <article class="panel glass-card">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Enrollment pulse</span>
+                  <h3>Recent Leads</h3>
+                </div>
+                <a href="#leads">View all</a>
+              </div>
+              <div class="recent-leads" id="recentLeads"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="admin-section" id="courses" aria-labelledby="coursesAdminTitle">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Course management</span>
+              <h2 id="coursesAdminTitle">Full Course CRUD</h2>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-secondary" id="resetCoursesBtn" type="button">
+                Restore Defaults
+              </button>
+              <button class="btn btn-primary" id="newCourseBtn" type="button">
+                Add Course
+                <span aria-hidden="true">+</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="manager-grid">
+            <section class="course-editor glass-card" aria-labelledby="courseEditorTitle">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Editor</span>
+                  <h3 id="courseEditorTitle">Create New Course</h3>
+                </div>
+                <button class="mini-btn" id="clearCourseFormBtn" type="button">Clear</button>
+              </div>
+
+              <form class="course-form" id="courseForm" autocomplete="off">
+                <input type="hidden" id="courseId" name="courseId" />
+
+                <div class="form-row">
+                  <label for="courseTitle">Course Title</label>
+                  <input
+                    id="courseTitle"
+                    name="courseTitle"
+                    type="text"
+                    placeholder="AI Productivity Mastery"
+                    required
+                    minlength="4"
+                  />
+                </div>
+
+                <div class="form-grid two">
+                  <div class="form-row">
+                    <label for="courseCategory">Category</label>
+                    <select id="courseCategory" name="courseCategory" required>
+                      <option value="ai">AI & Automation</option>
+                      <option value="freelancing">Freelancing</option>
+                      <option value="marketing">Marketing</option>
+                      <option value="design">Design & Content</option>
+                      <option value="business">Business</option>
+                      <option value="career">Career Skills</option>
+                    </select>
+                  </div>
+
+                  <div class="form-row">
+                    <label for="courseLevel">Level</label>
+                    <select id="courseLevel" name="courseLevel" required>
+                      <option value="Beginner">Beginner</option>
+                      <option value="Intermediate">Intermediate</option>
+                      <option value="Advanced">Advanced</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-grid three">
+                  <div class="form-row">
+                    <label for="coursePrice">Price PKR</label>
+                    <input id="coursePrice" name="coursePrice" type="number" min="0" step="500" required />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="courseDuration">Duration Weeks</label>
+                    <input id="courseDuration" name="courseDuration" type="number" min="1" max="24" required />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="courseRating">Rating</label>
+                    <input id="courseRating" name="courseRating" type="number" min="1" max="5" step="0.1" required />
+                  </div>
+                </div>
+
+                <div class="form-grid two">
+                  <div class="form-row">
+                    <label for="courseStudents">Learners</label>
+                    <input id="courseStudents" name="courseStudents" type="number" min="0" step="1" required />
+                  </div>
+
+                  <div class="form-row">
+                    <label for="courseFeatured">Featured Order</label>
+                    <input id="courseFeatured" name="courseFeatured" type="number" min="1" step="1" required />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <label for="courseDescription">Description</label>
+                  <textarea
+                    id="courseDescription"
+                    name="courseDescription"
+                    rows="4"
+                    placeholder="Describe the course promise, audience, and practical outcome."
+                    required
+                    minlength="20"
+                  ></textarea>
+                </div>
+
+                <div class="form-row">
+                  <label for="courseOutcomes">Outcomes</label>
+                  <textarea
+                    id="courseOutcomes"
+                    name="courseOutcomes"
+                    rows="4"
+                    placeholder="One outcome per line"
+                    required
+                  ></textarea>
+                </div>
+
+                <div class="form-row">
+                  <label>Recommended Personas</label>
+                  <div class="checkbox-grid">
+                    <label><input type="checkbox" name="coursePersonas" value="freelancer" /> Freelance Earner</label>
+                    <label><input type="checkbox" name="coursePersonas" value="creator" /> Content Creator</label>
+                    <label><input type="checkbox" name="coursePersonas" value="founder" /> Startup Founder</label>
+                    <label><input type="checkbox" name="coursePersonas" value="jobseeker" /> Career Climber</label>
+                    <label><input type="checkbox" name="coursePersonas" value="student" /> Smart Student</label>
+                    <label><input type="checkbox" name="coursePersonas" value="agency" /> Agency Builder</label>
+                  </div>
+                </div>
+
+                <div class="syllabus-editor">
+                  <div class="subheading-row">
+                    <h4>Week-by-Week Syllabus</h4>
+                    <span>Week 1–4 required</span>
+                  </div>
+
+                  <div class="week-editor">
+                    <div class="week-label">Week 1</div>
+                    <input id="week1Title" name="week1Title" type="text" placeholder="Week 1 title" required />
+                    <textarea id="week1Body" name="week1Body" rows="3" placeholder="Week 1 description" required></textarea>
+                  </div>
+
+                  <div class="week-editor">
+                    <div class="week-label">Week 2</div>
+                    <input id="week2Title" name="week2Title" type="text" placeholder="Week 2 title" required />
+                    <textarea id="week2Body" name="week2Body" rows="3" placeholder="Week 2 description" required></textarea>
+                  </div>
+
+                  <div class="week-editor">
+                    <div class="week-label">Week 3</div>
+                    <input id="week3Title" name="week3Title" type="text" placeholder="Week 3 title" required />
+                    <textarea id="week3Body" name="week3Body" rows="3" placeholder="Week 3 description" required></textarea>
+                  </div>
+
+                  <div class="week-editor">
+                    <div class="week-label">Week 4</div>
+                    <input id="week4Title" name="week4Title" type="text" placeholder="Week 4 title" required />
+                    <textarea id="week4Body" name="week4Body" rows="3" placeholder="Week 4 description" required></textarea>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button class="btn btn-secondary" id="cancelEditBtn" type="button">
+                    Cancel
+                  </button>
+                  <button class="btn btn-primary" type="submit">
+                    Save Course
+                    <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+              </form>
+            </section>
+
+            <section class="courses-table-panel glass-card" aria-labelledby="courseTableTitle">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Library</span>
+                  <h3 id="courseTableTitle">Courses</h3>
+                </div>
+                <div class="table-tools">
+                  <select id="courseCategoryFilter" aria-label="Filter courses by category">
+                    <option value="all">All categories</option>
+                    <option value="ai">AI & Automation</option>
+                    <option value="freelancing">Freelancing</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="design">Design & Content</option>
+                    <option value="business">Business</option>
+                    <option value="career">Career Skills</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>Course</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Rating</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="coursesTableBody"></tbody>
+                </table>
+              </div>
+
+              <div class="empty-panel" id="coursesEmptyState" hidden>
+                <span>▣</span>
+                <h4>No courses found</h4>
+                <p>Try changing your search or category filter.</p>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="admin-section" id="leads" aria-labelledby="leadsAdminTitle">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Admissions pipeline</span>
+              <h2 id="leadsAdminTitle">Lead Management</h2>
+            </div>
+            <div class="section-actions">
+              <button class="btn btn-secondary" id="clearLeadsBtn" type="button">
+                Clear Leads
+              </button>
+              <button class="btn btn-primary" id="exportLeadsBtn" type="button">
+                Export to CSV
+                <span aria-hidden="true">↓</span>
+              </button>
+            </div>
+          </div>
+
+          <section class="panel glass-card">
+            <div class="panel-heading">
+              <div>
+                <span class="eyebrow">Enrollment records</span>
+                <h3>Leads Table</h3>
+              </div>
+
+              <div class="table-tools lead-tools">
+                <select id="leadStatusFilter" aria-label="Filter leads by status">
+                  <option value="all">All statuses</option>
+                  <option value="New">New</option>
+                  <option value="Contacted">Contacted</option>
+                  <option value="Paid">Paid</option>
+                  <option value="Rejected">Rejected</option>
+                </select>
+
+                <select id="leadSortSelect" aria-label="Sort leads">
+                  <option value="newest">Newest first</option>
+                  <option value="oldest">Oldest first</option>
+                  <option value="revenueHigh">Revenue high</option>
+                  <option value="revenueLow">Revenue low</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="admin-table leads-table">
+                <thead>
+                  <tr>
+                    <th>Learner</th>
+                    <th>Course</th>
+                    <th>Payment</th>
+                    <th>Persona</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="leadsTableBody"></tbody>
+              </table>
+            </div>
+
+            <div class="empty-panel" id="leadsEmptyState" hidden>
+              <span>◉</span>
+              <h4>No leads yet</h4>
+              <p>Frontend checkout submissions will appear here instantly on this device.</p>
+            </div>
+          </section>
+        </section>
+
+        <section class="admin-section" id="settings" aria-labelledby="settingsTitle">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">Data tools</span>
+              <h2 id="settingsTitle">Backup, Restore & Storage</h2>
+            </div>
+          </div>
+
+          <div class="settings-grid">
+            <article class="panel glass-card">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Storage keys</span>
+                  <h3>Local Database</h3>
+                </div>
+              </div>
+
+              <div class="storage-list">
+                <div>
+                  <span>Courses Key</span>
+                  <strong>nextgen_courses_v1</strong>
+                </div>
+                <div>
+                  <span>Leads Key</span>
+                  <strong>nextgen_leads_v1</strong>
+                </div>
+                <div>
+                  <span>Funnel Key</span>
+                  <strong>nextgen_funnel_v1</strong>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel glass-card">
+              <div class="panel-heading">
+                <div>
+                  <span class="eyebrow">Maintenance</span>
+                  <h3>Safe Actions</h3>
+                </div>
+              </div>
+
+              <div class="maintenance-actions">
+                <button class="btn btn-secondary" id="downloadBackupBtn" type="button">
+                  Download JSON Backup
+                </button>
+                <label class="file-import">
+                  <input id="importBackupInput" type="file" accept="application/json" />
+                  <span>Import JSON Backup</span>
+                </label>
+                <button class="btn btn-danger" id="factoryResetBtn" type="button">
+                  Factory Reset Demo Data
+                </button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <dialog class="confirm-dialog glass-card" id="confirmDialog">
+    <form method="dialog">
+      <span class="eyebrow">Confirm action</span>
+      <h3 id="confirmTitle">Are you sure?</h3>
+      <p id="confirmMessage">This action cannot be undone.</p>
+      <div class="dialog-actions">
+        <button class="btn btn-secondary" value="cancel" type="submit">Cancel</button>
+        <button class="btn btn-danger" id="confirmActionBtn" value="confirm" type="submit">Confirm</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+</body>
+</html>
