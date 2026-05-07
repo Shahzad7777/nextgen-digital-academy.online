@@ -1,180 +1,752 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-PK">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NextGen Digital Academy | Dark Psychology Courses 4K animation video</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>NextGen Digital Academy | Skills, Freelancing & AI Courses for Pakistani Youth</title>
+  <meta
+    name="description"
+    content="NextGen Digital Academy helps Pakistani students, freelancers, creators, and job seekers master AI, digital marketing, freelancing, design, ecommerce, and career-ready online skills."
+  />
+  <meta
+    name="keywords"
+    content="NextGen Digital Academy, Pakistani online courses, freelancing courses Pakistan, AI course Pakistan, digital marketing course, ecommerce course, online earning skills, youth skills academy"
+  />
+  <meta name="author" content="NextGen Digital Academy" />
+  <meta name="theme-color" content="#0B0F19" />
+
+  <meta property="og:title" content="NextGen Digital Academy | Future-Proof Digital Skills" />
+  <meta
+    property="og:description"
+    content="Choose your path, discover your digital persona, and enroll in premium online skill courses designed for ambitious Pakistani youth."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://nextgen-digital-academy-online.vercel.app/" />
+  <meta property="og:site_name" content="NextGen Digital Academy" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="NextGen Digital Academy" />
+  <meta
+    name="twitter:description"
+    content="AI, freelancing, marketing, ecommerce, and career-ready digital skills for Pakistani youth."
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script defer src="/js/main.js"></script>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "NextGen Digital Academy",
+      "url": "https://nextgen-digital-academy-online.vercel.app/",
+      "description": "A modern online academy for Pakistani youth focused on AI, freelancing, digital marketing, ecommerce, design, and career-ready online skills.",
+      "areaServed": "PK",
+      "sameAs": [
+        "https://nextgen-digital-academy-online.vercel.app/"
+      ]
+    }
+  </script>
 </head>
+
 <body>
+  <a class="skip-link" href="#courses">Skip to courses</a>
 
-  <!-- HEADER / NAVIGATION -->
-  <header class="site-header">
-    <div class="container header-container">
-      <!-- Left: Explore -->
-      <nav class="nav-left">
-        <div class="mega-menu">
-          <button class="explore-btn">Explore ▾</button>
-          <div class="dropdown">
-            <ul>
-              <li><a href="#">Business</a></li>
-              <li><a href="#">Psychology</a></li>
-              <li><a href="#">Technology</a></li>
-              <li><a href="#">Health & Wellness</a></li>
-              <li><a href="#">Creative Arts</a></li>
-            </ul>
+  <div class="site-shell">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+    <div class="ambient ambient-three" aria-hidden="true"></div>
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a class="brand" href="/" aria-label="NextGen Digital Academy Home">
+          <span class="brand-mark" aria-hidden="true">
+            <span class="brand-orbit"></span>
+            <span class="brand-core">N</span>
+          </span>
+          <span class="brand-copy">
+            <strong>NextGen</strong>
+            <small>Digital Academy</small>
+          </span>
+        </a>
+
+        <nav class="primary-nav" aria-label="Primary navigation">
+          <a href="#funnel">Choose Path</a>
+          <a href="#courses">Courses</a>
+          <a href="#outcomes">Outcomes</a>
+          <a href="#pricing">Enroll</a>
+        </nav>
+
+        <div class="header-actions">
+          <form class="header-search" id="headerSearchForm" role="search" autocomplete="off">
+            <label class="sr-only" for="globalSearch">Search courses</label>
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <input
+              id="globalSearch"
+              name="globalSearch"
+              type="search"
+              placeholder="Search AI, freelancing, marketing..."
+              aria-label="Search courses"
+            />
+            <button type="submit" aria-label="Submit search">Go</button>
+          </form>
+
+          <a class="admin-link" href="/admin" aria-label="Open admin panel">
+            Admin
+          </a>
+
+          <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span class="sr-only">Open menu</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#funnel">Choose Path</a>
+        <a href="#courses">Courses</a>
+        <a href="#outcomes">Outcomes</a>
+        <a href="#pricing">Enroll</a>
+        <a href="/admin">Admin Panel</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero-section" id="home" aria-labelledby="heroTitle">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <div class="hero-kicker">
+              <span class="live-dot" aria-hidden="true"></span>
+              Built for ambitious Pakistani youth
+            </div>
+
+            <h1 id="heroTitle">
+              Don’t just scroll the internet. Learn how to earn from it.
+            </h1>
+
+            <p id="heroSubtitle">
+              Pick your growth path, discover your digital persona, and start a focused 4-week skill sprint built for freelancing, remote jobs, startups, and online income.
+            </p>
+
+            <div class="hero-cta-row">
+              <a class="btn btn-primary magnetic-link" href="#funnel">
+                Start Free Skill Match
+                <span aria-hidden="true">→</span>
+              </a>
+              <a class="btn btn-secondary" href="#courses">
+                Explore Courses
+              </a>
+            </div>
+
+            <div class="trust-strip" aria-label="Academy highlights">
+              <div>
+                <strong id="heroCourseCount">12+</strong>
+                <span>Skill tracks</span>
+              </div>
+              <div>
+                <strong>4 weeks</strong>
+                <span>Focused syllabus</span>
+              </div>
+              <div>
+                <strong>PKR</strong>
+                <span>Local payments</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-label="NextGen Academy digital learning dashboard preview">
+            <div class="hero-card hero-card-main glass-card">
+              <div class="dashboard-topline">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+
+              <div class="learner-profile">
+                <div class="profile-ring">
+                  <span>AI</span>
+                </div>
+                <div>
+                  <p>Your next skill sprint</p>
+                  <h2 id="heroPersonaTitle">Digital Income Starter</h2>
+                </div>
+              </div>
+
+              <div class="skill-meter" aria-label="Skill progress visualization">
+                <div class="meter-copy">
+                  <span>Readiness Score</span>
+                  <strong id="readinessScore">87%</strong>
+                </div>
+                <div class="meter-track">
+                  <span id="readinessBar"></span>
+                </div>
+              </div>
+
+              <div class="hero-mini-grid">
+                <article>
+                  <span>01</span>
+                  <strong>Pick Goal</strong>
+                  <p>Millionaire mindset or average routine?</p>
+                </article>
+                <article>
+                  <span>02</span>
+                  <strong>Find Persona</strong>
+                  <p>Creator, freelancer, founder, or career climber.</p>
+                </article>
+                <article>
+                  <span>03</span>
+                  <strong>Enroll Fast</strong>
+                  <p>JazzCash, EasyPaisa, Meezan, then WhatsApp proof.</p>
+                </article>
+              </div>
+            </div>
+
+            <div class="floating-pill pill-one">
+              <span>₨</span>
+              Local checkout
+            </div>
+            <div class="floating-pill pill-two">
+              <span>⚡</span>
+              4-week execution
+            </div>
+            <div class="floating-pill pill-three">
+              <span>◇</span>
+              AI-ready skills
+            </div>
           </div>
         </div>
-      </nav>
+      </section>
 
-      <!-- Center: Search -->
-      <div class="nav-center">
-        <input type="search" placeholder="Search for courses, skills, or topics">
-      </div>
-
-      <!-- Right: Links -->
-      <nav class="nav-right">
-        <a href="#">Log In</a>
-        <a href="#" class="btn-primary">Sign Up</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- LANDING HERO / DUAL-STAGE FUNNEL -->
-  <section class="hero">
-    <div class="container hero-content">
-      <h1>Master Dark Psychology & Influence</h1>
-      <p>Select your learning goal and start your journey today.</p>
-      <div class="goal-selection">
-        <button>Understand Human Behavior</button>
-        <button>Apply Influence Techniques</button>
-        <button>Professional Growth</button>
-      </div>
-      <div class="trust-badges">
-        <span>★★★★★</span>
-        <span>10k+ Students</span>
-        <span>100+ Courses</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- MAIN CONTENT -->
-  <main class="main-content container">
-    <!-- SIDEBAR FILTER -->
-    <aside class="filter-sidebar">
-      <h2>Filter Courses</h2>
-      <div class="filter-group">
-        <h3>Category</h3>
-        <label><input type="checkbox"> Psychology</label>
-        <label><input type="checkbox"> Business</label>
-        <label><input type="checkbox"> Technology</label>
-        <label><input type="checkbox"> Health</label>
-      </div>
-      <div class="filter-group">
-        <h3>Level</h3>
-        <label><input type="checkbox"> Beginner</label>
-        <label><input type="checkbox"> Intermediate</label>
-        <label><input type="checkbox"> Advanced</label>
-      </div>
-    </aside>
-
-    <!-- COURSE CARDS -->
-    <section class="course-grid">
-      <article class="course-card">
-        <img src="https://via.placeholder.com/320x180" alt="Dark Psychology Course">
-        <div class="course-body">
-          <h3>Dark Psychology Masterclass</h3>
-          <p class="instructor">Dr. Jane Smith</p>
-          <p class="rating">★★★★☆ 4.8</p>
+      <section class="funnel-section section-pad" id="funnel" aria-labelledby="funnelTitle">
+        <div class="section-heading centered">
+          <span class="eyebrow">Two-stage growth funnel</span>
+          <h2 id="funnelTitle">First choose your destination. Then choose who you are becoming.</h2>
+          <p>
+            NextGen personalizes the hero copy, course recommendations, and enrollment flow based on your selected ambition path and learner persona.
+          </p>
         </div>
-        <div class="course-footer">
-          <p class="price">$199</p>
-          <button class="syllabus-toggle">View Syllabus ▾</button>
-          <div class="syllabus">
-            <h4>Week-by-Week Breakdown</h4>
-            <ul>
-              <li><strong>Week 1:</strong> Introduction to Dark Psychology</li>
-              <li><strong>Week 2:</strong> Manipulation Techniques</li>
-              <li><strong>Week 3:</strong> Influence & Persuasion</li>
-              <li><strong>Week 4:</strong> Real-World Applications</li>
-            </ul>
-            <h5>Learning Objectives</h5>
-            <ul>
-              <li>Understand human behavioral patterns</li>
-              <li>Recognize psychological manipulation</li>
-              <li>Apply influence ethically</li>
-            </ul>
+
+        <div class="funnel-panel glass-card">
+          <div class="funnel-progress" aria-label="Funnel progress">
+            <div class="progress-step active" data-progress-step="1">
+              <span>1</span>
+              <strong>Goal</strong>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-progress-step="2">
+              <span>2</span>
+              <strong>Persona</strong>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-step" data-progress-step="3">
+              <span>3</span>
+              <strong>Courses</strong>
+            </div>
+          </div>
+
+          <div class="funnel-stage active" id="stageGoal" data-stage="goal">
+            <div class="choice-grid dual-choice-grid">
+              <button
+                class="goal-card choice-card"
+                type="button"
+                data-goal="millionaire"
+                aria-label="Choose millionaire growth path"
+              >
+                <span class="choice-glow"></span>
+                <span class="choice-icon">🚀</span>
+                <strong>Millionaire Mindset</strong>
+                <p>
+                  I want high-income skills, digital leverage, AI workflows, freelancing systems, and a serious online earning roadmap.
+                </p>
+                <em>Recommended for ambitious builders</em>
+              </button>
+
+              <button
+                class="goal-card choice-card"
+                type="button"
+                data-goal="average"
+                aria-label="Choose average routine path"
+              >
+                <span class="choice-glow"></span>
+                <span class="choice-icon">🧭</span>
+                <strong>Average Routine</strong>
+                <p>
+                  I want a practical, beginner-safe path to improve my career, confidence, communication, and employable digital skills.
+                </p>
+                <em>Recommended for steady starters</em>
+              </button>
+            </div>
+          </div>
+
+          <div class="funnel-stage" id="stagePersona" data-stage="persona" aria-live="polite">
+            <div class="stage-toolbar">
+              <button class="ghost-btn" id="backToGoalBtn" type="button">← Back to goal</button>
+              <p id="selectedGoalLabel">Goal selected: Digital growth</p>
+            </div>
+
+            <div class="choice-grid persona-grid" id="personaGrid">
+              <button class="persona-card choice-card" type="button" data-persona="freelancer">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">F</span>
+                <strong>Freelance Earner</strong>
+                <p>For students and beginners who want clients, gigs, service packages, and online earning confidence.</p>
+                <em>Best tracks: Freelancing, AI tools, Canva, copywriting</em>
+              </button>
+
+              <button class="persona-card choice-card" type="button" data-persona="creator">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">C</span>
+                <strong>Content Creator</strong>
+                <p>For Pakistani youth who want to grow personal brands, short videos, social pages, and monetizable audiences.</p>
+                <em>Best tracks: Social media, video, branding, AI content</em>
+              </button>
+
+              <button class="persona-card choice-card" type="button" data-persona="founder">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">S</span>
+                <strong>Startup Founder</strong>
+                <p>For builders who want to launch offers, validate ideas, build landing pages, and use digital acquisition.</p>
+                <em>Best tracks: No-code, marketing, funnels, ecommerce</em>
+              </button>
+
+              <button class="persona-card choice-card" type="button" data-persona="jobseeker">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">J</span>
+                <strong>Career Climber</strong>
+                <p>For job seekers who want portfolio-ready skills, better CV positioning, interview confidence, and remote-work readiness.</p>
+                <em>Best tracks: Excel, AI productivity, LinkedIn, communication</em>
+              </button>
+
+              <button class="persona-card choice-card" type="button" data-persona="student">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">U</span>
+                <strong>Smart Student</strong>
+                <p>For college and university learners who want practical skills alongside studies without overwhelm.</p>
+                <em>Best tracks: Digital basics, AI study systems, design, web</em>
+              </button>
+
+              <button class="persona-card choice-card" type="button" data-persona="agency">
+                <span class="choice-glow"></span>
+                <span class="persona-badge">A</span>
+                <strong>Agency Builder</strong>
+                <p>For advanced learners who want systems, retainers, lead generation, project delivery, and repeatable client operations.</p>
+                <em>Best tracks: CRO, ads, automation, client acquisition</em>
+              </button>
+            </div>
+          </div>
+
+          <div class="funnel-result" id="funnelResult" hidden>
+            <div>
+              <span class="eyebrow">Your personalized route</span>
+              <h3 id="resultTitle">Your NextGen course path is ready.</h3>
+              <p id="resultDescription">
+                Your recommended courses are highlighted below. You can still explore every track.
+              </p>
+            </div>
+            <a class="btn btn-primary" href="#courses">View matched courses</a>
           </div>
         </div>
-      </article>
+      </section>
 
-      <!-- Repeat other course cards here as needed -->
-    </section>
-  </main>
+      <section class="section-pad outcomes-section" id="outcomes" aria-labelledby="outcomesTitle">
+        <div class="section-heading">
+          <span class="eyebrow">Why this academy converts learners into action-takers</span>
+          <h2 id="outcomesTitle">Built like a premium product, structured like a serious skill sprint.</h2>
+        </div>
 
-  <!-- COOKIE CONSENT -->
-  <div class="cookie-banner">
-    <p>We use cookies to improve your experience. By using our site, you agree to our <a href="#">Cookie Policy</a>.</p>
-    <button>Accept</button>
+        <div class="outcome-grid">
+          <article class="outcome-card glass-card">
+            <span>01</span>
+            <h3>Persona-led learning</h3>
+            <p>Every learner starts with a clear ambition path, so recommendations feel personal instead of generic.</p>
+          </article>
+
+          <article class="outcome-card glass-card">
+            <span>02</span>
+            <h3>Week-by-week execution</h3>
+            <p>Each course includes a 4-week syllabus accordion that shows exactly what students will build and practice.</p>
+          </article>
+
+          <article class="outcome-card glass-card">
+            <span>03</span>
+            <h3>Local payment flow</h3>
+            <p>JazzCash, EasyPaisa, and Meezan checkout details are packaged inside a premium enrollment modal.</p>
+          </article>
+
+          <article class="outcome-card glass-card">
+            <span>04</span>
+            <h3>Lead capture engine</h3>
+            <p>Enrollment data is saved locally, then routed to WhatsApp with a clean encoded confirmation message.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="courses-section section-pad" id="courses" aria-labelledby="coursesTitle">
+        <div class="section-heading centered">
+          <span class="eyebrow">Course library</span>
+          <h2 id="coursesTitle">Choose a track. Open the syllabus. Start your next 4 weeks.</h2>
+          <p>
+            Filter by category, search by skill, compare outcomes, and enroll with one focused checkout flow.
+          </p>
+        </div>
+
+        <div class="course-layout">
+          <aside class="course-sidebar glass-card" aria-label="Course filters">
+            <div class="sidebar-block">
+              <h3>Filter Categories</h3>
+              <div class="filter-list" id="categoryFilters">
+                <button class="filter-btn active" type="button" data-filter="all">All Courses</button>
+                <button class="filter-btn" type="button" data-filter="ai">AI & Automation</button>
+                <button class="filter-btn" type="button" data-filter="freelancing">Freelancing</button>
+                <button class="filter-btn" type="button" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" type="button" data-filter="design">Design & Content</button>
+                <button class="filter-btn" type="button" data-filter="business">Business</button>
+                <button class="filter-btn" type="button" data-filter="career">Career Skills</button>
+              </div>
+            </div>
+
+            <div class="sidebar-block">
+              <h3>Your Match</h3>
+              <div class="match-card">
+                <span id="sidebarGoal">Goal: Not selected</span>
+                <strong id="sidebarPersona">Persona: Explore all</strong>
+                <p id="sidebarHint">Complete the two-stage funnel to highlight your best course path.</p>
+              </div>
+            </div>
+
+            <div class="sidebar-block">
+              <h3>Sort Courses</h3>
+              <label class="sr-only" for="sortCourses">Sort courses</label>
+              <select id="sortCourses" class="sort-select">
+                <option value="featured">Featured first</option>
+                <option value="priceLow">Price: low to high</option>
+                <option value="priceHigh">Price: high to low</option>
+                <option value="duration">Fastest completion</option>
+              </select>
+            </div>
+          </aside>
+
+          <div class="course-content">
+            <div class="course-toolbar glass-card">
+              <div>
+                <strong id="courseCountLabel">Loading courses...</strong>
+                <span id="activeFilterLabel">All premium skill tracks</span>
+              </div>
+
+              <form class="course-search" id="courseSearchForm" role="search" autocomplete="off">
+                <label class="sr-only" for="courseSearchInput">Search course library</label>
+                <input
+                  id="courseSearchInput"
+                  type="search"
+                  name="courseSearchInput"
+                  placeholder="Search course, category, outcome..."
+                  aria-label="Search course library"
+                />
+                <button type="submit">Search</button>
+              </form>
+            </div>
+
+            <div class="courses-grid" id="coursesGrid" aria-live="polite"></div>
+
+            <div class="empty-state glass-card" id="emptyState" hidden>
+              <span>⌕</span>
+              <h3>No matching courses found</h3>
+              <p>Try a different category, keyword, or reset your filters.</p>
+              <button class="btn btn-secondary" id="resetFiltersBtn" type="button">Reset filters</button>
+            </div>
+          </div>
+        </div>
+
+        <template id="courseCardTemplate">
+          <article class="course-card glass-card">
+            <div class="course-topline">
+              <span class="course-category"></span>
+              <span class="course-level"></span>
+            </div>
+
+            <h3 class="course-title"></h3>
+            <p class="course-description"></p>
+
+            <div class="course-meta">
+              <span class="course-duration"></span>
+              <span class="course-students"></span>
+              <span class="course-rating"></span>
+            </div>
+
+            <div class="course-outcomes"></div>
+
+            <div class="syllabus">
+              <button class="syllabus-toggle" type="button" aria-expanded="false">
+                <span>Week-by-week syllabus</span>
+                <strong>+</strong>
+              </button>
+              <div class="syllabus-panel"></div>
+            </div>
+
+            <div class="course-footer">
+              <div class="course-price">
+                <span>Enrollment Fee</span>
+                <strong></strong>
+              </div>
+              <button class="btn btn-primary enroll-btn" type="button">
+                Enroll Now
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+        </template>
+      </section>
+
+      <section class="pricing-section section-pad" id="pricing" aria-labelledby="pricingTitle">
+        <div class="pricing-card glass-card">
+          <div>
+            <span class="eyebrow">Premium enrollment flow</span>
+            <h2 id="pricingTitle">Pay locally. Confirm instantly on WhatsApp.</h2>
+            <p>
+              Select any course, submit your learner details, send payment to Shahzad Hassan through JazzCash, EasyPaisa, or Meezan Bank, then continue to WhatsApp with your encoded enrollment request.
+            </p>
+          </div>
+
+          <div class="payment-preview">
+            <div>
+              <span>Account Name</span>
+              <strong>Shahzad Hassan</strong>
+            </div>
+            <div>
+              <span>Payment Methods</span>
+              <strong>JazzCash · EasyPaisa · Meezan</strong>
+            </div>
+            <div>
+              <span>Confirmation</span>
+              <strong>WhatsApp Redirect</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq-section section-pad" aria-labelledby="faqTitle">
+        <div class="section-heading centered">
+          <span class="eyebrow">Common questions</span>
+          <h2 id="faqTitle">Everything is designed for clarity before enrollment.</h2>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq-item glass-card">
+            <summary>Are these courses beginner friendly?</summary>
+            <p>Yes. Each course starts with foundations, then moves into guided weekly execution, portfolio tasks, and practical outcomes.</p>
+          </details>
+
+          <details class="faq-item glass-card">
+            <summary>How do I confirm payment?</summary>
+            <p>After submitting the checkout form, you will be redirected to WhatsApp with your course, amount, selected method, and learner details already encoded in the message.</p>
+          </details>
+
+          <details class="faq-item glass-card">
+            <summary>Can I enroll from anywhere in Pakistan?</summary>
+            <p>Yes. The academy is online-first and supports local Pakistani payment methods for convenient enrollment.</p>
+          </details>
+
+          <details class="faq-item glass-card">
+            <summary>Where is my enrollment data stored?</summary>
+            <p>This standalone deployment stores demo leads in the browser using LocalStorage. The admin panel reads the same local data and can export leads to CSV.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">
+              <span class="brand-orbit"></span>
+              <span class="brand-core">N</span>
+            </span>
+            <span class="brand-copy">
+              <strong>NextGen</strong>
+              <small>Digital Academy</small>
+            </span>
+          </a>
+          <p>
+            A premium dark-mode digital academy experience for Pakistani youth ready to learn, build, earn, and grow online.
+          </p>
+        </div>
+
+        <div class="footer-column">
+          <h3>Academy</h3>
+          <a href="#funnel">Skill Match</a>
+          <a href="#courses">Courses</a>
+          <a href="#outcomes">Outcomes</a>
+          <a href="#pricing">Enrollment</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Skill Tracks</h3>
+          <a href="#courses" data-footer-filter="ai">AI & Automation</a>
+          <a href="#courses" data-footer-filter="freelancing">Freelancing</a>
+          <a href="#courses" data-footer-filter="marketing">Digital Marketing</a>
+          <a href="#courses" data-footer-filter="career">Career Skills</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Admin</h3>
+          <a href="/admin">Dashboard</a>
+          <a href="/admin">Course CRUD</a>
+          <a href="/admin">Lead Management</a>
+          <a href="/admin">CSV Export</a>
+        </div>
+
+        <div class="footer-column">
+          <h3>Contact</h3>
+          <a href="https://wa.me/923000000000" target="_blank" rel="noopener noreferrer">WhatsApp Support</a>
+          <a href="mailto:hello@nextgendigitalacademy.pk">hello@nextgendigitalacademy.pk</a>
+          <span>Pakistan Online Academy</span>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© <span id="currentYear"></span> NextGen Digital Academy. All rights reserved.</span>
+        <span>Built for high-converting digital education experiences.</span>
+      </div>
+    </footer>
   </div>
 
-  <!-- FOOTER -->
-  <footer class="site-footer">
-    <div class="container footer-container">
-      <div class="footer-column">
-        <h4>About</h4>
-        <ul>
-          <li><a href="#">Our Mission</a></li>
-          <li><a href="#">Leadership</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
+  <div class="cookie-banner glass-card" id="cookieBanner" role="dialog" aria-live="polite" aria-label="Cookie consent banner" hidden>
+    <div class="cookie-icon" aria-hidden="true">🍪</div>
+    <div class="cookie-copy">
+      <strong>Personalized learning experience</strong>
+      <p>
+        We use LocalStorage to remember your funnel choice, cookie preference, demo leads, and course interactions on this device.
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button class="btn btn-secondary" id="declineCookiesBtn" type="button">Decline</button>
+      <button class="btn btn-primary" id="acceptCookiesBtn" type="button">Accept</button>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle" hidden>
+    <div class="checkout-modal glass-card">
+      <button class="modal-close" id="closeCheckoutBtn" type="button" aria-label="Close checkout modal">×</button>
+
+      <div class="checkout-header">
+        <span class="eyebrow">Premium checkout</span>
+        <h2 id="checkoutTitle">Complete Your Enrollment</h2>
+        <p id="checkoutCourseSummary">
+          Confirm your details, choose a payment method, and continue to WhatsApp for admission confirmation.
+        </p>
       </div>
-      <div class="footer-column">
-        <h4>Courses</h4>
-        <ul>
-          <li><a href="#">Psychology</a></li>
-          <li><a href="#">Business</a></li>
-          <li><a href="#">Technology</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Accessibility</a></li>
-        </ul>
-      </div>
-      <div class="footer-column">
-        <h4>Legal</h4>
-        <ul>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-        </ul>
+
+      <div class="checkout-grid">
+        <form class="checkout-form" id="checkoutForm" autocomplete="on">
+          <input type="hidden" id="selectedCourseId" name="selectedCourseId" />
+          <input type="hidden" id="selectedCourseTitle" name="selectedCourseTitle" />
+          <input type="hidden" id="selectedCoursePrice" name="selectedCoursePrice" />
+
+          <div class="form-row">
+            <label for="learnerName">Full Name</label>
+            <input id="learnerName" name="learnerName" type="text" placeholder="Enter your full name" required minlength="3" />
+          </div>
+
+          <div class="form-row">
+            <label for="learnerPhone">WhatsApp Number</label>
+            <input
+              id="learnerPhone"
+              name="learnerPhone"
+              type="tel"
+              placeholder="03XX XXXXXXX"
+              required
+              pattern="^[0-9+\\-\\s()]{10,18}$"
+            />
+          </div>
+
+          <div class="form-row">
+            <label for="learnerCity">City</label>
+            <input id="learnerCity" name="learnerCity" type="text" placeholder="Lahore, Karachi, Islamabad..." required minlength="2" />
+          </div>
+
+          <div class="form-row">
+            <label for="learnerEmail">Email Address</label>
+            <input id="learnerEmail" name="learnerEmail" type="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-row">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+              <option value="">Select payment method</option>
+              <option value="JazzCash">JazzCash</option>
+              <option value="EasyPaisa">EasyPaisa</option>
+              <option value="Meezan Bank">Meezan Bank</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="transactionId">Transaction ID / Screenshot Note</label>
+            <input id="transactionId" name="transactionId" type="text" placeholder="Enter transaction ID after payment" required minlength="4" />
+          </div>
+
+          <button class="btn btn-primary checkout-submit" type="submit">
+            Save Lead & Continue to WhatsApp
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p class="form-note">
+            By continuing, your enrollment details will be saved on this device and prepared for WhatsApp confirmation.
+          </p>
+        </form>
+
+        <aside class="payment-card">
+          <h3>Payment Details</h3>
+
+          <div class="payment-line">
+            <span>Account Name</span>
+            <strong>Shahzad Hassan</strong>
+          </div>
+
+          <div class="payment-line">
+            <span>JazzCash</span>
+            <strong id="jazzcashNumber">0300-0000000</strong>
+            <button type="button" class="copy-btn" data-copy-target="jazzcashNumber">Copy</button>
+          </div>
+
+          <div class="payment-line">
+            <span>EasyPaisa</span>
+            <strong id="easypaisaNumber">0300-0000000</strong>
+            <button type="button" class="copy-btn" data-copy-target="easypaisaNumber">Copy</button>
+          </div>
+
+          <div class="payment-line">
+            <span>Meezan Bank</span>
+            <strong id="meezanAccount">PK00MEZN0000000000000000</strong>
+            <button type="button" class="copy-btn" data-copy-target="meezanAccount">Copy</button>
+          </div>
+
+          <div class="checkout-course-card">
+            <span>Selected Course</span>
+            <strong id="modalCourseTitle">Choose a course</strong>
+            <p id="modalCoursePrice">PKR 0</p>
+          </div>
+
+          <div class="secure-note">
+            <span aria-hidden="true">🔐</span>
+            <p>Send payment proof on WhatsApp after submitting this form.</p>
+          </div>
+        </aside>
       </div>
     </div>
-  </footer>
+  </div>
 
-  <script>
-    // Syllabus Toggle
-    document.querySelectorAll('.syllabus-toggle').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const syllabus = btn.nextElementSibling;
-        syllabus.classList.toggle('open');
-      });
-    });
-
-    // Mega-menu toggle
-    document.querySelector('.explore-btn').addEventListener('click', () => {
-      document.querySelector('.dropdown').classList.toggle('show');
-    });
-
-    // Cookie banner
-    document.querySelector('.cookie-banner button').addEventListener('click', () => {
-      document.querySelector('.cookie-banner').style.display = 'none';
-    });
-  </script>
-
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
 </body>
 </html>
