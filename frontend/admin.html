@@ -1,148 +1,83 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://cdn.jsdelivr.net https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' https: data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'none'; form-action 'self';">
-  <meta name="robots" content="noindex,nofollow">
-  <title>Admin Dashboard | NextGen Digital Academy</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NextGen Digital Academy | Admin Dashboard</title>
   <link rel="stylesheet" href="admin-style.css">
-  <script defer src="admin.js"></script>
 </head>
-
 <body>
-  <nav class="container-fluid admin-nav">
-    <ul>
-      <li>
-        <a href="index.html" class="brand">
-          <span class="brand-icon">◆</span>
-          <strong>NextGen Academy Admin</strong>
-        </a>
-      </li>
-    </ul>
-    <ul>
-      <li><a href="index.html">Frontend</a></li>
-      <li><a href="#leadsSection">Leads</a></li>
-      <li><a href="#courseManager" role="button">Manage</a></li>
-    </ul>
-  </nav>
+  <header class="admin-header">
+    <h1>NextGen Digital Academy - Admin Dashboard</h1>
+  </header>
 
-  <main class="container admin-shell">
-    <section class="lock" id="lockScreen">
-      <article class="lock-card">
-        <div class="lock-icon">🛡️</div>
-        <p class="eyebrow" id="authMode">Admin access</p>
-        <h1>Secure Local Dashboard</h1>
-        <p id="authHelp">Create or enter your local admin PIN to unlock the dashboard.</p>
+  <main class="admin-main container">
 
-        <form id="authForm">
-          <label for="adminPin">Admin PIN / Passphrase</label>
-          <input id="adminPin" type="password" minlength="8" autocomplete="current-password" required>
-          <button type="submit" id="authSubmit">Unlock Dashboard</button>
-        </form>
-
-        <p class="security-note">This client-side gate protects casual browser access. Real multi-user security requires serverless auth.</p>
-      </article>
+    <!-- ANALYTICS ROW -->
+    <section class="analytics-row">
+      <div class="analytics-card">
+        <h3>Total Courses</h3>
+        <p id="totalCourses">0</p>
+      </div>
+      <div class="analytics-card">
+        <h3>Total Leads</h3>
+        <p id="totalLeads">0</p>
+      </div>
+      <div class="analytics-card">
+        <h3>Projected Revenue ($)</h3>
+        <p id="projectedRevenue">0</p>
+      </div>
     </section>
 
-    <section class="dashboard" id="dashboard" hidden>
-      <header class="dashboard-hero">
-        <div>
-          <p class="eyebrow">Command center</p>
-          <h1>Course, lead, and revenue control room.</h1>
-          <p>Manage the LocalStorage catalog, track enrollment leads, approve or reject requests, and export CSV data.</p>
-        </div>
-        <div class="hero-controls">
-          <button type="button" id="restoreDefaults" class="secondary-btn">Restore Default Courses</button>
-          <button type="button" id="logout" class="danger-btn">Lock Admin</button>
-        </div>
-      </header>
-
-      <section class="analytics">
-        <article><span>📚</span><small>Total Live Courses</small><strong id="totalCourses">0</strong><progress id="courseProgress" value="0" max="100"></progress></article>
-        <article><span>🧲</span><small>Total Leads Received</small><strong id="totalLeads">0</strong><progress id="leadProgress" value="0" max="100"></progress></article>
-        <article><span>💰</span><small>Total Projected Revenue</small><strong id="projectedRevenue">PKR 0</strong><progress id="revenueProgress" value="0" max="100"></progress></article>
-      </section>
-
-      <section class="manager-grid" id="courseManager">
-        <article class="panel">
-          <h2>Create New Course</h2>
-          <p>Add a premium course. It syncs instantly to the frontend catalog on the same browser origin.</p>
-
-          <form id="courseForm">
-            <label for="courseTitle">Course Title</label>
-            <input id="courseTitle" name="title" type="text" maxlength="120" required>
-
-            <div class="form-grid">
-              <div>
-                <label for="courseCategory">Category</label>
-                <select id="courseCategory" name="category" required>
-                  <option value="Freelancing">Freelancing</option>
-                  <option value="Digital Marketing">Digital Marketing</option>
-                  <option value="Video & Content Creation">Video & Content Creation</option>
-                </select>
-              </div>
-              <div>
-                <label for="coursePrice">Price PKR</label>
-                <input id="coursePrice" name="price" type="number" min="1000" step="500" required>
-              </div>
-            </div>
-
-            <label for="courseImage">Image URL</label>
-            <input id="courseImage" name="image" type="url" maxlength="600" required>
-
-            <label for="courseSyllabus">Week-by-Week Detailed Syllabus Text</label>
-            <textarea id="courseSyllabus" name="syllabus" rows="10" required>Week 1: Foundation, market research, tools setup, and beginner execution.
-Week 2: Practical implementation, portfolio proof, templates, and workflows.
-Week 3: Client/project simulation, optimization, feedback, and improvement.
-Week 4: Launch plan, monetization path, reporting, and next-step growth system.</textarea>
-
-            <button type="submit">Create Course</button>
-          </form>
-        </article>
-
-        <article class="panel">
-          <h2>Live Course Catalog</h2>
-          <p>Delete courses instantly from the frontend LocalStorage catalog.</p>
-          <div class="course-list" id="courseList"></div>
-        </article>
-      </section>
-
-      <section class="panel" id="leadsSection">
-        <div class="panel-head">
-          <div>
-            <h2>Live Lead Management</h2>
-            <p>Enrollment requests captured from the frontend checkout modal.</p>
-          </div>
-          <div class="export-actions">
-            <button type="button" id="copyCsv" class="secondary-btn">Copy CSV</button>
-            <button type="button" id="downloadCsv">Download CSV</button>
-          </div>
-        </div>
-
-        <div class="table-wrap">
-          <table>
-            <thead>
-              <tr><th>Created</th><th>Student</th><th>Email</th><th>Course</th><th>Price</th><th>Status</th></tr>
-            </thead>
-            <tbody id="leadRows"></tbody>
-          </table>
-        </div>
-
-        <label for="csvOutput">Raw CSV Export</label>
-        <textarea id="csvOutput" rows="8" readonly></textarea>
-      </section>
+    <!-- COURSE CRUD -->
+    <section class="course-crud">
+      <h2>Add New Course</h2>
+      <form id="courseForm">
+        <label>Title: <input type="text" id="courseTitle" required></label>
+        <label>Price: <input type="number" id="coursePrice" required></label>
+        <label>Category: 
+          <select id="courseCategory">
+            <option>Psychology</option>
+            <option>Freelancing</option>
+            <option>Marketing</option>
+            <option>Video Editing</option>
+            <option>Business</option>
+          </select>
+        </label>
+        <label>Instructor: <input type="text" id="courseInstructor" required></label>
+        <label>Image URL: <input type="url" id="courseImage" required></label>
+        <fieldset>
+          <legend>Syllabus Creator</legend>
+          <label>Week 1: <input type="text" id="syllabusWeek1" required></label>
+          <label>Week 2: <input type="text" id="syllabusWeek2" required></label>
+          <label>Week 3: <input type="text" id="syllabusWeek3" required></label>
+          <label>Week 4: <input type="text" id="syllabusWeek4" required></label>
+        </fieldset>
+        <button type="submit">Add Course</button>
+      </form>
     </section>
 
-    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <!-- LEAD MANAGEMENT -->
+    <section class="lead-management">
+      <h2>Student Leads</h2>
+      <button id="downloadCSV">Download CSV</button>
+      <table id="leadsTable">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Dynamic Leads Rows -->
+        </tbody>
+      </table>
+    </section>
+
   </main>
 
-  <footer class="container">
-    <small><a href="index.html">Frontend Site</a> • <a href="#courseManager">Course Manager</a></small>
-  </footer>
+  <script src="admin.js"></script>
 </body>
 </html>
