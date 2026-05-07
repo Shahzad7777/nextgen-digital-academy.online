@@ -1,13 +1,115 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-PK">
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Panel | NextGen</title>
-    <link rel="stylesheet" href="/css/admin-style.css">
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Admin Panel | NextGen Digital Academy</title>
+<meta name="theme-color" content="#0B0F19">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Admin dashboard for course management, lead tracking and analytics for NextGen Digital Academy.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="/css/admin-style.css">
+<script defer src="/js/admin.js"></script>
 </head>
 <body>
-    <h1>Admin Dashboard</h1>
-    <p>Welcome, Shahzad.</p>
-    <script src="/js/admin.js"></script>
+
+<header class="admin-header glass-card">
+  <div class="header-inner">
+    <a href="/" class="brand"><span class="brand-glow">NextGen Academy Admin</span></a>
+    <div class="header-actions">
+      <button id="exportCSVBtn" class="btn btn-secondary">Export Leads CSV</button>
+      <button id="logoutBtn" class="btn btn-secondary">Exit to Frontend</button>
+    </div>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <!-- Analytics Row -->
+  <section class="analytics-row glass-card">
+    <div class="metric">
+      <h4>Total Courses</h4>
+      <span id="totalCoursesCounter">0</span>
+    </div>
+    <div class="metric">
+      <h4>Total Leads</h4>
+      <span id="totalLeadsCounter">0</span>
+    </div>
+    <div class="metric">
+      <h4>Projected Revenue</h4>
+      <span id="projectedRevenueCounter">PKR 0</span>
+    </div>
+  </section>
+
+  <!-- Course CRUD Section -->
+  <section class="course-crud-section glass-card">
+    <h2>Manage Courses</h2>
+    <form id="courseForm">
+      <input type="hidden" id="courseId" value="">
+
+      <label>Title</label>
+      <input type="text" id="courseTitle" required>
+
+      <label>Category</label>
+      <select id="courseCategory" required>
+        <option value="freelancing">Freelancing</option>
+        <option value="marketing">Digital Marketing</option>
+        <option value="video">Video & Content Creation</option>
+      </select>
+
+      <label>Price (PKR)</label>
+      <input type="number" id="coursePrice" min="0" required>
+
+      <label>Week 1 Details</label>
+      <textarea id="week1" required></textarea>
+
+      <label>Week 2 Details</label>
+      <textarea id="week2" required></textarea>
+
+      <label>Week 3 Details</label>
+      <textarea id="week3" required></textarea>
+
+      <label>Week 4 Details</label>
+      <textarea id="week4" required></textarea>
+
+      <button type="submit" class="btn btn-primary">Save Course</button>
+      <button type="button" id="clearFormBtn" class="btn btn-secondary">Clear</button>
+    </form>
+  </section>
+
+  <!-- Courses List Table -->
+  <section class="courses-list-section glass-card">
+    <h2>Courses Table</h2>
+    <table class="admin-table">
+      <thead>
+        <tr><th>Title</th><th>Category</th><th>Price</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="coursesTableBody"></tbody>
+    </table>
+  </section>
+
+  <!-- Leads Management Section -->
+  <section class="leads-section glass-card">
+    <h2>Leads Management</h2>
+    <table class="admin-table">
+      <thead>
+        <tr><th>Lead Name</th><th>Email</th><th>Course</th><th>Status</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="leadsTableBody"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer class="admin-footer glass-card">
+  <span>© 2026 NextGen Digital Academy Admin</span>
+</footer>
+
 </body>
 </html>
