@@ -5,31 +5,8 @@
   "rewrites": [
     { "source": "/admin", "destination": "/frontend/admin.html" },
     { "source": "/admin.html", "destination": "/frontend/admin.html" },
-    { "source": "/(.*).css", "destination": "/frontend/css/$1.css" },
-    { "source": "/(.*).js", "destination": "/frontend/js/$1.js" },
+    { "source": "/css/(.*)", "destination": "/frontend/css/$1" },
+    { "source": "/js/(.*)", "destination": "/frontend/js/$1" },
     { "source": "/(.*)", "destination": "/frontend/index.html" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "DENY" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
-      ]
-    },
-    {
-      "source": "/frontend/css/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    },
-    {
-      "source": "/frontend/js/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
-      ]
-    }
   ]
 }
