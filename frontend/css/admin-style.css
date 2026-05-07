@@ -1,1 +1,251 @@
-/* Admin CSS */
+:root {
+    --dark-bg: #0B0F19;
+    --slate-text: #F8FAFC;
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --primary-glow: #00ffff;
+    --secondary-glow: #00ff99;
+    --radius: 14px;
+    --blur: 14px;
+    --transition-speed: 0.35s;
+}
+
+/* --------------------------
+   Global Reset
+-------------------------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--slate-text);
+    line-height: 1.6;
+}
+
+h2, h3, h4 {
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+/* --------------------------
+   Glass Card
+-------------------------- */
+.glass-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--blur));
+    border-radius: var(--radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.glass-card:hover {
+    transform: scale(1.01);
+    box-shadow: 0 0 12px rgba(0,255,255,0.25);
+}
+
+/* --------------------------
+   Admin Header
+-------------------------- */
+.admin-header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(var(--blur));
+    background: var(--glass-bg);
+    border-bottom: 1px solid var(--glass-border);
+    z-index: 1000;
+    padding: 0.5rem 2rem;
+}
+
+.admin-header .brand {
+    font-size: 1.6rem;
+    font-weight: 800;
+    background: linear-gradient(90deg,#00ffff,#00ff99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 6px rgba(0,255,255,0.5);
+}
+
+.admin-header .header-actions button {
+    margin-left: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--slate-text);
+    font-weight: 600;
+    box-shadow: 0 0 8px rgba(0,255,255,0.2);
+    transition: all var(--transition-speed);
+}
+
+.admin-header .header-actions button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* --------------------------
+   Main Admin Container
+-------------------------- */
+.admin-main {
+    width: 95%;
+    max-width: 1280px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* --------------------------
+   Analytics Row
+-------------------------- */
+.analytics-row {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+    text-align: center;
+}
+
+.analytics-row .metric h4 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.analytics-row .metric span {
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+/* --------------------------
+   Course CRUD Section
+-------------------------- */
+.course-crud-section form {
+    display: grid;
+    gap: 1rem;
+}
+
+.course-crud-section label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.course-crud-section input,
+.course-crud-section select,
+.course-crud-section textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--slate-text);
+    backdrop-filter: blur(var(--blur));
+    transition: border var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.course-crud-section input:focus,
+.course-crud-section select:focus,
+.course-crud-section textarea:focus {
+    border-color: var(--primary-glow);
+    box-shadow: 0 0 10px var(--primary-glow);
+    outline: none;
+}
+
+.course-crud-section button {
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--slate-text);
+    font-weight: 600;
+    box-shadow: 0 0 8px rgba(0,255,255,0.2);
+    transition: all var(--transition-speed);
+}
+
+.course-crud-section button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+/* --------------------------
+   Tables
+-------------------------- */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid var(--glass-border);
+    text-align: left;
+}
+
+.admin-table th {
+    font-weight: 700;
+    background: var(--glass-bg);
+}
+
+.admin-table tr:hover {
+    background: rgba(0,255,255,0.05);
+}
+
+/* Status Buttons */
+.status-btn {
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius);
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    color: #0B0F19;
+}
+
+.status-pending { background-color: #ffcc00; }
+.status-approved { background-color: #00ff99; }
+.status-rejected { background-color: #ff3366; }
+
+/* --------------------------
+   Footer
+-------------------------- */
+.admin-footer {
+    text-align: center;
+    padding: 1.5rem;
+    backdrop-filter: blur(var(--blur));
+    background: var(--glass-bg);
+    border-top: 1px solid var(--glass-border);
+    margin-top: 2rem;
+    border-radius: var(--radius);
+}
+
+/* --------------------------
+   Responsive
+-------------------------- */
+@media(max-width:768px){
+    .analytics-row {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .admin-header {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
