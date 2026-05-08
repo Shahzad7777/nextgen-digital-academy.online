@@ -1,855 +1,935 @@
-Here is the complete **`/admin.html`** for the **NextGen Digital Academy Admin Dashboard**:
-
-```html id="nextgen-admin-html"
 <!DOCTYPE html>
-<html lang="en-PK">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | NextGen Digital Academy</title>
+  <meta name="robots" content="noindex, nofollow" />
 
-  <title>Admin Dashboard | NextGen Digital Academy</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
 
-  <meta name="description" content="Admin dashboard for NextGen Digital Academy to manage students, courses, enrollments, assignments, certificates, payments, batches, mentor support, and website performance.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0B0F19">
+    body {
+      background: #071527;
+      color: #ffffff;
+    }
 
-  <link rel="canonical" href="https://nextgendigitalacademy.com/admin.html">
-  <link rel="icon" href="/images/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/style.css">
+    .admin-wrapper {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 260px;
+      background: #0b1f3a;
+      padding: 24px;
+      position: fixed;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 30px;
+      color: #38bdf8;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 13px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 10px;
+      background: transparent;
+      color: #dbeafe;
+      text-align: left;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .sidebar button.active,
+    .sidebar button:hover {
+      background: #123b66;
+      color: #ffffff;
+    }
+
+    .main {
+      margin-left: 260px;
+      width: calc(100% - 260px);
+      padding: 25px;
+    }
+
+    .topbar {
+      background: #0b1f3a;
+      padding: 18px 22px;
+      border-radius: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 25px;
+    }
+
+    .logout-btn,
+    .primary-btn,
+    .danger-btn,
+    .small-btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 10px;
+      padding: 11px 16px;
+      font-weight: 700;
+    }
+
+    .primary-btn {
+      background: #38bdf8;
+      color: #06121f;
+    }
+
+    .logout-btn,
+    .danger-btn {
+      background: #ef4444;
+      color: #fff;
+    }
+
+    .small-btn {
+      background: #1d4ed8;
+      color: #fff;
+      padding: 8px 12px;
+      margin: 3px;
+    }
+
+    .section {
+      display: none;
+      background: #0b1f3a;
+      padding: 22px;
+      border-radius: 18px;
+      margin-bottom: 25px;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    h2 {
+      margin-bottom: 18px;
+      color: #38bdf8;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: #102b4c;
+      padding: 20px;
+      border-radius: 16px;
+    }
+
+    .card h3 {
+      color: #93c5fd;
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+
+    .card strong {
+      font-size: 28px;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      padding: 13px;
+      border-radius: 10px;
+      border: 1px solid #1e4975;
+      background: #061527;
+      color: #fff;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow-x: auto;
+      background: #102b4c;
+      border-radius: 14px;
+    }
+
+    th,
+    td {
+      padding: 13px;
+      border-bottom: 1px solid #1e4975;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      color: #93c5fd;
+    }
+
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #061527, #0b3b66);
+    }
+
+    .login-box {
+      width: 100%;
+      max-width: 420px;
+      background: #0b1f3a;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    }
+
+    .login-box h1 {
+      color: #38bdf8;
+      margin-bottom: 8px;
+    }
+
+    .login-box p {
+      color: #bfdbfe;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      color: #fca5a5;
+      font-size: 14px;
+    }
+
+    .image-preview {
+      max-width: 120px;
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 900px) {
+      .admin-wrapper {
+        display: block;
+      }
+
+      .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+      }
+
+      .main {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      .grid,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+      }
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+  </style>
 </head>
 
-<body class="admin-body">
-  <a class="skip-link" href="/admin.html#admin-dashboard">Skip to admin dashboard</a>
-
-  <header class="site-header glass-nav" id="top">
-    <nav class="navbar container" aria-label="Admin dashboard navigation">
-      <a class="brand-logo" href="/" aria-label="NextGen Digital Academy home">
-        <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
-      </a>
-
-      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
-
-      <ul class="nav-menu" id="primary-navigation">
-        <li><a href="/admin.html#overview">Overview</a></li>
-        <li><a href="/admin.html#students">Students</a></li>
-        <li><a href="/admin.html#courses">Courses</a></li>
-        <li><a href="/admin.html#payments">Payments</a></li>
-        <li><a href="/admin.html#assignments">Assignments</a></li>
-        <li><a href="/admin.html#settings">Settings</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="/main.html">Student Portal</a>
-        <a class="btn btn-glow login-btn" href="/login.html">Logout</a>
-      </div>
-    </nav>
-  </header>
-
-  <main id="admin-dashboard">
-    <section class="admin-hero section-padding" id="overview" aria-labelledby="admin-title">
-      <div class="container dashboard-hero-grid">
-        <div class="dashboard-welcome">
-          <p class="eyebrow">Admin Control Center</p>
-
-          <h1 id="admin-title" class="hero-title">
-            Manage
-            <span class="gradient-text">NextGen Digital Academy</span>
-            from One Dashboard
-          </h1>
-
-          <p class="hero-description">
-            Track enrollments, student progress, course performance, assignments, certificates, payments, batches, mentor activity, and website growth from a premium admin interface.
-          </p>
-
-          <div class="hero-cta-group">
-            <a class="btn btn-primary btn-large" href="/admin.html#students">Manage Students</a>
-            <a class="btn btn-secondary btn-large" href="/admin.html#courses">Update Courses</a>
-          </div>
-        </div>
-
-        <aside class="student-profile-card glass-card" aria-label="Admin profile summary">
-          <div class="student-avatar-wrap">
-            <img src="/images/admin/admin-avatar.webp" alt="Admin profile avatar" width="120" height="120">
-          </div>
-
-          <h2>Admin Account</h2>
-          <p class="student-id">Role: Super Admin</p>
-
-          <div class="profile-info-list">
-            <div>
-              <span>Academy</span>
-              <strong>NextGen Digital Academy</strong>
-            </div>
-            <div>
-              <span>Location</span>
-              <strong>Lahore, Pakistan</strong>
-            </div>
-            <div>
-              <span>Active Batch</span>
-              <strong>June 2026</strong>
-            </div>
-            <div>
-              <span>Status</span>
-              <strong>System Active</strong>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="admin-stats-section section-small" aria-labelledby="admin-stats-title">
-      <div class="container">
-        <h2 id="admin-stats-title" class="section-title-small">Academy Performance Overview</h2>
-
-        <div class="dashboard-stats-grid">
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">👨‍🎓</span>
-            <strong>286</strong>
-            <p>Total Students</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">📚</span>
-            <strong>06</strong>
-            <p>Active Courses</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">💰</span>
-            <strong>PKR 1.8M</strong>
-            <p>Monthly Revenue</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🎓</span>
-            <strong>142</strong>
-            <p>Certificates Issued</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="admin-panel-section section-padding" aria-labelledby="admin-panel-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Control Modules</p>
-          <h2 id="admin-panel-title">Admin Management System</h2>
-          <p>
-            Use dedicated admin modules to manage academy operations, student communication, course progress, and business growth.
-          </p>
-        </div>
-
-        <div class="support-grid">
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">🧑‍🎓</span>
-            <h3>Student Management</h3>
-            <p>Add, update, filter, and monitor students by batch, course, payment status, and certificate eligibility.</p>
-            <a class="btn btn-course" href="/admin.html#students">Open Students</a>
-          </article>
-
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">📘</span>
-            <h3>Course Management</h3>
-            <p>Manage courses, modules, lessons, pricing plans, discounted badges, and course landing page links.</p>
-            <a class="btn btn-course" href="/admin.html#courses">Open Courses</a>
-          </article>
-
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">💳</span>
-            <h3>Payment Tracking</h3>
-            <p>Track paid, pending, installment, refunded, and overdue payment records for every enrollment.</p>
-            <a class="btn btn-course" href="/admin.html#payments">Open Payments</a>
-          </article>
-
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">📝</span>
-            <h3>Assignment Review</h3>
-            <p>Review student submissions, update feedback status, approve projects, and mark certificate readiness.</p>
-            <a class="btn btn-course" href="/admin.html#assignments">Open Assignments</a>
-          </article>
-
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">🎓</span>
-            <h3>Certificate Control</h3>
-            <p>Approve certificate requests, verify completion, and generate certificate-ready student records.</p>
-            <a class="btn btn-course" href="/admin.html#certificates">Open Certificates</a>
-          </article>
-
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">📈</span>
-            <h3>Marketing Analytics</h3>
-            <p>Monitor leads, course interest, form submissions, campaign sources, and conversion performance.</p>
-            <a class="btn btn-course" href="/admin.html#analytics">Open Analytics</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="students-section section-padding" id="students" aria-labelledby="students-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Students</p>
-          <h2 id="students-title">Student Enrollment Management</h2>
-          <p>
-            View student records, enrollment details, course status, payment status, and certificate eligibility in one organized table.
-          </p>
-        </div>
-
-        <div class="admin-filter-bar glass-card" aria-label="Student filters">
-          <form class="admin-filter-form" action="/admin.html#students" method="get">
-            <div class="form-row">
-              <label for="student-search">Search Student</label>
-              <input type="search" id="student-search" name="student_search" placeholder="Search by name, phone, email, or student ID">
-            </div>
-
-            <div class="form-row">
-              <label for="student-course-filter">Course</label>
-              <select id="student-course-filter" name="student_course_filter">
-                <option value="">All Courses</option>
-                <option value="digital-marketing">Digital Marketing Pro</option>
-                <option value="freelancing">Freelancing Mastery</option>
-                <option value="content-creation">Content Creation Accelerator</option>
-                <option value="online-earning">Online Earning for Students</option>
-                <option value="ai-tools">AI Tools for Digital Work</option>
-              </select>
-            </div>
-
-            <div class="form-row">
-              <label for="student-status-filter">Status</label>
-              <select id="student-status-filter" name="student_status_filter">
-                <option value="">All Statuses</option>
-                <option value="active">Active</option>
-                <option value="pending">Pending</option>
-                <option value="completed">Completed</option>
-                <option value="inactive">Inactive</option>
-              </select>
-            </div>
-
-            <button class="btn btn-primary" type="submit">Apply Filters</button>
-          </form>
-        </div>
-
-        <div class="assignment-table-wrap glass-card">
-          <table class="assignment-table admin-table">
-            <thead>
-              <tr>
-                <th scope="col">Student</th>
-                <th scope="col">Course</th>
-                <th scope="col">Batch</th>
-                <th scope="col">Progress</th>
-                <th scope="col">Payment</th>
-                <th scope="col">Certificate</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>
-                  <strong>Ayesha Khan</strong><br>
-                  <span>NGDA-2026-001</span>
-                </td>
-                <td>Digital Marketing Pro</td>
-                <td>June 2026</td>
-                <td>72%</td>
-                <td><span class="status-badge status-approved">Paid</span></td>
-                <td><span class="status-badge status-pending">Pending</span></td>
-                <td><a href="/admin/students/ayesha-khan.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>
-                  <strong>Hamza Ali</strong><br>
-                  <span>NGDA-2026-002</span>
-                </td>
-                <td>Freelancing Mastery</td>
-                <td>June 2026</td>
-                <td>58%</td>
-                <td><span class="status-badge status-pending">Installment</span></td>
-                <td><span class="status-badge status-locked">Locked</span></td>
-                <td><a href="/admin/students/hamza-ali.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>
-                  <strong>Fatima Noor</strong><br>
-                  <span>NGDA-2026-003</span>
-                </td>
-                <td>Content Creation Accelerator</td>
-                <td>May 2026</td>
-                <td>100%</td>
-                <td><span class="status-badge status-approved">Paid</span></td>
-                <td><span class="status-badge status-approved">Issued</span></td>
-                <td><a href="/admin/students/fatima-noor.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>
-                  <strong>Usman Raza</strong><br>
-                  <span>NGDA-2026-004</span>
-                </td>
-                <td>AI Tools for Digital Work</td>
-                <td>July 2026</td>
-                <td>0%</td>
-                <td><span class="status-badge status-pending">Pending</span></td>
-                <td><span class="status-badge status-locked">Locked</span></td>
-                <td><a href="/admin/students/usman-raza.html">View</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <form class="assignment-upload-form glass-card" action="/admin/student-created.html" method="post" aria-label="Add new student form">
-          <h3>Add New Student</h3>
-
-          <div class="form-row">
-            <label for="new-student-name">Full Name</label>
-            <input type="text" id="new-student-name" name="new_student_name" placeholder="Enter student full name" required>
-          </div>
-
-          <div class="form-row">
-            <label for="new-student-phone">WhatsApp Number</label>
-            <input type="tel" id="new-student-phone" name="new_student_phone" placeholder="03XX XXXXXXX" required>
-          </div>
-
-          <div class="form-row">
-            <label for="new-student-email">Email Address</label>
-            <input type="email" id="new-student-email" name="new_student_email" placeholder="student@example.com">
-          </div>
-
-          <div class="form-row">
-            <label for="new-student-course">Course</label>
-            <select id="new-student-course" name="new_student_course" required>
-              <option value="">Select course</option>
-              <option value="freelancing">Freelancing Mastery Course</option>
-              <option value="digital-marketing">Digital Marketing Pro Course</option>
-              <option value="content-creation">Content Creation Accelerator</option>
-              <option value="online-earning">Online Earning for Students</option>
-              <option value="ai-tools">AI Tools for Digital Work</option>
-              <option value="beginner-digital-skills">Beginner Digital Skills Bootcamp</option>
-            </select>
-          </div>
-
-          <button class="btn btn-primary btn-full" type="submit">Create Student Record</button>
-        </form>
-      </div>
-    </section>
-
-    <section class="courses-admin-section section-padding" id="courses" aria-labelledby="admin-courses-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Courses</p>
-          <h2 id="admin-courses-title">Course and Pricing Management</h2>
-          <p>
-            Manage active courses, pricing tiers, discounts, course visibility, course duration, and enrollment status.
-          </p>
-        </div>
-
-        <div class="student-course-grid">
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/freelancing-course.webp" alt="Freelancing course admin card" width="640" height="420">
-              <span class="discount-badge">Live</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Freelancing</p>
-              <h3>Freelancing Mastery Course</h3>
-              <p>Basic: PKR 4,999 | Premium: PKR 7,999 | VIP: PKR 14,999</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Enrollment Capacity</span>
-                  <strong>84%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Freelancing course enrollment capacity 84 percent">
-                  <span style="width: 84%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/admin/courses/freelancing.html">Edit Course</a>
-            </div>
-          </article>
-
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/digital-marketing-course.webp" alt="Digital marketing course admin card" width="640" height="420">
-              <span class="discount-badge">Best Seller</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Marketing</p>
-              <h3>Digital Marketing Pro Course</h3>
-              <p>Basic: PKR 5,999 | Premium: PKR 9,999 | VIP: PKR 18,999</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Enrollment Capacity</span>
-                  <strong>92%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Digital marketing course enrollment capacity 92 percent">
-                  <span style="width: 92%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/admin/courses/digital-marketing.html">Edit Course</a>
-            </div>
-          </article>
-
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/content-creation-course.webp" alt="Content creation course admin card" width="640" height="420">
-              <span class="discount-badge">Live</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Content</p>
-              <h3>Content Creation Accelerator</h3>
-              <p>Basic: PKR 4,499 | Premium: PKR 7,499 | VIP: PKR 13,999</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Enrollment Capacity</span>
-                  <strong>69%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Content creation course enrollment capacity 69 percent">
-                  <span style="width: 69%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/admin/courses/content-creation.html">Edit Course</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="payments-section section-padding" id="payments" aria-labelledby="payments-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Payments</p>
-          <h2 id="payments-title">Payment and Revenue Tracking</h2>
-          <p>
-            Monitor course fees, installment records, pending dues, paid students, refunds, and monthly revenue performance.
-          </p>
-        </div>
-
-        <div class="dashboard-stats-grid">
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">💵</span>
-            <strong>PKR 1.8M</strong>
-            <p>Total Revenue</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">✅</span>
-            <strong>214</strong>
-            <p>Paid Students</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">⏳</span>
-            <strong>48</strong>
-            <p>Pending Payments</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🔁</span>
-            <strong>06</strong>
-            <p>Refund Requests</p>
-          </article>
-        </div>
-
-        <div class="assignment-table-wrap glass-card">
-          <table class="assignment-table admin-table">
-            <thead>
-              <tr>
-                <th scope="col">Student</th>
-                <th scope="col">Course</th>
-                <th scope="col">Plan</th>
-                <th scope="col">Amount</th>
-                <th scope="col">Paid</th>
-                <th scope="col">Due</th>
-                <th scope="col">Status</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Ayesha Khan</td>
-                <td>Digital Marketing Pro</td>
-                <td>Premium</td>
-                <td>PKR 9,999</td>
-                <td>PKR 9,999</td>
-                <td>PKR 0</td>
-                <td><span class="status-badge status-approved">Paid</span></td>
-              </tr>
-
-              <tr>
-                <td>Hamza Ali</td>
-                <td>Freelancing Mastery</td>
-                <td>VIP</td>
-                <td>PKR 14,999</td>
-                <td>PKR 7,500</td>
-                <td>PKR 7,499</td>
-                <td><span class="status-badge status-pending">Installment</span></td>
-              </tr>
-
-              <tr>
-                <td>Fatima Noor</td>
-                <td>Content Creation</td>
-                <td>Premium</td>
-                <td>PKR 7,499</td>
-                <td>PKR 7,499</td>
-                <td>PKR 0</td>
-                <td><span class="status-badge status-approved">Paid</span></td>
-              </tr>
-
-              <tr>
-                <td>Usman Raza</td>
-                <td>AI Tools</td>
-                <td>Basic</td>
-                <td>PKR 4,999</td>
-                <td>PKR 0</td>
-                <td>PKR 4,999</td>
-                <td><span class="status-badge status-pending">Pending</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="assignments-admin-section section-padding" id="assignments" aria-labelledby="admin-assignments-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Assignments</p>
-          <h2 id="admin-assignments-title">Assignment Review Queue</h2>
-          <p>
-            Review submitted assignments, provide feedback, approve student work, and unlock certificate eligibility.
-          </p>
-        </div>
-
-        <div class="assignment-table-wrap glass-card">
-          <table class="assignment-table admin-table">
-            <thead>
-              <tr>
-                <th scope="col">Assignment</th>
-                <th scope="col">Student</th>
-                <th scope="col">Module</th>
-                <th scope="col">Submitted</th>
-                <th scope="col">Review Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Meta Ads Campaign Draft</td>
-                <td>Ayesha Khan</td>
-                <td>Paid Ads</td>
-                <td>08 May 2026</td>
-                <td><span class="status-badge status-pending">Needs Review</span></td>
-                <td><a href="/admin/assignments/meta-ads-ayesha.html">Review</a></td>
-              </tr>
-
-              <tr>
-                <td>SEO Keyword Plan</td>
-                <td>Hamza Ali</td>
-                <td>SEO Strategy</td>
-                <td>07 May 2026</td>
-                <td><span class="status-badge status-approved">Approved</span></td>
-                <td><a href="/admin/assignments/seo-hamza.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>Content Calendar</td>
-                <td>Fatima Noor</td>
-                <td>Content Strategy</td>
-                <td>06 May 2026</td>
-                <td><span class="status-badge status-approved">Approved</span></td>
-                <td><a href="/admin/assignments/content-fatima.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>Client Report Draft</td>
-                <td>Usman Raza</td>
-                <td>Reporting</td>
-                <td>Not Submitted</td>
-                <td><span class="status-badge status-locked">Pending Submission</span></td>
-                <td><a href="/admin.html#students">Remind</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <form class="assignment-upload-form glass-card" action="/admin/feedback-sent.html" method="post" aria-label="Assignment feedback form">
-          <h3>Send Assignment Feedback</h3>
-
-          <div class="form-row">
-            <label for="feedback-student">Student Name</label>
-            <input type="text" id="feedback-student" name="feedback_student" placeholder="Enter student name" required>
-          </div>
-
-          <div class="form-row">
-            <label for="feedback-status">Feedback Status</label>
-            <select id="feedback-status" name="feedback_status" required>
-              <option value="">Select status</option>
-              <option value="approved">Approved</option>
-              <option value="needs-improvement">Needs Improvement</option>
-              <option value="resubmit">Resubmit Required</option>
-              <option value="certificate-ready">Certificate Ready</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="feedback-message">Mentor Feedback</label>
-            <textarea id="feedback-message" name="feedback_message" rows="5" placeholder="Write clear feedback for the student" required></textarea>
-          </div>
-
-          <button class="btn btn-primary btn-full" type="submit">Send Feedback</button>
-        </form>
-      </div>
-    </section>
-
-    <section class="certificates-admin-section section-padding" id="certificates" aria-labelledby="certificates-title">
-      <div class="container certificate-grid">
-        <div class="certificate-content">
-          <p class="eyebrow">Certificates</p>
-          <h2 id="certificates-title">Certificate Approval Center</h2>
-          <p>
-            Approve certificates for students who have completed lessons, assignments, final project review, and payment requirements.
-          </p>
-
-          <ul class="certificate-benefits">
-            <li>Verify student completion percentage</li>
-            <li>Check assignment approval status</li>
-            <li>Confirm full payment before issuing certificate</li>
-            <li>Generate certificate records for completed students</li>
-          </ul>
-
-          <a class="btn btn-primary" href="/admin.html#assignments">Review Completion</a>
-        </div>
-
-        <div class="certificate-preview glass-card">
-          <img src="/images/certificate/certificate-sample.webp" alt="Admin certificate approval preview" width="900" height="640">
-          <div class="certificate-preview-meta">
-            <strong>Certificate Template</strong>
-            <span>Admin approval required before issue</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="analytics-section section-padding" id="analytics" aria-labelledby="analytics-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Analytics</p>
-          <h2 id="analytics-title">Marketing and Lead Analytics</h2>
-          <p>
-            Track lead sources, course interest, conversion intent, campaign performance, and enrollment growth.
-          </p>
-        </div>
-
-        <div class="dashboard-stats-grid">
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">📩</span>
-            <strong>912</strong>
-            <p>Total Leads</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">📱</span>
-            <strong>486</strong>
-            <p>WhatsApp Clicks</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🎯</span>
-            <strong>31%</strong>
-            <p>Lead Conversion</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🚀</span>
-            <strong>Digital Marketing</strong>
-            <p>Top Course Interest</p>
-          </article>
-        </div>
-
-        <div class="assignment-table-wrap glass-card">
-          <table class="assignment-table admin-table">
-            <thead>
-              <tr>
-                <th scope="col">Source</th>
-                <th scope="col">Leads</th>
-                <th scope="col">Enrollments</th>
-                <th scope="col">Conversion Rate</th>
-                <th scope="col">Top Course</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Facebook Ads</td>
-                <td>320</td>
-                <td>96</td>
-                <td>30%</td>
-                <td>Digital Marketing Pro</td>
-              </tr>
-
-              <tr>
-                <td>Instagram Organic</td>
-                <td>210</td>
-                <td>58</td>
-                <td>27.6%</td>
-                <td>Content Creation</td>
-              </tr>
-
-              <tr>
-                <td>Google Search</td>
-                <td>184</td>
-                <td>72</td>
-                <td>39.1%</td>
-                <td>Freelancing Mastery</td>
-              </tr>
-
-              <tr>
-                <td>WhatsApp Referrals</td>
-                <td>198</td>
-                <td>91</td>
-                <td>45.9%</td>
-                <td>Online Earning</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-
-    <section class="settings-section section-padding" id="settings" aria-labelledby="settings-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Settings</p>
-          <h2 id="settings-title">Academy Website Settings</h2>
-          <p>
-            Update batch details, admission contact information, course visibility, support channels, and academy profile information.
-          </p>
-        </div>
-
-        <form class="assignment-upload-form glass-card" action="/admin/settings-updated.html" method="post" aria-label="Academy settings form">
-          <h3>Update Academy Settings</h3>
-
-          <div class="form-row">
-            <label for="academy-name">Academy Name</label>
-            <input type="text" id="academy-name" name="academy_name" value="NextGen Digital Academy" required>
-          </div>
-
-          <div class="form-row">
-            <label for="academy-phone">WhatsApp Number</label>
-            <input type="tel" id="academy-phone" name="academy_phone" value="+923001234567" required>
-          </div>
-
-          <div class="form-row">
-            <label for="academy-email">Support Email</label>
-            <input type="email" id="academy-email" name="academy_email" value="support@nextgendigitalacademy.com" required>
-          </div>
-
-          <div class="form-row">
-            <label for="academy-address">Office Address</label>
-            <textarea id="academy-address" name="academy_address" rows="3" required>Lahore, Punjab, Pakistan</textarea>
-          </div>
-
-          <div class="form-row">
-            <label for="active-batch">Active Batch Start Date</label>
-            <input type="date" id="active-batch" name="active_batch" value="2026-06-15" required>
-          </div>
-
-          <div class="form-row">
-            <label for="admissions-status">Admissions Status</label>
-            <select id="admissions-status" name="admissions_status" required>
-              <option value="open" selected>Open</option>
-              <option value="limited">Limited Seats</option>
-              <option value="closed">Closed</option>
-            </select>
-          </div>
-
-          <button class="btn btn-primary btn-full" type="submit">Save Settings</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="site-footer" id="contact">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="footer-logo" href="/" aria-label="NextGen Digital Academy home">
-          <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
-        </a>
-
-        <p>
-          Admin dashboard for managing NextGen Digital Academy students, courses, payments, assignments, certificates, batches, support, and analytics.
-        </p>
-
-        <address>
-          Office: Lahore, Punjab, Pakistan<br>
-          Admin Support: <a href="mailto:admin@nextgendigitalacademy.com">admin@nextgendigitalacademy.com</a><br>
-          Phone: <a href="tel:+923001234567">+92 300 1234567</a>
-        </address>
-      </div>
-
-      <div class="footer-links">
-        <h2>Admin Modules</h2>
-        <ul>
-          <li><a href="/admin.html#overview">Overview</a></li>
-          <li><a href="/admin.html#students">Students</a></li>
-          <li><a href="/admin.html#courses">Courses</a></li>
-          <li><a href="/admin.html#payments">Payments</a></li>
-          <li><a href="/admin.html#assignments">Assignments</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-links">
-        <h2>Quick Access</h2>
-        <ul>
-          <li><a href="/">Homepage</a></li>
-          <li><a href="/main.html">Student Portal</a></li>
-          <li><a href="/login.html">Login Page</a></li>
-          <li><a href="/admin.html#certificates">Certificates</a></li>
-          <li><a href="/admin.html#settings">Settings</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-social">
-        <h2>Admin Actions</h2>
-        <p>Use this dashboard to monitor academy growth, manage student experience, and improve course operations.</p>
-
-        <div class="social-links">
-          <a href="/admin.html#analytics">Analytics</a>
-          <a href="/admin.html#payments">Revenue</a>
-          <a href="/admin.html#settings">Settings</a>
-        </div>
-
-        <a class="btn btn-glow btn-full" href="/main.html">View Student Portal</a>
-      </div>
+<body>
+
+  <div id="loginScreen" class="login-screen">
+    <div class="login-box">
+      <h1>NextGen Admin</h1>
+      <p>Login to manage website content</p>
+
+      <form id="loginForm">
+        <input type="email" id="loginEmail" placeholder="Email" required />
+        <input type="password" id="loginPassword" placeholder="Password" required />
+        <button class="primary-btn" type="submit">Login</button>
+        <span id="loginMessage" class="message"></span>
+      </form>
+
+      <p><strong>Demo:</strong> admin@nextgen.com / admin123</p>
     </div>
+  </div>
 
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <p>© 2026 NextGen Digital Academy. Admin Dashboard.</p>
-        <a href="/admin.html#top">Back to top</a>
+  <div id="adminPanel" class="admin-wrapper" style="display:none;">
+    <aside class="sidebar">
+      <div class="logo">NextGen Admin</div>
+      <button class="nav-btn active" data-section="dashboard">Dashboard</button>
+      <button class="nav-btn" data-section="students">Students</button>
+      <button class="nav-btn" data-section="courses">Courses</button>
+      <button class="nav-btn" data-section="pricing">Pricing</button>
+      <button class="nav-btn" data-section="offers">Offers</button>
+      <button class="nav-btn" data-section="outlines">Week Wise Outline</button>
+      <button class="nav-btn" data-section="testimonials">Testimonials</button>
+      <button class="nav-btn" data-section="settings">Website Settings</button>
+    </aside>
+
+    <main class="main">
+      <div class="topbar">
+        <div>
+          <h1>Admin Dashboard</h1>
+          <p>Manage your academy website content</p>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout</button>
       </div>
-    </div>
-  </footer>
 
-  <script src="/js/main.js"></script>
-  <script src="/js/admin.js"></script>
+      <section id="dashboard" class="section active">
+        <h2>Dashboard Stats</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Total Students</h3>
+            <strong id="totalStudents">0</strong>
+          </div>
+          <div class="card">
+            <h3>New Admissions</h3>
+            <strong id="newAdmissions">0</strong>
+          </div>
+          <div class="card">
+            <h3>Pending Payments</h3>
+            <strong id="pendingPayments">0</strong>
+          </div>
+          <div class="card">
+            <h3>Active Courses</h3>
+            <strong id="activeCourses">0</strong>
+          </div>
+        </div>
+      </section>
+
+      <section id="students" class="section">
+        <h2>Student Enrollment</h2>
+
+        <form id="studentForm">
+          <input type="hidden" id="studentId" />
+          <div class="form-grid">
+            <input type="text" id="studentName" placeholder="Student Name" required />
+            <input type="tel" id="studentPhone" placeholder="Phone / WhatsApp" required />
+            <input type="email" id="studentEmail" placeholder="Email" />
+            <select id="studentCourse">
+              <option>Digital Marketing</option>
+              <option>SEO</option>
+              <option>Freelancing</option>
+              <option>Social Media Marketing</option>
+            </select>
+            <select id="studentPayment">
+              <option>Paid</option>
+              <option>Pending</option>
+            </select>
+            <input type="date" id="studentDate" />
+          </div>
+          <button class="primary-btn" type="submit">Save Student</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Course</th>
+              <th>Payment</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTable"></tbody>
+        </table>
+      </section>
+
+      <section id="courses" class="section">
+        <h2>Course Management</h2>
+
+        <form id="courseForm">
+          <input type="hidden" id="courseId" />
+          <div class="form-grid">
+            <input type="text" id="courseTitle" placeholder="Course Title" required />
+            <input type="text" id="courseDuration" placeholder="Duration e.g. 4 Weeks" />
+            <input type="text" id="courseInstructor" placeholder="Instructor Name" />
+            <input type="file" id="courseImage" accept="image/*" />
+          </div>
+          <textarea id="courseDescription" placeholder="Course Description"></textarea>
+          <button class="primary-btn" type="submit">Save Course</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Course</th>
+              <th>Duration</th>
+              <th>Instructor</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="coursesTable"></tbody>
+        </table>
+      </section>
+
+      <section id="pricing" class="section">
+        <h2>Pricing & Discount Management</h2>
+
+        <form id="priceForm">
+          <input type="hidden" id="priceId" />
+          <div class="form-grid">
+            <input type="text" id="planName" placeholder="Plan Name" required />
+            <input type="number" id="regularPrice" placeholder="Regular Price" required />
+            <input type="number" id="discountPrice" placeholder="Discounted Price" />
+            <input type="text" id="planDuration" placeholder="Duration" />
+          </div>
+          <textarea id="planFeatures" placeholder="Features, one per line"></textarea>
+          <button class="primary-btn" type="submit">Save Pricing Plan</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Plan</th>
+              <th>Regular</th>
+              <th>Discount</th>
+              <th>Duration</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="pricingTable"></tbody>
+        </table>
+      </section>
+
+      <section id="offers" class="section">
+        <h2>Website Offers</h2>
+
+        <form id="offerForm">
+          <input type="hidden" id="offerId" />
+          <input type="text" id="offerTitle" placeholder="Offer Title" required />
+          <textarea id="offerText" placeholder="Offer Details"></textarea>
+          <input type="text" id="offerButton" placeholder="Button Text e.g. Apply Now" />
+          <input type="url" id="offerLink" placeholder="Offer Link / WhatsApp URL" />
+          <button class="primary-btn" type="submit">Save Offer</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Offer</th>
+              <th>Details</th>
+              <th>Button</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="offersTable"></tbody>
+        </table>
+      </section>
+
+      <section id="outlines" class="section">
+        <h2>Week Wise Course Outline</h2>
+
+        <form id="outlineForm">
+          <input type="hidden" id="outlineId" />
+          <div class="form-grid">
+            <select id="outlineCourse">
+              <option>Digital Marketing</option>
+              <option>SEO</option>
+              <option>Freelancing</option>
+              <option>Social Media Marketing</option>
+            </select>
+            <input type="text" id="outlineWeek" placeholder="Week 1" required />
+          </div>
+          <textarea id="outlineTopics" placeholder="Topics covered in this week"></textarea>
+          <button class="primary-btn" type="submit">Save Outline</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Week</th>
+              <th>Topics</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="outlinesTable"></tbody>
+        </table>
+      </section>
+
+      <section id="testimonials" class="section">
+        <h2>Testimonials</h2>
+
+        <form id="testimonialForm">
+          <input type="hidden" id="testimonialId" />
+          <div class="form-grid">
+            <input type="text" id="testimonialName" placeholder="Student Name" required />
+            <input type="text" id="testimonialRole" placeholder="Role / Course" />
+          </div>
+          <textarea id="testimonialText" placeholder="Student Review"></textarea>
+          <button class="primary-btn" type="submit">Save Testimonial</button>
+        </form>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Role</th>
+              <th>Review</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="testimonialsTable"></tbody>
+        </table>
+      </section>
+
+      <section id="settings" class="section">
+        <h2>Website Settings</h2>
+
+        <form id="settingsForm">
+          <div class="form-grid">
+            <input type="text" id="sitePhone" placeholder="WhatsApp Number" />
+            <input type="email" id="siteEmail" placeholder="Email Address" />
+            <input type="text" id="batchDate" placeholder="Batch Start Date" />
+            <input type="text" id="availableSeats" placeholder="Available Seats" />
+          </div>
+          <textarea id="siteAddress" placeholder="Academy Address"></textarea>
+          <button class="primary-btn" type="submit">Save Settings</button>
+        </form>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const ADMIN_EMAIL = "admin@nextgen.com";
+    const ADMIN_PASSWORD = "admin123";
+
+    const getData = key => JSON.parse(localStorage.getItem(key)) || [];
+    const saveData = (key, data) => localStorage.setItem(key, JSON.stringify(data));
+
+    const loginScreen = document.getElementById("loginScreen");
+    const adminPanel = document.getElementById("adminPanel");
+
+    if (localStorage.getItem("nextgenAdminLogin") === "true") {
+      loginScreen.style.display = "none";
+      adminPanel.style.display = "flex";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("loginEmail").value;
+      const password = document.getElementById("loginPassword").value;
+
+      if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
+        localStorage.setItem("nextgenAdminLogin", "true");
+        location.reload();
+      } else {
+        document.getElementById("loginMessage").textContent = "Invalid email or password";
+      }
+    });
+
+    function logout() {
+      localStorage.removeItem("nextgenAdminLogin");
+      location.reload();
+    }
+
+    document.querySelectorAll(".nav-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.section).classList.add("active");
+      });
+    });
+
+    function updateStats() {
+      const students = getData("nextgenStudents");
+      const courses = getData("nextgenCourses");
+
+      document.getElementById("totalStudents").textContent = students.length;
+      document.getElementById("newAdmissions").textContent = students.length;
+      document.getElementById("pendingPayments").textContent =
+        students.filter(s => s.payment === "Pending").length;
+      document.getElementById("activeCourses").textContent = courses.length;
+    }
+
+    document.getElementById("studentForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let students = getData("nextgenStudents");
+      const id = document.getElementById("studentId").value || Date.now();
+
+      const student = {
+        id,
+        name: studentName.value,
+        phone: studentPhone.value,
+        email: studentEmail.value,
+        course: studentCourse.value,
+        payment: studentPayment.value,
+        date: studentDate.value
+      };
+
+      students = students.filter(s => s.id != id);
+      students.push(student);
+      saveData("nextgenStudents", students);
+
+      this.reset();
+      studentId.value = "";
+      renderStudents();
+      updateStats();
+    });
+
+    function renderStudents() {
+      const students = getData("nextgenStudents");
+      studentsTable.innerHTML = students.map(s => `
+        <tr>
+          <td>${s.name}</td>
+          <td>${s.phone}</td>
+          <td>${s.course}</td>
+          <td>${s.payment}</td>
+          <td>${s.date || "-"}</td>
+          <td>
+            <button class="small-btn" onclick="editStudent('${s.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenStudents','${s.id}',renderStudents)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editStudent(id) {
+      const s = getData("nextgenStudents").find(x => x.id == id);
+      studentId.value = s.id;
+      studentName.value = s.name;
+      studentPhone.value = s.phone;
+      studentEmail.value = s.email;
+      studentCourse.value = s.course;
+      studentPayment.value = s.payment;
+      studentDate.value = s.date;
+    }
+
+    document.getElementById("courseForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const file = courseImage.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function() {
+          saveCourse(reader.result);
+        };
+        reader.readAsDataURL(file);
+      } else {
+        saveCourse("");
+      }
+    });
+
+    function saveCourse(image) {
+      let courses = getData("nextgenCourses");
+      const id = courseId.value || Date.now();
+
+      const old = courses.find(c => c.id == id);
+
+      const course = {
+        id,
+        title: courseTitle.value,
+        duration: courseDuration.value,
+        instructor: courseInstructor.value,
+        description: courseDescription.value,
+        image: image || old?.image || ""
+      };
+
+      courses = courses.filter(c => c.id != id);
+      courses.push(course);
+      saveData("nextgenCourses", courses);
+
+      courseForm.reset();
+      courseId.value = "";
+      renderCourses();
+      updateStats();
+    }
+
+    function renderCourses() {
+      const courses = getData("nextgenCourses");
+      coursesTable.innerHTML = courses.map(c => `
+        <tr>
+          <td>${c.image ? `<img src="${c.image}" class="image-preview">` : "-"}</td>
+          <td>${c.title}</td>
+          <td>${c.duration}</td>
+          <td>${c.instructor}</td>
+          <td>
+            <button class="small-btn" onclick="editCourse('${c.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenCourses','${c.id}',renderCourses)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editCourse(id) {
+      const c = getData("nextgenCourses").find(x => x.id == id);
+      courseId.value = c.id;
+      courseTitle.value = c.title;
+      courseDuration.value = c.duration;
+      courseInstructor.value = c.instructor;
+      courseDescription.value = c.description;
+    }
+
+    document.getElementById("priceForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let prices = getData("nextgenPricing");
+      const id = priceId.value || Date.now();
+
+      const plan = {
+        id,
+        name: planName.value,
+        regular: regularPrice.value,
+        discount: discountPrice.value,
+        duration: planDuration.value,
+        features: planFeatures.value
+      };
+
+      prices = prices.filter(p => p.id != id);
+      prices.push(plan);
+      saveData("nextgenPricing", prices);
+
+      this.reset();
+      priceId.value = "";
+      renderPricing();
+    });
+
+    function renderPricing() {
+      const prices = getData("nextgenPricing");
+      pricingTable.innerHTML = prices.map(p => `
+        <tr>
+          <td>${p.name}</td>
+          <td>PKR ${p.regular}</td>
+          <td>PKR ${p.discount || "-"}</td>
+          <td>${p.duration}</td>
+          <td>
+            <button class="small-btn" onclick="editPrice('${p.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenPricing','${p.id}',renderPricing)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editPrice(id) {
+      const p = getData("nextgenPricing").find(x => x.id == id);
+      priceId.value = p.id;
+      planName.value = p.name;
+      regularPrice.value = p.regular;
+      discountPrice.value = p.discount;
+      planDuration.value = p.duration;
+      planFeatures.value = p.features;
+    }
+
+    document.getElementById("offerForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let offers = getData("nextgenOffers");
+      const id = offerId.value || Date.now();
+
+      const offer = {
+        id,
+        title: offerTitle.value,
+        text: offerText.value,
+        button: offerButton.value,
+        link: offerLink.value
+      };
+
+      offers = offers.filter(o => o.id != id);
+      offers.push(offer);
+      saveData("nextgenOffers", offers);
+
+      this.reset();
+      offerId.value = "";
+      renderOffers();
+    });
+
+    function renderOffers() {
+      const offers = getData("nextgenOffers");
+      offersTable.innerHTML = offers.map(o => `
+        <tr>
+          <td>${o.title}</td>
+          <td>${o.text}</td>
+          <td>${o.button}</td>
+          <td>
+            <button class="small-btn" onclick="editOffer('${o.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenOffers','${o.id}',renderOffers)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editOffer(id) {
+      const o = getData("nextgenOffers").find(x => x.id == id);
+      offerId.value = o.id;
+      offerTitle.value = o.title;
+      offerText.value = o.text;
+      offerButton.value = o.button;
+      offerLink.value = o.link;
+    }
+
+    document.getElementById("outlineForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let outlines = getData("nextgenOutlines");
+      const id = outlineId.value || Date.now();
+
+      const outline = {
+        id,
+        course: outlineCourse.value,
+        week: outlineWeek.value,
+        topics: outlineTopics.value
+      };
+
+      outlines = outlines.filter(o => o.id != id);
+      outlines.push(outline);
+      saveData("nextgenOutlines", outlines);
+
+      this.reset();
+      outlineId.value = "";
+      renderOutlines();
+    });
+
+    function renderOutlines() {
+      const outlines = getData("nextgenOutlines");
+      outlinesTable.innerHTML = outlines.map(o => `
+        <tr>
+          <td>${o.course}</td>
+          <td>${o.week}</td>
+          <td>${o.topics}</td>
+          <td>
+            <button class="small-btn" onclick="editOutline('${o.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenOutlines','${o.id}',renderOutlines)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editOutline(id) {
+      const o = getData("nextgenOutlines").find(x => x.id == id);
+      outlineId.value = o.id;
+      outlineCourse.value = o.course;
+      outlineWeek.value = o.week;
+      outlineTopics.value = o.topics;
+    }
+
+    document.getElementById("testimonialForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      let testimonials = getData("nextgenTestimonials");
+      const id = testimonialId.value || Date.now();
+
+      const testimonial = {
+        id,
+        name: testimonialName.value,
+        role: testimonialRole.value,
+        text: testimonialText.value
+      };
+
+      testimonials = testimonials.filter(t => t.id != id);
+      testimonials.push(testimonial);
+      saveData("nextgenTestimonials", testimonials);
+
+      this.reset();
+      testimonialId.value = "";
+      renderTestimonials();
+    });
+
+    function renderTestimonials() {
+      const testimonials = getData("nextgenTestimonials");
+      testimonialsTable.innerHTML = testimonials.map(t => `
+        <tr>
+          <td>${t.name}</td>
+          <td>${t.role}</td>
+          <td>${t.text}</td>
+          <td>
+            <button class="small-btn" onclick="editTestimonial('${t.id}')">Edit</button>
+            <button class="danger-btn" onclick="deleteItem('nextgenTestimonials','${t.id}',renderTestimonials)">Delete</button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function editTestimonial(id) {
+      const t = getData("nextgenTestimonials").find(x => x.id == id);
+      testimonialId.value = t.id;
+      testimonialName.value = t.name;
+      testimonialRole.value = t.role;
+      testimonialText.value = t.text;
+    }
+
+    document.getElementById("settingsForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const settings = {
+        phone: sitePhone.value,
+        email: siteEmail.value,
+        batchDate: batchDate.value,
+        seats: availableSeats.value,
+        address: siteAddress.value
+      };
+
+      localStorage.setItem("nextgenSettings", JSON.stringify(settings));
+      alert("Website settings saved successfully");
+    });
+
+    function loadSettings() {
+      const settings = JSON.parse(localStorage.getItem("nextgenSettings")) || {};
+      sitePhone.value = settings.phone || "";
+      siteEmail.value = settings.email || "";
+      batchDate.value = settings.batchDate || "";
+      availableSeats.value = settings.seats || "";
+      siteAddress.value = settings.address || "";
+    }
+
+    function deleteItem(key, id, callback) {
+      if (!confirm("Are you sure you want to delete this item?")) return;
+
+      let data = getData(key);
+      data = data.filter(item => item.id != id);
+      saveData(key, data);
+
+      callback();
+      updateStats();
+    }
+
+    renderStudents();
+    renderCourses();
+    renderPricing();
+    renderOffers();
+    renderOutlines();
+    renderTestimonials();
+    loadSettings();
+    updateStats();
+  </script>
+
 </body>
 </html>
-```
-
-Say **CONTINUE** and I’ll provide the complete **`/login.html`** with a premium login/signup design for both students and admins.
