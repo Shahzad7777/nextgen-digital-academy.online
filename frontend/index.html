@@ -1,920 +1,517 @@
-Here is the **100% complete `index.html` only**:
-
-```html
 <!DOCTYPE html>
-<html lang="en-PK">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NextGen Digital Academy | Freelancing, Digital Marketing & Online Earning Courses in Pakistan</title>
-
-  <meta name="description" content="Join NextGen Digital Academy in Lahore to learn freelancing, digital marketing, content creation, online earning, AI tools, and high-income digital skills in 4 weeks with expert mentorship by Shahzad Hassan.">
-  <meta name="keywords" content="NextGen Digital Academy, freelancing course Pakistan, digital marketing course Lahore, online earning course for students, content creation course Pakistan, digital skills course Lahore, freelancing training Pakistan, digital marketing training Pakistan, learn online earning, beginner digital skills course">
-  <meta name="author" content="NextGen Digital Academy">
-  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-  <meta name="language" content="English">
-  <meta name="geo.region" content="PK-PB">
-  <meta name="geo.placename" content="Lahore">
-  <meta name="theme-color" content="#0B0F19">
-
-  <link rel="canonical" href="https://nextgendigitalacademy.com/">
-  <link rel="icon" href="/images/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
-  <link rel="stylesheet" href="/css/style.css">
-
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="NextGen Digital Academy | Learn High-Income Digital Skills in 4 Weeks">
-  <meta property="og:description" content="Master freelancing, digital marketing, content creation, AI tools, and online earning skills with expert mentorship in Lahore, Pakistan.">
-  <meta property="og:url" content="https://nextgendigitalacademy.com/">
-  <meta property="og:site_name" content="NextGen Digital Academy">
-  <meta property="og:image" content="https://nextgendigitalacademy.com/images/og-nextgen-digital-academy.jpg">
-  <meta property="og:image:alt" content="NextGen Digital Academy online learning and digital skills training in Pakistan">
-  <meta property="og:locale" content="en_PK">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="NextGen Digital Academy | Digital Skills Training in Pakistan">
-  <meta name="twitter:description" content="Learn freelancing, digital marketing, content creation, and online earning skills with expert mentorship.">
-  <meta name="twitter:image" content="https://nextgendigitalacademy.com/images/og-nextgen-digital-academy.jpg">
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "EducationalOrganization",
-        "@id": "https://nextgendigitalacademy.com/#organization",
-        "name": "NextGen Digital Academy",
-        "url": "https://nextgendigitalacademy.com/",
-        "logo": "https://nextgendigitalacademy.com/images/nextgen-logo.png",
-        "image": "https://nextgendigitalacademy.com/images/nextgen-academy-campus.jpg",
-        "description": "NextGen Digital Academy is a Lahore-based digital skills academy offering freelancing, digital marketing, content creation, AI tools, and online earning courses for students, beginners, and professionals in Pakistan.",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Lahore, Punjab, Pakistan",
-          "addressLocality": "Lahore",
-          "addressRegion": "Punjab",
-          "addressCountry": "PK"
-        },
-        "areaServed": [
-          {
-            "@type": "Country",
-            "name": "Pakistan"
-          },
-          {
-            "@type": "City",
-            "name": "Lahore"
-          }
-        ],
-        "sameAs": [
-          "https://www.facebook.com/nextgendigitalacademy",
-          "https://www.instagram.com/nextgendigitalacademy",
-          "https://www.linkedin.com/company/nextgendigitalacademy",
-          "https://www.youtube.com/@nextgendigitalacademy"
-        ],
-        "founder": {
-          "@type": "Person",
-          "name": "Shahzad Hassan",
-          "jobTitle": "Marketing Expert and Digital Skills Mentor"
-        }
-      },
-      {
-        "@type": "Course",
-        "@id": "https://nextgendigitalacademy.com/#freelancing-course",
-        "name": "Freelancing Course Pakistan",
-        "description": "A practical freelancing course for beginners in Pakistan covering profile creation, client hunting, proposal writing, service packaging, communication, and project delivery.",
-        "provider": {
-          "@id": "https://nextgendigitalacademy.com/#organization"
-        },
-        "educationalLevel": "Beginner to Intermediate",
-        "teaches": [
-          "Freelancing",
-          "Client Hunting",
-          "Proposal Writing",
-          "Online Earning",
-          "Digital Service Selling"
-        ],
-        "courseMode": "Online and Offline",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "PKR",
-          "price": "4999",
-          "availability": "https://schema.org/InStock",
-          "url": "https://nextgendigitalacademy.com/freelancing-course-pakistan"
-        }
-      },
-      {
-        "@type": "Course",
-        "@id": "https://nextgendigitalacademy.com/#digital-marketing-course",
-        "name": "Digital Marketing Course Pakistan",
-        "description": "A career-focused digital marketing course covering SEO, social media marketing, paid ads, content strategy, analytics, funnels, and lead generation.",
-        "provider": {
-          "@id": "https://nextgendigitalacademy.com/#organization"
-        },
-        "educationalLevel": "Beginner to Advanced",
-        "teaches": [
-          "SEO",
-          "Social Media Marketing",
-          "Meta Ads",
-          "Google Ads",
-          "Content Strategy",
-          "Lead Generation"
-        ],
-        "courseMode": "Online and Offline",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "PKR",
-          "price": "7999",
-          "availability": "https://schema.org/InStock",
-          "url": "https://nextgendigitalacademy.com/digital-marketing-course-pakistan"
-        }
-      },
-      {
-        "@type": "Course",
-        "@id": "https://nextgendigitalacademy.com/#content-creation-course",
-        "name": "Content Creation Course Pakistan",
-        "description": "A practical content creation course teaching video planning, scripting, short-form content, personal branding, editing basics, and monetization strategies.",
-        "provider": {
-          "@id": "https://nextgendigitalacademy.com/#organization"
-        },
-        "educationalLevel": "Beginner",
-        "teaches": [
-          "Content Creation",
-          "Video Scripting",
-          "Short Form Videos",
-          "Personal Branding",
-          "Content Monetization"
-        ],
-        "courseMode": "Online and Offline",
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "PKR",
-          "price": "5999",
-          "availability": "https://schema.org/InStock",
-          "url": "https://nextgendigitalacademy.com/content-creation-course-pakistan"
-        }
-      }
-    ]
-  }
-  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NextGen Digital Academy | Learn High-Income Digital Skills in 4 Weeks</title>
+  <meta name="description" content="Join NextGen Digital Academy in Lahore and learn high-income digital skills in 4 weeks with Shahzad Hassan, certificate support, WhatsApp guidance, and practical mentorship." />
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-  <a class="skip-link" href="/#main-content">Skip to main content</a>
-
-  <header class="site-header glass-nav" id="top">
-    <nav class="navbar container" aria-label="Main navigation">
-      <a class="brand-logo" href="/" aria-label="NextGen Digital Academy home">
-        <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a href="/" class="brand">
+        <span class="brand-mark">N</span>
+        <span>
+          <strong>NextGen</strong>
+          <small>Digital Academy</small>
+        </span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#pricing">Pricing</a>
+        <a href="#mentor">Mentor</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#certificate">Certificate</a>
+        <a href="#contact">Contact</a>
+      </nav>
 
-      <ul class="nav-menu" id="primary-navigation">
-        <li><a href="/#courses">Courses</a></li>
-        <li><a href="/#pricing">Pricing</a></li>
-        <li><a href="/#mentor">Mentor</a></li>
-        <li><a href="/#testimonials">Reviews</a></li>
-        <li><a href="/#certificate">Certificate</a></li>
-        <li><a href="/#contact">Contact</a></li>
-      </ul>
-
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="/#enroll">Enroll Now</a>
-        <a class="btn btn-glow login-btn" href="/login.html">Login</a>
-      </div>
-    </nav>
+      <a class="nav-cta" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20to%20reserve%20my%20seat." target="_blank" rel="noopener">
+        Reserve Seat
+      </a>
+    </div>
   </header>
 
-  <main id="main-content">
-    <section class="hero-section section-padding" id="hero" aria-labelledby="hero-title">
-      <div class="hero-bg-orb hero-orb-one"></div>
-      <div class="hero-bg-orb hero-orb-two"></div>
-
+  <main>
+    <section class="hero">
       <div class="container hero-grid">
         <div class="hero-content">
-          <p class="eyebrow">Pakistan’s Practical Digital Skills Academy</p>
+          <span class="eyebrow">Admissions Open • Lahore Campus</span>
 
-          <h1 id="hero-title" class="hero-title">
-            Learn
-            <span class="gradient-text">High-Income Digital Skills</span>
-            in 4 Weeks
-          </h1>
+          <h1>Learn High-Income Digital Skills in 4 Weeks</h1>
 
-          <p class="hero-description">
-            Join NextGen Digital Academy and build real-world skills in freelancing, digital marketing, content creation, AI tools, client hunting, and online earning with professional mentorship from Shahzad Hassan.
+          <p>
+            Build practical skills in digital marketing, freelancing, social media growth, SEO, and online client hunting with expert-led training and real-world assignments.
           </p>
 
-          <div class="hero-cta-group">
-            <a class="btn btn-primary btn-large" href="/#enroll">Reserve Your Seat</a>
-            <a class="btn btn-secondary btn-large" href="/#courses">Explore Courses</a>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20details%20about%20the%204-week%20course." target="_blank" rel="noopener">
+              Apply on WhatsApp
+            </a>
+            <a class="btn btn-secondary" href="#pricing">
+              View Pricing
+            </a>
           </div>
 
-          <div class="hero-trust-row" aria-label="Student trust indicators">
-            <div class="trust-rating-card">
-              <div class="rating-stars" aria-label="Five star student rating">
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-              </div>
-              <p>TrustPilot-style student satisfaction rating</p>
-            </div>
-
-            <div class="trust-stat-card">
+          <div class="hero-stats">
+            <div>
               <strong>4 Weeks</strong>
-              <span>Practical learning roadmap</span>
+              <span>Practical Training</span>
             </div>
-
-            <div class="trust-stat-card">
+            <div>
               <strong>10+ Years</strong>
-              <span>Mentor experience</span>
+              <span>Mentor Experience</span>
+            </div>
+            <div>
+              <strong>Certificate</strong>
+              <span>Included</span>
             </div>
           </div>
         </div>
 
-        <aside class="hero-panel glass-card" aria-label="Upcoming batch information">
-          <div class="batch-card-header">
-            <p class="eyebrow">Next Live Batch</p>
-            <h2>Batch Start Date</h2>
-            <p>Seats are limited for focused mentorship and better student support.</p>
-          </div>
+        <aside class="hero-card" aria-label="Batch countdown">
+          <div class="batch-card">
+            <span class="batch-label">Next Batch Start Date</span>
+            <h2>1 June 2026</h2>
+            <p>Limited Seats Available</p>
 
-          <div class="countdown-container" data-countdown-target="2026-06-15T19:00:00+05:00">
-            <div class="countdown-box">
-              <strong data-countdown-days>00</strong>
-              <span>Days</span>
+            <div class="seats-box">
+              <span>Only</span>
+              <strong>24 Seats</strong>
+              <span>for this batch</span>
             </div>
-            <div class="countdown-box">
-              <strong data-countdown-hours>00</strong>
-              <span>Hours</span>
-            </div>
-            <div class="countdown-box">
-              <strong data-countdown-minutes>00</strong>
-              <span>Minutes</span>
-            </div>
-            <div class="countdown-box">
-              <strong data-countdown-seconds>00</strong>
-              <span>Seconds</span>
-            </div>
-          </div>
 
-          <div class="batch-details">
-            <div>
-              <span>Start Date</span>
-              <strong>15 June 2026</strong>
+            <div class="countdown" id="countdown">
+              <div>
+                <strong id="days">00</strong>
+                <span>Days</span>
+              </div>
+              <div>
+                <strong id="hours">00</strong>
+                <span>Hours</span>
+              </div>
+              <div>
+                <strong id="minutes">00</strong>
+                <span>Minutes</span>
+              </div>
+              <div>
+                <strong id="seconds">00</strong>
+                <span>Seconds</span>
+              </div>
             </div>
-            <div>
-              <span>Mode</span>
-              <strong>Online + Lahore Support</strong>
-            </div>
-            <div>
-              <span>Certificate</span>
-              <strong>Included</strong>
-            </div>
-          </div>
 
-          <a class="btn btn-primary btn-full" href="/#enroll">Join Upcoming Batch</a>
+            <a class="btn btn-full" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20to%20join%20the%20June%202026%20batch." target="_blank" rel="noopener">
+              Book My Seat
+            </a>
+          </div>
         </aside>
       </div>
     </section>
 
-    <section class="logos-strip section-small" aria-labelledby="learning-outcomes-title">
+    <section class="section skills">
       <div class="container">
-        <h2 id="learning-outcomes-title" class="section-title-small">Built for students, beginners, freelancers, and future entrepreneurs</h2>
-
-        <div class="outcome-pill-row">
-          <span>Freelancing</span>
-          <span>Digital Marketing</span>
-          <span>Content Creation</span>
-          <span>AI Tools</span>
-          <span>Online Earning</span>
-          <span>Client Hunting</span>
-          <span>Personal Branding</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="persona-funnel-section section-padding" id="funnel" aria-labelledby="funnel-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Interactive Growth Funnel</p>
-          <h2 id="funnel-title">Choose Your Mindset: Average vs Millionaire</h2>
-          <p>
-            Your learning path should match your ambition. Select the persona that describes your current mindset and see the outcome pathway designed for your growth.
-          </p>
+        <div class="section-head">
+          <span class="eyebrow">What You Will Learn</span>
+          <h2>Skills Designed for Freelancing, Jobs & Business Growth</h2>
+          <p>Focused lessons, practical tasks, and mentor feedback to help students build confidence fast.</p>
         </div>
 
-        <div class="persona-selector" role="group" aria-label="Persona selection">
-          <button class="persona-card active" type="button" data-persona="average">
-            <span class="persona-icon" aria-hidden="true">📉</span>
-            <strong>Average Learner</strong>
-            <small>Consumes content but struggles to apply skills, build offers, and close clients.</small>
-          </button>
-
-          <button class="persona-card" type="button" data-persona="millionaire">
-            <span class="persona-icon" aria-hidden="true">📈</span>
-            <strong>Millionaire Mindset Learner</strong>
-            <small>Builds skills, solves market problems, creates offers, and takes consistent action.</small>
-          </button>
-        </div>
-
-        <div class="outcome-grid">
-          <article class="outcome-card glass-card" data-outcome="clarity">
-            <span class="outcome-number">01</span>
-            <h3>Skill Clarity</h3>
-            <p>Understand which digital skill matches your personality, income goals, time, and current experience level.</p>
+        <div class="skills-grid">
+          <article>
+            <span>01</span>
+            <h3>Digital Marketing</h3>
+            <p>Learn campaign planning, audience targeting, content strategy, and lead generation basics.</p>
           </article>
 
-          <article class="outcome-card glass-card" data-outcome="roadmap">
-            <span class="outcome-number">02</span>
-            <h3>Action Roadmap</h3>
-            <p>Follow a weekly execution plan that takes you from beginner confusion to portfolio-ready confidence.</p>
+          <article>
+            <span>02</span>
+            <h3>SEO Foundations</h3>
+            <p>Understand keywords, on-page SEO, content optimization, and Google ranking fundamentals.</p>
           </article>
 
-          <article class="outcome-card glass-card" data-outcome="offer">
-            <span class="outcome-number">03</span>
-            <h3>Service Offer</h3>
-            <p>Convert your skill into a sellable service package for freelancing platforms, social media, and direct outreach.</p>
+          <article>
+            <span>03</span>
+            <h3>Social Media Growth</h3>
+            <p>Create engaging posts, reels ideas, brand content, and organic growth strategies.</p>
           </article>
 
-          <article class="outcome-card glass-card" data-outcome="income">
-            <span class="outcome-number">04</span>
-            <h3>Income Direction</h3>
-            <p>Learn how to find clients, pitch professionally, build trust, and turn learning into earning opportunities.</p>
+          <article>
+            <span>04</span>
+            <h3>Freelancing Skills</h3>
+            <p>Learn profile setup, proposal writing, client communication, and service packaging.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="courses-section section-padding" id="courses" aria-labelledby="courses-title">
+    <section class="section pricing" id="pricing">
       <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">3D Course Grid</p>
-          <h2 id="courses-title">Choose a Career-Focused Digital Skills Course</h2>
-          <p>
-            Each course is structured with practical lessons, assignments, portfolio-building tasks, certificate support, and mentorship options.
-          </p>
+        <div class="section-head">
+          <span class="eyebrow">Premium 3-Tier Pricing</span>
+          <h2>Choose the Plan That Matches Your Goal</h2>
+          <p>Every plan includes guided learning, certificate support, and WhatsApp access.</p>
         </div>
 
-        <div class="course-grid three-d-grid">
-          <article class="course-card glass-card" id="freelancing-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/freelancing-course.webp" alt="Freelancing course for beginners in Pakistan" width="640" height="420">
-              <span class="discount-badge">Limited Discount</span>
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-top">
+              <h3>Basic Plan</h3>
+              <p>Best for beginners who want a strong start.</p>
             </div>
 
-            <div class="course-content">
-              <p class="course-category">Freelancing</p>
-              <h3>Freelancing Mastery Course</h3>
-              <p>Learn client hunting, proposal writing, profile optimization, service packaging, communication, and project delivery.</p>
-
-              <ul class="course-features">
-                <li>Upwork and Fiverr profile guidance</li>
-                <li>Client proposal frameworks</li>
-                <li>Portfolio-building assignments</li>
-                <li>WhatsApp support included</li>
-              </ul>
-
-              <div class="pricing-mini-grid" id="pricing">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 4,999</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 7,999</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 14,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/freelancing-course-pakistan">View Course</a>
+            <div class="price">
+              <span>PKR</span>
+              <strong>9,999</strong>
             </div>
+
+            <p class="duration">Duration: 4 Weeks</p>
+
+            <div class="badges">
+              <span>Certificate Included</span>
+              <span>WhatsApp Support</span>
+            </div>
+
+            <ul>
+              <li>Core digital skills training</li>
+              <li>Weekly practical assignments</li>
+              <li>Basic freelancing guidance</li>
+              <li>Class notes and resources</li>
+            </ul>
+
+            <a class="btn btn-plan" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20to%20join%20the%20Basic%20Plan." target="_blank" rel="noopener">
+              Select Basic
+            </a>
           </article>
 
-          <article class="course-card glass-card" id="digital-marketing-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/digital-marketing-course.webp" alt="Digital marketing course in Lahore Pakistan" width="640" height="420">
-              <span class="discount-badge">Best Seller</span>
+          <article class="price-card featured">
+            <div class="popular">Most Popular</div>
+
+            <div class="price-top">
+              <h3>Premium Plan</h3>
+              <p>Best for students who want advanced practice.</p>
             </div>
 
-            <div class="course-content">
-              <p class="course-category">Marketing</p>
-              <h3>Digital Marketing Pro Course</h3>
-              <p>Master SEO, Meta Ads, Google Ads, content strategy, funnels, lead generation, analytics, and campaign planning.</p>
-
-              <ul class="course-features">
-                <li>SEO and paid ads training</li>
-                <li>Lead generation funnels</li>
-                <li>Real campaign strategy</li>
-                <li>Certificate included</li>
-              </ul>
-
-              <div class="pricing-mini-grid">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 5,999</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 9,999</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 18,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/digital-marketing-course-pakistan">View Course</a>
+            <div class="price">
+              <span>PKR</span>
+              <strong>18,999</strong>
             </div>
+
+            <p class="duration">Duration: 4 Weeks</p>
+
+            <div class="badges">
+              <span>Certificate Included</span>
+              <span>WhatsApp Support</span>
+            </div>
+
+            <ul>
+              <li>Everything in Basic Plan</li>
+              <li>SEO and social media projects</li>
+              <li>Freelancing profile review</li>
+              <li>Portfolio-building guidance</li>
+            </ul>
+
+            <a class="btn btn-primary btn-plan" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20to%20join%20the%20Premium%20Plan." target="_blank" rel="noopener">
+              Select Premium
+            </a>
           </article>
 
-          <article class="course-card glass-card" id="content-creation-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/content-creation-course.webp" alt="Content creation course for students and beginners" width="640" height="420">
-              <span class="discount-badge">Creator Plan</span>
+          <article class="price-card">
+            <div class="price-top">
+              <h3>Mentorship Plan</h3>
+              <p>Best for serious learners who want personal guidance.</p>
             </div>
 
-            <div class="course-content">
-              <p class="course-category">Content</p>
-              <h3>Content Creation Accelerator</h3>
-              <p>Learn video ideas, scripting, reels, YouTube Shorts, personal branding, editing basics, and monetization planning.</p>
-
-              <ul class="course-features">
-                <li>Short-form content strategy</li>
-                <li>Script and hook formulas</li>
-                <li>Personal brand roadmap</li>
-                <li>Content calendar support</li>
-              </ul>
-
-              <div class="pricing-mini-grid">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 4,499</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 7,499</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 13,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/content-creation-course-pakistan">View Course</a>
-            </div>
-          </article>
-
-          <article class="course-card glass-card" id="online-earning-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/online-earning-course.webp" alt="Online earning course for students in Pakistan" width="640" height="420">
-              <span class="discount-badge">Student Favorite</span>
+            <div class="price">
+              <span>PKR</span>
+              <strong>34,999</strong>
             </div>
 
-            <div class="course-content">
-              <p class="course-category">Online Earning</p>
-              <h3>Online Earning for Students</h3>
-              <p>Discover practical online earning models, skill selection, service selling, remote work basics, and beginner-safe execution plans.</p>
+            <p class="duration">Duration: 6 Weeks</p>
 
-              <ul class="course-features">
-                <li>Beginner earning models</li>
-                <li>No-experience roadmap</li>
-                <li>Skill selection guidance</li>
-                <li>Weekly progress tracking</li>
-              </ul>
-
-              <div class="pricing-mini-grid">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 3,999</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 6,999</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 12,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/online-earning-course-for-students">View Course</a>
-            </div>
-          </article>
-
-          <article class="course-card glass-card" id="ai-tools-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/ai-tools-course.webp" alt="AI tools course for productivity and digital work" width="640" height="420">
-              <span class="discount-badge">Future Skill</span>
+            <div class="badges">
+              <span>Certificate Included</span>
+              <span>WhatsApp Support</span>
             </div>
 
-            <div class="course-content">
-              <p class="course-category">AI Skills</p>
-              <h3>AI Tools for Digital Work</h3>
-              <p>Use AI tools for content, research, marketing, productivity, design support, business automation, and smarter client delivery.</p>
+            <ul>
+              <li>Everything in Premium Plan</li>
+              <li>1-on-1 mentor sessions</li>
+              <li>Client hunting roadmap</li>
+              <li>Personal growth action plan</li>
+            </ul>
 
-              <ul class="course-features">
-                <li>Prompting frameworks</li>
-                <li>AI content workflows</li>
-                <li>Marketing automation ideas</li>
-                <li>Productivity systems</li>
-              </ul>
-
-              <div class="pricing-mini-grid">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 4,999</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 8,999</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 16,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/beginner-digital-skills-course">View Course</a>
-            </div>
-          </article>
-
-          <article class="course-card glass-card" id="web-skills-course">
-            <div class="course-image-wrap">
-              <img src="/images/courses/web-skills-course.webp" alt="Beginner website and digital skills course" width="640" height="420">
-              <span class="discount-badge">Career Starter</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Digital Skills</p>
-              <h3>Beginner Digital Skills Bootcamp</h3>
-              <p>Build strong foundations in digital tools, websites, branding basics, online communication, productivity, and career readiness.</p>
-
-              <ul class="course-features">
-                <li>Beginner-friendly lessons</li>
-                <li>Practical assignments</li>
-                <li>Digital portfolio basics</li>
-                <li>Certificate support</li>
-              </ul>
-
-              <div class="pricing-mini-grid">
-                <div class="price-tier">
-                  <span>Basic</span>
-                  <strong>PKR 3,499</strong>
-                </div>
-                <div class="price-tier featured">
-                  <span>Premium</span>
-                  <strong>PKR 6,499</strong>
-                </div>
-                <div class="price-tier">
-                  <span>VIP</span>
-                  <strong>PKR 11,999</strong>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/beginner-digital-skills-course">View Course</a>
-            </div>
+            <a class="btn btn-plan" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20I%20want%20to%20join%20the%20Mentorship%20Plan." target="_blank" rel="noopener">
+              Select Mentorship
+            </a>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="mentor-section section-padding" id="mentor" aria-labelledby="mentor-title">
+    <section class="section mentor" id="mentor">
       <div class="container mentor-grid">
-        <div class="mentor-image-card glass-card">
-          <img src="/images/mentor/shahzad-hassan.webp" alt="Shahzad Hassan marketing expert and mentor at NextGen Digital Academy" width="720" height="840">
-          <div class="mentor-badge">
-            <strong>10+ Years</strong>
-            <span>Marketing Experience</span>
-          </div>
+        <div class="mentor-photo" aria-label="Shahzad Hassan mentor profile">
+          <div class="mentor-initials">SH</div>
+          <div class="mentor-badge">10+ Years Experience</div>
         </div>
 
         <div class="mentor-content">
-          <p class="eyebrow">Meet Your Mentor</p>
-          <h2 id="mentor-title">Learn from Shahzad Hassan</h2>
+          <span class="eyebrow">Meet Your Mentor</span>
+          <h2>Learn from Shahzad Hassan</h2>
           <p>
-            Shahzad Hassan is a marketing expert with more than 10 years of practical experience in digital marketing, business growth, online client acquisition, and digital skills training.
-          </p>
-          <p>
-            His mentorship approach focuses on clarity, execution, confidence, portfolio building, and helping students understand how digital skills work in the real market.
+            Shahzad Hassan brings over 10 years of practical experience in digital growth, freelancing strategy, client communication, and business-focused online marketing.
           </p>
 
-          <div class="mentor-highlights">
-            <div class="mentor-highlight glass-card">
+          <div class="mentor-points">
+            <div>
               <strong>Practical Training</strong>
-              <span>Real-world assignments instead of theory-only lectures.</span>
+              <span>Learn by doing real tasks, not just watching lectures.</span>
             </div>
-            <div class="mentor-highlight glass-card">
-              <strong>Career Direction</strong>
-              <span>Guidance for freelancing, jobs, and personal brand growth.</span>
+            <div>
+              <strong>Career-Focused Guidance</strong>
+              <span>Understand how to use your skills for freelancing, jobs, and business.</span>
             </div>
-            <div class="mentor-highlight glass-card">
-              <strong>Support System</strong>
-              <span>WhatsApp support, feedback, and structured weekly progress.</span>
+            <div>
+              <strong>Direct Support</strong>
+              <span>Get WhatsApp support during your learning journey.</span>
             </div>
           </div>
-
-          <a class="btn btn-primary" href="/#enroll">Start Learning with Shahzad Hassan</a>
         </div>
       </div>
     </section>
 
-    <section class="social-proof-section section-padding" id="testimonials" aria-labelledby="social-proof-title">
+    <section class="section testimonials" id="testimonials">
       <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Student Results & Social Proof</p>
-          <h2 id="social-proof-title">Trusted by Ambitious Learners Across Pakistan</h2>
-          <p>
-            NextGen Digital Academy is designed for serious learners who want practical digital skills, better career options, and real online earning direction.
-          </p>
+        <div class="section-head">
+          <span class="eyebrow">Student Testimonials</span>
+          <h2>What Students Say About NextGen Digital Academy</h2>
+          <p>Realistic learning, practical assignments, and mentor support help students move with confidence.</p>
         </div>
 
-        <div class="testimonial-slider glass-card" data-slider="testimonials">
-          <div class="testimonial-track">
-            <article class="testimonial-card active">
-              <div class="rating-stars" aria-label="Five star testimonial rating">
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-              </div>
-              <blockquote>
-                “The course helped me understand freelancing properly. I learned how to create my offer, write better proposals, and approach clients with confidence.”
-              </blockquote>
-              <div class="testimonial-author">
-                <img src="/images/testimonials/student-01.webp" alt="Student testimonial portrait" width="64" height="64">
-                <div>
-                  <strong>Ayesha Khan</strong>
-                  <span>Freelancing Student</span>
-                </div>
-              </div>
-            </article>
+        <div class="testimonial-slider">
+          <button class="slider-btn" id="prevTestimonial" aria-label="Previous testimonial">‹</button>
 
-            <article class="testimonial-card">
-              <div class="rating-stars" aria-label="Five star testimonial rating">
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-              </div>
-              <blockquote>
-                “The digital marketing roadmap was clear and practical. I finally understood SEO, ads, content, and lead generation in a structured way.”
-              </blockquote>
-              <div class="testimonial-author">
-                <img src="/images/testimonials/student-02.webp" alt="Student testimonial portrait" width="64" height="64">
-                <div>
-                  <strong>Hamza Ali</strong>
-                  <span>Digital Marketing Student</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="testimonial-card">
-              <div class="rating-stars" aria-label="Five star testimonial rating">
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-                <span aria-hidden="true">★</span>
-              </div>
-              <blockquote>
-                “I joined as a beginner and learned how to plan content, build a personal brand, and create short videos with purpose.”
-              </blockquote>
-              <div class="testimonial-author">
-                <img src="/images/testimonials/student-03.webp" alt="Student testimonial portrait" width="64" height="64">
-                <div>
-                  <strong>Fatima Noor</strong>
-                  <span>Content Creation Student</span>
-                </div>
-              </div>
-            </article>
+          <div class="testimonial-card" id="testimonialCard">
+            <p id="testimonialText">
+              “The course helped me understand how digital marketing actually works. The assignments were practical and easy to follow.”
+            </p>
+            <div>
+              <strong id="testimonialName">Areeba Khan</strong>
+              <span id="testimonialRole">Digital Marketing Student</span>
+            </div>
           </div>
 
-          <div class="slider-controls">
-            <button type="button" class="slider-btn" data-slider-prev aria-label="Previous testimonial">‹</button>
-            <button type="button" class="slider-btn" data-slider-next aria-label="Next testimonial">›</button>
-          </div>
-        </div>
-
-        <div class="as-seen-on" aria-labelledby="as-seen-title">
-          <h3 id="as-seen-title">As Seen On</h3>
-          <div class="brand-logo-row">
-            <img src="/images/brands/brand-01.svg" alt="Media partner brand logo 1" width="150" height="60">
-            <img src="/images/brands/brand-02.svg" alt="Media partner brand logo 2" width="150" height="60">
-            <img src="/images/brands/brand-03.svg" alt="Media partner brand logo 3" width="150" height="60">
-            <img src="/images/brands/brand-04.svg" alt="Media partner brand logo 4" width="150" height="60">
-            <img src="/images/brands/brand-05.svg" alt="Media partner brand logo 5" width="150" height="60">
-          </div>
+          <button class="slider-btn" id="nextTestimonial" aria-label="Next testimonial">›</button>
         </div>
       </div>
     </section>
 
-    <section class="certificate-section section-padding" id="certificate" aria-labelledby="certificate-title">
+    <section class="section certificate" id="certificate">
       <div class="container certificate-grid">
-        <div class="certificate-content">
-          <p class="eyebrow">Certificate Included</p>
-          <h2 id="certificate-title">Build Your Portfolio with a Professional Certificate</h2>
+        <div>
+          <span class="eyebrow">Certificate Sample</span>
+          <h2>Complete the Training and Earn Your Certificate</h2>
           <p>
-            Every eligible student receives a certificate after completing course requirements, assignments, and practical learning milestones.
+            Students who complete the course requirements, assignments, and attendance criteria receive a professional course completion certificate from NextGen Digital Academy.
           </p>
 
-          <ul class="certificate-benefits">
-            <li>Professional course completion certificate</li>
-            <li>Useful for portfolio and career presentation</li>
-            <li>Shows practical learning commitment</li>
-            <li>Helps support freelancing and job profiles</li>
+          <ul class="check-list">
+            <li>Professional certificate design</li>
+            <li>Student name and course title included</li>
+            <li>Completion date and academy verification</li>
+            <li>Useful for portfolio and job applications</li>
           </ul>
-
-          <a class="btn btn-secondary" href="/#enroll">Get Certified</a>
         </div>
 
-        <div class="certificate-preview glass-card">
-          <img src="/images/certificate/certificate-sample.webp" alt="NextGen Digital Academy certificate sample preview" width="900" height="640">
-          <div class="certificate-preview-meta">
-            <strong>Certificate Sample</strong>
-            <span>Issued after successful course completion</span>
+        <div class="certificate-sample">
+          <div class="cert-border">
+            <span class="cert-small">Certificate of Completion</span>
+            <h3>NextGen Digital Academy</h3>
+            <p>This certificate is proudly awarded for completing the</p>
+            <strong>High-Income Digital Skills Program</strong>
+            <div class="cert-line"></div>
+            <span class="cert-name">Student Name</span>
+            <div class="cert-footer">
+              <span>Shahzad Hassan</span>
+              <span>June 2026</span>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="enrollment-section section-padding" id="enroll" aria-labelledby="enroll-title">
-      <div class="container enroll-grid glass-card">
-        <div class="enroll-content">
-          <p class="eyebrow">Start Your Digital Career</p>
-          <h2 id="enroll-title">Reserve Your Seat in the Upcoming Batch</h2>
-          <p>
-            Fill out the enrollment form and our team will guide you about course selection, pricing plans, batch timing, and mentorship options.
-          </p>
-
-          <div class="enroll-contact-options">
-            <a href="https://wa.me/923001234567" class="contact-option">
-              <strong>WhatsApp</strong>
-              <span>Chat with admissions team</span>
-            </a>
-            <a href="tel:+923001234567" class="contact-option">
-              <strong>Phone</strong>
-              <span>Call for course details</span>
-            </a>
-            <a href="mailto:admissions@nextgendigitalacademy.com" class="contact-option">
-              <strong>Email</strong>
-              <span>Send your query anytime</span>
-            </a>
-          </div>
+    <section class="section final-cta">
+      <div class="container cta-box">
+        <div>
+          <span class="eyebrow">Limited Seats</span>
+          <h2>Start Building Your Digital Career This Month</h2>
+          <p>Join the upcoming batch and learn the skills needed for freelancing, online work, and business growth.</p>
         </div>
 
-        <form class="enroll-form" action="/thank-you.html" method="post" aria-label="Course enrollment form">
-          <div class="form-row">
-            <label for="full-name">Full Name</label>
-            <input type="text" id="full-name" name="full_name" placeholder="Enter your full name" required>
-          </div>
-
-          <div class="form-row">
-            <label for="phone-number">WhatsApp Number</label>
-            <input type="tel" id="phone-number" name="phone_number" placeholder="03XX XXXXXXX" required>
-          </div>
-
-          <div class="form-row">
-            <label for="email-address">Email Address</label>
-            <input type="email" id="email-address" name="email_address" placeholder="you@example.com">
-          </div>
-
-          <div class="form-row">
-            <label for="course-interest">Select Course</label>
-            <select id="course-interest" name="course_interest" required>
-              <option value="">Choose your course</option>
-              <option value="freelancing-course">Freelancing Mastery Course</option>
-              <option value="digital-marketing-course">Digital Marketing Pro Course</option>
-              <option value="content-creation-course">Content Creation Accelerator</option>
-              <option value="online-earning-course">Online Earning for Students</option>
-              <option value="ai-tools-course">AI Tools for Digital Work</option>
-              <option value="beginner-digital-skills-course">Beginner Digital Skills Bootcamp</option>
-            </select>
-          </div>
-
-          <div class="form-row">
-            <label for="learning-goal">Your Learning Goal</label>
-            <textarea id="learning-goal" name="learning_goal" rows="4" placeholder="Tell us what you want to achieve"></textarea>
-          </div>
-
-          <button class="btn btn-primary btn-full" type="submit">Submit Enrollment Request</button>
-        </form>
-      </div>
-    </section>
-
-    <section class="faq-section section-padding" id="faqs" aria-labelledby="faq-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">FAQs</p>
-          <h2 id="faq-title">Common Questions About NextGen Digital Academy</h2>
-        </div>
-
-        <div class="faq-list">
-          <details class="faq-item glass-card">
-            <summary>Who can join NextGen Digital Academy?</summary>
-            <p>Students, beginners, freelancers, job seekers, business owners, and professionals who want to learn practical digital skills can join.</p>
-          </details>
-
-          <details class="faq-item glass-card">
-            <summary>Are the courses beginner-friendly?</summary>
-            <p>Yes. The learning structure starts from basics and moves toward practical assignments, portfolio building, and market-ready execution.</p>
-          </details>
-
-          <details class="faq-item glass-card">
-            <summary>Do students receive certificates?</summary>
-            <p>Yes. Eligible students receive a certificate after completing course requirements, assignments, and learning milestones.</p>
-          </details>
-
-          <details class="faq-item glass-card">
-            <summary>Is WhatsApp support included?</summary>
-            <p>Yes. WhatsApp support is included to help students ask questions, get updates, and stay connected during the course.</p>
-          </details>
-
-          <details class="faq-item glass-card">
-            <summary>Where is NextGen Digital Academy located?</summary>
-            <p>NextGen Digital Academy is based in Lahore, Pakistan, with digital learning support available for students across Pakistan.</p>
-          </details>
-        </div>
+        <a class="btn btn-light" href="https://wa.me/923001234567?text=Hi%20NextGen%20Digital%20Academy%2C%20please%20send%20me%20admission%20details." target="_blank" rel="noopener">
+          Get Admission Details
+        </a>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer" id="contact">
+  <footer class="footer" id="contact">
     <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="footer-logo" href="/" aria-label="NextGen Digital Academy home">
-          <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
+      <div>
+        <a href="/" class="brand footer-brand">
+          <span class="brand-mark">N</span>
+          <span>
+            <strong>NextGen</strong>
+            <small>Digital Academy</small>
+          </span>
         </a>
 
         <p>
-          NextGen Digital Academy helps students, beginners, and professionals in Pakistan learn practical digital skills for freelancing, marketing, content creation, online earning, and career growth.
+          Practical digital skills training academy helping students learn freelancing, SEO, social media, and digital marketing in Lahore.
         </p>
-
-        <address>
-          Office: Lahore, Punjab, Pakistan<br>
-          Phone: <a href="tel:+923001234567">+92 300 1234567</a><br>
-          Email: <a href="mailto:info@nextgendigitalacademy.com">info@nextgendigitalacademy.com</a>
-        </address>
       </div>
 
-      <div class="footer-links">
-        <h2>Courses</h2>
+      <div>
+        <h3>Contact</h3>
         <ul>
-          <li><a href="/freelancing-course-pakistan">Freelancing Course Pakistan</a></li>
-          <li><a href="/digital-marketing-course-pakistan">Digital Marketing Course Pakistan</a></li>
-          <li><a href="/content-creation-course-pakistan">Content Creation Course Pakistan</a></li>
-          <li><a href="/online-earning-course-for-students">Online Earning Course for Students</a></li>
-          <li><a href="/beginner-digital-skills-course">Beginner Digital Skills Course</a></li>
+          <li>Office: 2nd Floor, Gulberg III, Lahore, Pakistan</li>
+          <li>WhatsApp: <a href="https://wa.me/923001234567" target="_blank" rel="noopener">+92 300 1234567</a></li>
+          <li>Email: <a href="mailto:admissions@nextgendigitalacademy.pk">admissions@nextgendigitalacademy.pk</a></li>
         </ul>
       </div>
 
-      <div class="footer-links">
-        <h2>Academy</h2>
+      <div>
+        <h3>Quick Links</h3>
         <ul>
-          <li><a href="/#mentor">Meet Your Mentor</a></li>
-          <li><a href="/#testimonials">Student Reviews</a></li>
-          <li><a href="/#certificate">Certificate Sample</a></li>
-          <li><a href="/#faqs">FAQs</a></li>
+          <li><a href="#pricing">Pricing Plans</a></li>
+          <li><a href="#mentor">Meet Your Mentor</a></li>
+          <li><a href="#certificate">Certificate Sample</a></li>
           <li><a href="/refund-policy.html">Refund Policy</a></li>
           <li><a href="/privacy-policy.html">Privacy Policy</a></li>
         </ul>
       </div>
 
-      <div class="footer-social">
-        <h2>Connect With Us</h2>
-        <p>Follow NextGen Digital Academy for learning tips, batch updates, student wins, and digital career guidance.</p>
-
+      <div>
+        <h3>Social Media</h3>
         <div class="social-links">
-          <a href="https://www.facebook.com/nextgendigitalacademy" aria-label="Follow NextGen Digital Academy on Facebook">Facebook</a>
-          <a href="https://www.instagram.com/nextgendigitalacademy" aria-label="Follow NextGen Digital Academy on Instagram">Instagram</a>
-          <a href="https://www.linkedin.com/company/nextgendigitalacademy" aria-label="Follow NextGen Digital Academy on LinkedIn">LinkedIn</a>
-          <a href="https://www.youtube.com/@nextgendigitalacademy" aria-label="Subscribe to NextGen Digital Academy on YouTube">YouTube</a>
+          <a href="https://www.facebook.com/nextgendigitalacademy" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/nextgendigitalacademy" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/nextgen-digital-academy" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/@NextGenDigitalAcademyPK" target="_blank" rel="noopener">YouTube</a>
         </div>
-
-        <a class="btn btn-glow btn-full" href="https://wa.me/923001234567">WhatsApp Admissions</a>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <p>© 2026 NextGen Digital Academy. All rights reserved.</p>
-        <a href="/#top">Back to top</a>
-      </div>
+      <p>© <span id="year"></span> NextGen Digital Academy. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="/js/main.js"></script>
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie notice">
+    <div>
+      <strong>Cookie Notice</strong>
+      <p>We use cookies to improve your browsing experience and understand website performance.</p>
+    </div>
+
+    <div class="cookie-actions">
+      <a href="/privacy-policy.html">Privacy Policy</a>
+      <button id="rejectCookies">Reject</button>
+      <button id="acceptCookies">Accept</button>
+    </div>
+  </div>
+
+  <script>
+    const batchDate = new Date("2026-06-01T10:00:00+05:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = batchDate - now;
+
+      if (distance <= 0) {
+        document.getElementById("countdown").innerHTML = "<strong class='expired'>Enrollment Closing Soon</strong>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      document.getElementById("days").textContent = String(days).padStart(2, "0");
+      document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+      document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+      document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    const testimonials = [
+      {
+        text: "“The course helped me understand how digital marketing actually works. The assignments were practical and easy to follow.”",
+        name: "Areeba Khan",
+        role: "Digital Marketing Student"
+      },
+      {
+        text: "“I learned SEO, content planning, and freelancing basics in a clear way. The WhatsApp support made the learning process easy.”",
+        name: "Hamza Ali",
+        role: "Freelancing Student"
+      },
+      {
+        text: "“Shahzad Hassan explains concepts with real examples. I liked the practical approach and confidence-building sessions.”",
+        name: "Maham Raza",
+        role: "Social Media Learner"
+      }
+    ];
+
+    let currentTestimonial = 0;
+
+    const testimonialText = document.getElementById("testimonialText");
+    const testimonialName = document.getElementById("testimonialName");
+    const testimonialRole = document.getElementById("testimonialRole");
+
+    function renderTestimonial(index) {
+      testimonialText.textContent = testimonials[index].text;
+      testimonialName.textContent = testimonials[index].name;
+      testimonialRole.textContent = testimonials[index].role;
+    }
+
+    document.getElementById("nextTestimonial").addEventListener("click", () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    });
+
+    document.getElementById("prevTestimonial").addEventListener("click", () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    });
+
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    }, 6000);
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const cookieBanner = document.getElementById("cookieBanner");
+    const cookieChoice = localStorage.getItem("nextgenCookieChoice");
+
+    if (cookieChoice) {
+      cookieBanner.style.display = "none";
+    }
+
+    document.getElementById("acceptCookies").addEventListener("click", () => {
+      localStorage.setItem("nextgenCookieChoice", "accepted");
+      cookieBanner.style.display = "none";
+    });
+
+    document.getElementById("rejectCookies").addEventListener("click", () => {
+      localStorage.setItem("nextgenCookieChoice", "rejected");
+      cookieBanner.style.display = "none";
+    });
+  </script>
 </body>
 </html>
-```
+
+
