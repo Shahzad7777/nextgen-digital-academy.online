@@ -1,740 +1,104 @@
-(function () {
-  "use strict";
+"use strict";
 
-  const COURSES_KEY = "nda_courses";
-  const LEADS_KEY = "nda_leads";
-  const WHATSAPP_NUMBER = "923001234567";
+document.addEventListener("DOMContentLoaded", function () {
+  setCurrentYear();
+  initMobileNavigation();
+  initRevealAnimations();
+  initMagneticButtons();
+});
 
-  const DEFAULT_COURSES = [
-    {
-      id: cryptoId(),
-      title: "Digital Marketing Mastery",
-      category: "Digital Marketing",
-      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
-      syllabus: [
-        "Week 1: Digital Marketing Foundations",
-        "Week 2: Social Media Strategy & Content Planning",
-        "Week 3: Paid Ads, Funnels & Lead Generation",
-        "Week 4: Campaign Reporting & Client Presentation"
-      ],
-      originalPrice: 999,
-      offerPrice: 99,
-      createdAt: new Date().toISOString()
+function setCurrentYear() {
+  const yearTarget = document.getElementById("currentYear");
+
+  if (yearTarget) {
+    yearTarget.textContent = new Date().getFullYear();
+  }
+}
+
+function initMobileNavigation() {
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".site-nav");
+
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", function () {
+    const isOpen = nav.classList.toggle("is-open");
+
+    toggle.classList.toggle("is-active", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  nav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      nav.classList.remove("is-open");
+      toggle.classList.remove("is-active");
+      toggle.setAttribute("aria-expanded", "false");
+    });
+  });
+}
+
+function initRevealAnimations() {
+  const revealItems = document.querySelectorAll(".reveal");
+
+  if (!revealItems.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    revealItems.forEach(function (item) {
+      item.classList.add("is-visible");
+    });
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    function (entries, activeObserver) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          activeObserver.unobserve(entry.target);
+        }
+      });
     },
     {
-      id: cryptoId(),
-      title: "SEO & Content Ranking Bootcamp",
-      category: "SEO",
-      imageUrl: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=1200&auto=format&fit=crop",
-      syllabus: [
-        "Week 1: Keyword Research & Search Intent",
-        "Week 2: On-Page SEO & Content Structure",
-        "Week 3: Technical SEO Basics",
-        "Week 4: SEO Reporting & Ranking Roadmap"
-      ],
-      originalPrice: 1499,
-      offerPrice: 499,
-      createdAt: new Date().toISOString()
-    },
-    {
-      id: cryptoId(),
-      title: "Freelancing & Client Hunting",
-      category: "Freelancing",
-      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop",
-      syllabus: [
-        "Week 1: Freelancing Platforms & Profile Setup",
-        "Week 2: Proposal Writing & Service Packaging",
-        "Week 3: Client Communication & Pricing",
-        "Week 4: Portfolio, Outreach & Closing Strategy"
-      ],
-      originalPrice: 1999,
-      offerPrice: 799,
-      createdAt: new Date().toISOString()
+      threshold: 0.16,
+      rootMargin: "0px 0px -70px 0px"
     }
-  ];
+  );
 
-  document.addEventListener("DOMContentLoaded", init);
+  revealItems.forEach(function (item) {
+    observer.observe(item);
+  });
+}
 
-  function init() {
-    seedCourses();
-    injectCourseStyles();
-    ensureCourseSection();
-    renderCoursesOnFrontend();
-    initLeadModal();
-    initCountdown();
-    initTestimonials();
-    initCookies();
-    setFooterYear();
+function initMagneticButtons() {
+  const buttons = document.querySelectorAll(".magnetic-btn");
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    window.addEventListener("storage", renderCoursesOnFrontend);
-  }
+  if (!buttons.length || prefersReducedMotion) return;
 
-  function seedCourses() {
-    const existingCourses = getCourses();
+  buttons.forEach(function (button) {
+    button.addEventListener("mousemove", function (event) {
+      const rect = button.getBoundingClientRect();
 
-    if (!Array.isArray(existingCourses) || existingCourses.length === 0) {
-      localStorage.setItem(COURSES_KEY, JSON.stringify(DEFAULT_COURSES));
-    }
+      const buttonCenterX = rect.left + rect.width / 2;
+      const buttonCenterY = rect.top + rect.height / 2;
 
-    const existingLeads = getLeads();
+      const distanceX = event.clientX - buttonCenterX;
+      const distanceY = event.clientY - buttonCenterY;
 
-    if (!Array.isArray(existingLeads)) {
-      localStorage.setItem(LEADS_KEY, JSON.stringify([]));
-    }
-  }
+      const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+      const pullRadius = 150;
 
-  function getCourses() {
-    try {
-      return JSON.parse(localStorage.getItem(COURSES_KEY)) || [];
-    } catch {
-      return [];
-    }
-  }
+      if (distance < pullRadius) {
+        const pullStrength = 0.28;
+        const moveX = distanceX * pullStrength;
+        const moveY = distanceY * pullStrength;
 
-  function getLeads() {
-    try {
-      return JSON.parse(localStorage.getItem(LEADS_KEY)) || [];
-    } catch {
-      return [];
-    }
-  }
-
-  function saveLeads(leads) {
-    localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
-  }
-
-  function ensureCourseSection() {
-    if (document.getElementById("coursesGrid")) return;
-
-    const main = document.querySelector("main") || document.body;
-    const pricingSection = document.getElementById("pricing");
-
-    const courseSection = document.createElement("section");
-    courseSection.className = "section frontend-courses";
-    courseSection.id = "courses";
-
-    courseSection.innerHTML = `
-      <div class="container">
-        <div class="section-head">
-          <span class="eyebrow">Live Courses</span>
-          <h2>Choose Your High-Income Skill Course</h2>
-          <p>Course details, syllabus, and discounted pricing are synced directly from the admin panel.</p>
-        </div>
-
-        <div class="frontend-course-grid" id="coursesGrid"></div>
-      </div>
-    `;
-
-    if (pricingSection) {
-      pricingSection.insertAdjacentElement("afterend", courseSection);
-    } else {
-      main.appendChild(courseSection);
-    }
-  }
-
-  function renderCoursesOnFrontend() {
-    const coursesGrid = document.getElementById("coursesGrid");
-
-    if (!coursesGrid) return;
-
-    const courses = getCourses();
-
-    if (courses.length === 0) {
-      coursesGrid.innerHTML = `
-        <div class="frontend-empty">
-          No courses are available right now. Please check again soon.
-        </div>
-      `;
-      return;
-    }
-
-    coursesGrid.innerHTML = courses.map(course => {
-      const hasDiscount = Number(course.offerPrice) < Number(course.originalPrice);
-      const discountPercent = hasDiscount
-        ? Math.round(((Number(course.originalPrice) - Number(course.offerPrice)) / Number(course.originalPrice)) * 100)
-        : 0;
-
-      return `
-        <article class="frontend-course-card">
-          <div class="frontend-course-image">
-            <img src="${escapeHTML(course.imageUrl)}" alt="${escapeHTML(course.title)}" loading="lazy" />
-            <span>${escapeHTML(course.category)}</span>
-          </div>
-
-          <div class="frontend-course-body">
-            <h3>${escapeHTML(course.title)}</h3>
-
-            <div class="frontend-price-row">
-              ${hasDiscount ? `<del>PKR ${formatPrice(course.originalPrice)}</del>` : ""}
-              <strong>PKR ${formatPrice(course.offerPrice)}</strong>
-              ${hasDiscount ? `<em>${discountPercent}% OFF</em>` : ""}
-            </div>
-
-            <div class="frontend-syllabus">
-              <h4>Week-by-Week Syllabus</h4>
-              <ul>
-                ${course.syllabus.map(item => `<li>${escapeHTML(item)}</li>`).join("")}
-              </ul>
-            </div>
-
-            <button class="frontend-course-btn" data-enroll="${escapeHTML(course.id)}">
-              Enroll via WhatsApp
-            </button>
-          </div>
-        </article>
-      `;
-    }).join("");
-
-    coursesGrid.querySelectorAll("[data-enroll]").forEach(button => {
-      button.addEventListener("click", () => {
-        const course = courses.find(item => item.id === button.dataset.enroll);
-        openLeadModal(course);
-      });
-    });
-  }
-
-  function initLeadModal() {
-    if (document.getElementById("leadModal")) return;
-
-    const modal = document.createElement("div");
-    modal.className = "lead-modal";
-    modal.id = "leadModal";
-    modal.hidden = true;
-
-    modal.innerHTML = `
-      <div class="lead-modal-backdrop" data-close-modal></div>
-
-      <div class="lead-modal-card" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
-        <button class="lead-close" type="button" data-close-modal aria-label="Close modal">×</button>
-
-        <span class="eyebrow">Enrollment Form</span>
-        <h2 id="leadModalTitle">Join This Course</h2>
-        <p id="leadModalCourse">Submit your details and continue to WhatsApp.</p>
-
-        <form id="leadForm">
-          <input type="hidden" id="selectedCourseId" />
-
-          <div class="lead-form-group">
-            <label for="studentName">Student Name</label>
-            <input type="text" id="studentName" required />
-          </div>
-
-          <div class="lead-form-group">
-            <label for="studentEmail">Email Address</label>
-            <input type="email" id="studentEmail" required />
-          </div>
-
-          <button type="submit" class="frontend-course-btn full">
-            Continue to WhatsApp
-          </button>
-        </form>
-      </div>
-    `;
-
-    document.body.appendChild(modal);
-
-    modal.querySelectorAll("[data-close-modal]").forEach(button => {
-      button.addEventListener("click", closeLeadModal);
+        button.style.transform = "translate3d(" + moveX + "px, " + moveY + "px, 0) scale(1.035)";
+      }
     });
 
-    document.getElementById("leadForm").addEventListener("submit", handleLeadSubmit);
-  }
-
-  function openLeadModal(course) {
-    if (!course) return;
-
-    const modal = document.getElementById("leadModal");
-
-    document.getElementById("selectedCourseId").value = course.id;
-    document.getElementById("leadModalTitle").textContent = course.title;
-    document.getElementById("leadModalCourse").textContent = `Discounted Price: PKR ${formatPrice(course.offerPrice)}`;
-
-    modal.hidden = false;
-    document.body.classList.add("modal-open");
-
-    setTimeout(() => {
-      document.getElementById("studentName").focus();
-    }, 60);
-  }
-
-  function closeLeadModal() {
-    const modal = document.getElementById("leadModal");
-
-    modal.hidden = true;
-    document.body.classList.remove("modal-open");
-
-    const form = document.getElementById("leadForm");
-
-    if (form) form.reset();
-  }
-
-  function handleLeadSubmit(event) {
-    event.preventDefault();
-
-    const selectedCourseId = document.getElementById("selectedCourseId").value;
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentEmail = document.getElementById("studentEmail").value.trim();
-
-    const course = getCourses().find(item => item.id === selectedCourseId);
-
-    if (!course || !studentName || !studentEmail) {
-      alert("Please complete your details correctly.");
-      return;
-    }
-
-    const discountedPrice = Number(course.offerPrice);
-
-    const whatsappMessage = generateWhatsAppMessage({
-      studentName,
-      courseTitle: course.title,
-      discountedPrice
+    button.addEventListener("mouseleave", function () {
+      button.style.transform = "translate3d(0, 0, 0) scale(1)";
     });
-
-    const lead = {
-      id: cryptoId(),
-      name: studentName,
-      email: studentEmail,
-      courseId: course.id,
-      courseTitle: course.title,
-      discountedPrice,
-      whatsappMessage,
-      createdAt: new Date().toISOString()
-    };
-
-    const leads = getLeads();
-    saveLeads([lead, ...leads]);
-
-    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
-
-    closeLeadModal();
-    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-  }
-
-  function generateWhatsAppMessage({ studentName, courseTitle, discountedPrice }) {
-    return [
-      "Hi NextGen Digital Academy,",
-      "",
-      `My name is ${studentName}.`,
-      `I want to enroll in: ${courseTitle}.`,
-      `Discounted Price: PKR ${formatPrice(discountedPrice)}.`,
-      "",
-      "Please send me admission details, class timing, and payment method."
-    ].join("\n");
-  }
-
-  function injectCourseStyles() {
-    if (document.getElementById("frontendCourseStyles")) return;
-
-    const style = document.createElement("style");
-    style.id = "frontendCourseStyles";
-
-    style.textContent = `
-      .frontend-courses {
-        background: #ffffff;
-      }
-
-      .frontend-course-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-      }
-
-      .frontend-course-card {
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        border-radius: 28px;
-        overflow: hidden;
-        box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
-      }
-
-      .frontend-course-image {
-        height: 220px;
-        position: relative;
-        overflow: hidden;
-        background: #e2e8f0;
-      }
-
-      .frontend-course-image img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.35s ease;
-      }
-
-      .frontend-course-card:hover img {
-        transform: scale(1.06);
-      }
-
-      .frontend-course-image span {
-        position: absolute;
-        left: 16px;
-        top: 16px;
-        background: #ffffff;
-        color: #1d4ed8;
-        padding: 8px 12px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-weight: 900;
-        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
-      }
-
-      .frontend-course-body {
-        padding: 24px;
-      }
-
-      .frontend-course-body h3 {
-        color: #0f172a;
-        font-size: 24px;
-        line-height: 1.15;
-        margin-bottom: 14px;
-      }
-
-      .frontend-price-row {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 18px;
-      }
-
-      .frontend-price-row del {
-        color: #94a3b8;
-        font-weight: 900;
-      }
-
-      .frontend-price-row strong {
-        color: #16a34a;
-        font-size: 26px;
-        font-weight: 950;
-      }
-
-      .frontend-price-row em {
-        background: #fee2e2;
-        color: #b91c1c;
-        padding: 6px 9px;
-        border-radius: 999px;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 950;
-      }
-
-      .frontend-syllabus {
-        margin: 18px 0 22px;
-      }
-
-      .frontend-syllabus h4 {
-        color: #0f172a;
-        margin-bottom: 10px;
-        font-size: 16px;
-      }
-
-      .frontend-syllabus ul {
-        display: grid;
-        gap: 8px;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-      }
-
-      .frontend-syllabus li {
-        color: #475569;
-        font-size: 14px;
-        font-weight: 700;
-        padding-left: 22px;
-        position: relative;
-      }
-
-      .frontend-syllabus li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: #16a34a;
-        font-weight: 950;
-      }
-
-      .frontend-course-btn {
-        width: 100%;
-        border: 0;
-        min-height: 52px;
-        border-radius: 999px;
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
-        color: #ffffff;
-        font-size: 15px;
-        font-weight: 950;
-        cursor: pointer;
-        box-shadow: 0 16px 36px rgba(37, 99, 235, 0.24);
-      }
-
-      .frontend-course-btn.full {
-        margin-top: 6px;
-      }
-
-      .frontend-empty {
-        grid-column: 1 / -1;
-        background: #f8fafc;
-        border: 1px dashed #cbd5e1;
-        color: #64748b;
-        padding: 34px;
-        border-radius: 24px;
-        text-align: center;
-        font-weight: 800;
-      }
-
-      .lead-modal[hidden] {
-        display: none !important;
-      }
-
-      .lead-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 200;
-        display: grid;
-        place-items: center;
-        padding: 18px;
-      }
-
-      .lead-modal-backdrop {
-        position: absolute;
-        inset: 0;
-        background: rgba(15, 23, 42, 0.68);
-        backdrop-filter: blur(8px);
-      }
-
-      .lead-modal-card {
-        position: relative;
-        z-index: 2;
-        width: min(520px, 100%);
-        background: #ffffff;
-        border-radius: 28px;
-        padding: 30px;
-        box-shadow: 0 28px 90px rgba(15, 23, 42, 0.28);
-      }
-
-      .lead-modal-card h2 {
-        color: #0f172a;
-        font-size: 34px;
-        line-height: 1.05;
-        margin-bottom: 8px;
-      }
-
-      .lead-modal-card p {
-        color: #64748b;
-        margin-bottom: 22px;
-      }
-
-      .lead-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        width: 38px;
-        height: 38px;
-        border: 0;
-        border-radius: 50%;
-        background: #f1f5f9;
-        color: #0f172a;
-        font-size: 24px;
-        cursor: pointer;
-      }
-
-      .lead-form-group {
-        display: grid;
-        gap: 8px;
-        margin-bottom: 14px;
-      }
-
-      .lead-form-group label {
-        color: #0f172a;
-        font-weight: 900;
-      }
-
-      .lead-form-group input {
-        width: 100%;
-        border: 1px solid #e2e8f0;
-        border-radius: 16px;
-        padding: 14px 15px;
-        font-size: 15px;
-        outline: none;
-      }
-
-      .lead-form-group input:focus {
-        border-color: #2563eb;
-        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
-      }
-
-      body.modal-open {
-        overflow: hidden;
-      }
-
-      @media (max-width: 980px) {
-        .frontend-course-grid {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-
-      @media (max-width: 640px) {
-        .frontend-course-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .frontend-course-image {
-          height: 190px;
-        }
-
-        .lead-modal-card {
-          padding: 24px;
-        }
-      }
-    `;
-
-    document.head.appendChild(style);
-  }
-
-  function initCountdown() {
-    const countdown = document.getElementById("countdown");
-
-    if (!countdown) return;
-
-    const batchDate = new Date("2026-06-01T10:00:00+05:00").getTime();
-
-    const daysElement = document.getElementById("days");
-    const hoursElement = document.getElementById("hours");
-    const minutesElement = document.getElementById("minutes");
-    const secondsElement = document.getElementById("seconds");
-
-    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) return;
-
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = batchDate - now;
-
-      if (distance <= 0) {
-        countdown.innerHTML = "<strong class='expired'>Enrollment Closing Soon</strong>";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-      const minutes = Math.floor((distance / (1000 * 60)) % 60);
-      const seconds = Math.floor((distance / 1000) % 60);
-
-      daysElement.textContent = String(days).padStart(2, "0");
-      hoursElement.textContent = String(hours).padStart(2, "0");
-      minutesElement.textContent = String(minutes).padStart(2, "0");
-      secondsElement.textContent = String(seconds).padStart(2, "0");
-    }
-
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
-  }
-
-  function initTestimonials() {
-    const testimonialText = document.getElementById("testimonialText");
-    const testimonialName = document.getElementById("testimonialName");
-    const testimonialRole = document.getElementById("testimonialRole");
-    const nextButton = document.getElementById("nextTestimonial");
-    const prevButton = document.getElementById("prevTestimonial");
-
-    if (!testimonialText || !testimonialName || !testimonialRole || !nextButton || !prevButton) {
-      return;
-    }
-
-    const testimonials = [
-      {
-        text: "“The course helped me understand how digital marketing actually works. The assignments were practical and easy to follow.”",
-        name: "Areeba Khan",
-        role: "Digital Marketing Student"
-      },
-      {
-        text: "“I learned SEO, content planning, and freelancing basics in a clear way. The WhatsApp support made the learning process easy.”",
-        name: "Hamza Ali",
-        role: "Freelancing Student"
-      },
-      {
-        text: "“Shahzad Hassan explains concepts with real examples. I liked the practical approach and confidence-building sessions.”",
-        name: "Maham Raza",
-        role: "Social Media Learner"
-      }
-    ];
-
-    let currentTestimonial = 0;
-
-    function renderTestimonial(index) {
-      testimonialText.textContent = testimonials[index].text;
-      testimonialName.textContent = testimonials[index].name;
-      testimonialRole.textContent = testimonials[index].role;
-    }
-
-    nextButton.addEventListener("click", () => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      renderTestimonial(currentTestimonial);
-    });
-
-    prevButton.addEventListener("click", () => {
-      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
-      renderTestimonial(currentTestimonial);
-    });
-
-    setInterval(() => {
-      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-      renderTestimonial(currentTestimonial);
-    }, 6000);
-  }
-
-  function initCookies() {
-    const cookieBanner = document.getElementById("cookieBanner");
-
-    if (!cookieBanner) return;
-
-    const acceptCookies = document.getElementById("acceptCookies");
-    const rejectCookies = document.getElementById("rejectCookies");
-    const cookieChoice = localStorage.getItem("nextgenCookieChoice");
-
-    if (cookieChoice) {
-      cookieBanner.style.display = "none";
-    }
-
-    if (acceptCookies) {
-      acceptCookies.addEventListener("click", () => {
-        localStorage.setItem("nextgenCookieChoice", "accepted");
-        cookieBanner.style.display = "none";
-      });
-    }
-
-    if (rejectCookies) {
-      rejectCookies.addEventListener("click", () => {
-        localStorage.setItem("nextgenCookieChoice", "rejected");
-        cookieBanner.style.display = "none";
-      });
-    }
-  }
-
-  function setFooterYear() {
-    const year = document.getElementById("year");
-
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
-  }
-
-  function formatPrice(value) {
-    return Number(value || 0).toLocaleString("en-PK");
-  }
-
-  function cryptoId() {
-    if (window.crypto && crypto.randomUUID) {
-      return crypto.randomUUID();
-    }
-
-    return `item_${Date.now()}_${Math.random().toString(16).slice(2)}`;
-  }
-
-  function escapeHTML(value) {
-    return String(value ?? "")
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-})();
+  });
+}
