@@ -1,30 +1,7 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
-    {
-      "source": "/",
-      "destination": "/frontend/index.html"
-    },
-    {
-      "source": "/admin",
-      "destination": "/frontend/admin.html"
-    },
-    {
-      "source": "/main",
-      "destination": "/frontend/main.html"
-    },
-    {
-      "source": "/css/:path*",
-      "destination": "/frontend/css/:path*"
-    },
-    {
-      "source": "/js/:path*",
-      "destination": "/frontend/js/:path*"
-    },
-    {
-      "source": "/:path*",
-      "destination": "/frontend/:path*"
-    }
-  ]
+    { "source": "/(.*)", "destination": "/frontend/$1" }
+  ],
+  "cleanUrls": true
 }
+
