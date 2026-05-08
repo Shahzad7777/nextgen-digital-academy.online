@@ -8,11 +8,11 @@
 
   <meta
     name="description"
-    content="Join Pakistan's most practical academy. Learn digital skills, freelancing, design, development, marketing, and career-ready online courses with launch offer pricing."
+    content="Join Pakistan's most practical academy. Learn digital skills, freelancing, SEO, web design, WordPress, and digital marketing with launch offer pricing."
   />
   <meta
     name="keywords"
-    content="NextGen Digital Academy, online courses Pakistan, digital skills Pakistan, freelancing course, web development course, graphic design course, SEO course, practical academy Pakistan"
+    content="NextGen Digital Academy, online courses Pakistan, digital skills Pakistan, freelancing course, SEO course, web design course, WordPress course"
   />
   <meta name="author" content="NextGen Digital Academy" />
   <meta name="robots" content="index, follow" />
@@ -21,49 +21,15 @@
   <meta property="og:title" content="NextGen Digital Academy | Practical Online Courses" />
   <meta
     property="og:description"
-    content="Start learning practical digital skills with launch offer pricing. Read a free module, then unlock full course access."
+    content="Start learning practical digital skills with free module previews and launch offer pricing."
   />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="/assets/images/nextgen-og-image.jpg" />
   <meta property="og:url" content="https://nextgen-digital-academy-online.vercel.app/" />
 
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="NextGen Digital Academy" />
-  <meta
-    name="twitter:description"
-    content="Join Pakistan's most practical academy and learn high-income digital skills."
-  />
-  <meta name="twitter:image" content="/assets/images/nextgen-og-image.jpg" />
-
   <link rel="canonical" href="https://nextgen-digital-academy-online.vercel.app/" />
-  <link rel="icon" href="/assets/icons/favicon.ico" />
 
-  <!-- CRITICAL VERCEL CSS PATH -->
+  <!-- Main CSS -->
   <link rel="stylesheet" href="/css/style.css" />
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "NextGen Digital Academy",
-    "url": "https://nextgen-digital-academy-online.vercel.app/",
-    "description": "NextGen Digital Academy offers practical online courses for students, freelancers, business owners, and beginners in Pakistan.",
-    "founder": {
-      "@type": "Person",
-      "name": "Shahzad Hassan"
-    },
-    "areaServed": {
-      "@type": "Country",
-      "name": "Pakistan"
-    },
-    "sameAs": [],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "NextGen Digital Academy Courses",
-      "itemListElement": []
-    }
-  }
-  </script>
 </head>
 
 <body>
@@ -75,8 +41,9 @@
     <span class="mesh mesh-three"></span>
   </div>
 
-  <header class="site-header" id="siteHeader">
-    <nav class="navbar glass-panel" aria-label="Main Navigation">
+  <!-- Header -->
+  <header class="site-header">
+    <nav class="navbar glass-panel" aria-label="Main navigation">
       <a href="/" class="brand" aria-label="NextGen Digital Academy Home">
         <span class="brand-mark">N</span>
         <span class="brand-text">
@@ -85,7 +52,7 @@
         </span>
       </a>
 
-      <div class="flash-sale-ticker" aria-label="Flash sale announcement">
+      <div class="flash-sale-ticker">
         <span class="ticker-label">Flash Sale</span>
         <div class="ticker-track">
           <p>
@@ -98,11 +65,12 @@
       <div class="nav-actions">
         <a href="#courses" class="nav-link">Courses</a>
         <a href="#mentor" class="nav-link">Mentor</a>
-        <a href="/admin" class="login-btn">Login</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="/admin.html" class="login-btn">Login</a>
 
         <button
-          class="mobile-menu-btn"
           type="button"
+          class="mobile-menu-btn"
           aria-label="Open mobile menu"
           aria-expanded="false"
           data-menu-toggle
@@ -118,11 +86,12 @@
       <a href="#courses">Courses</a>
       <a href="#mentor">Mentor</a>
       <a href="#how-it-works">How It Works</a>
-      <a href="/admin">Login</a>
+      <a href="/admin.html">Login</a>
     </div>
   </header>
 
   <main id="main-content">
+    <!-- Hero -->
     <section class="hero-section section-padding">
       <div class="container hero-grid">
         <div class="hero-content">
@@ -144,15 +113,17 @@
             <a href="#how-it-works" class="secondary-btn">How It Works</a>
           </div>
 
-          <div class="hero-stats" aria-label="Academy highlights">
+          <div class="hero-stats">
             <div class="stat-card glass-panel">
               <strong>10+</strong>
               <span>Years Expert Mentor</span>
             </div>
+
             <div class="stat-card glass-panel">
               <strong>1 Month</strong>
               <span>Launch Offer Window</span>
             </div>
+
             <div class="stat-card glass-panel">
               <strong>Free</strong>
               <span>Module Preview</span>
@@ -160,11 +131,11 @@
           </div>
         </div>
 
-        <aside class="hero-card glass-panel" aria-label="Launch offer summary">
-          <div class="hero-card-glow"></div>
-
+        <aside class="hero-card glass-panel">
           <p class="card-kicker">Limited Launch Offer</p>
+
           <h2>Start Reading Before You Pay</h2>
+
           <p>
             Open any course, read the free module, then unlock full access using
             secure manual payment confirmation.
@@ -185,20 +156,24 @@
       </div>
     </section>
 
-    <section class="trust-strip" aria-label="Course benefits">
+    <!-- Trust Strip -->
+    <section class="trust-strip">
       <div class="container trust-grid">
         <div class="trust-item glass-panel">
           <span>01</span>
           <p>Free module preview before buying</p>
         </div>
+
         <div class="trust-item glass-panel">
           <span>02</span>
           <p>Low launch offer for early students</p>
         </div>
+
         <div class="trust-item glass-panel">
           <span>03</span>
           <p>Direct WhatsApp payment verification</p>
         </div>
+
         <div class="trust-item glass-panel">
           <span>04</span>
           <p>Practical lessons by expert mentor</p>
@@ -206,112 +181,97 @@
       </div>
     </section>
 
+    <!-- Courses -->
     <section class="courses-section section-padding" id="courses">
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Dynamic Course Library</p>
           <h2>Choose Your Course and Start Reading</h2>
           <p>
-            Courses below are ready to be rendered dynamically from the central
-            admin-managed data source through <strong>main.js</strong>.
+            Select a course, read the free module, then unlock full access after
+            payment confirmation.
           </p>
         </div>
 
         <div class="course-toolbar glass-panel">
           <div>
             <strong>Launch Offer Courses</strong>
-            <span>Admin can add, edit, remove, or update pricing.</span>
+            <span>Admin can add, edit, delete, and update course pricing.</span>
           </div>
 
-          <div class="course-filters" aria-label="Course filters">
-            <button type="button" class="filter-btn active" data-filter="all">All</button>
-            <button type="button" class="filter-btn" data-filter="beginner">Beginner</button>
-            <button type="button" class="filter-btn" data-filter="advanced">Advanced</button>
+          <div class="course-filters">
+            <button type="button" class="filter-btn active" data-filter="all">
+              All
+            </button>
+            <button type="button" class="filter-btn" data-filter="beginner">
+              Beginner
+            </button>
+            <button type="button" class="filter-btn" data-filter="advanced">
+              Advanced
+            </button>
           </div>
         </div>
 
+        <!-- JS will inject course cards here -->
         <div
           class="course-grid"
           id="coursesGrid"
           data-course-container
           aria-live="polite"
         >
-          <div class="course-loading glass-panel" id="courseLoadingState">
-            <span class="loader"></span>
-            <p>Loading latest courses...</p>
+          <div class="course-loading glass-panel">
+            <div>
+              <span class="loader"></span>
+              <p>Loading latest courses...</p>
+            </div>
           </div>
         </div>
-
-        <template id="courseCardTemplate">
-          <article class="course-card glass-panel" data-course-card>
-            <div class="course-image-wrap">
-              <img
-                src=""
-                alt=""
-                class="course-image"
-                loading="lazy"
-                data-course-image
-              />
-              <span class="course-badge" data-course-badge>Launch Offer</span>
-            </div>
-
-            <div class="course-content">
-              <div class="course-meta">
-                <span data-course-level>Beginner</span>
-                <span data-course-duration>4 Weeks</span>
-              </div>
-
-              <h3 data-course-title>Course Title</h3>
-
-              <p data-course-description>
-                Course description will be loaded dynamically from admin data.
-              </p>
-
-              <div class="pricing-box">
-                <span class="standard-price" data-standard-price>
-                  Standard Price: Rs. 15,000
-                </span>
-                <strong class="launch-price" data-launch-price>
-                  Launch Offer: Rs. 999
-                </strong>
-              </div>
-
-              <div class="course-countdown">
-                <span>Price Increases in...</span>
-                <strong data-course-countdown>00d : 00h : 00m : 00s</strong>
-              </div>
-
-              <div class="course-actions">
-                <button
-                  type="button"
-                  class="primary-btn"
-                  data-start-reading
-                >
-                  Start Reading
-                </button>
-
-                <button
-                  type="button"
-                  class="ghost-btn"
-                  data-view-details
-                >
-                  Details
-                </button>
-              </div>
-            </div>
-          </article>
-        </template>
       </div>
     </section>
 
+    <!-- Free Module Reader -->
+    <section class="free-module-section section-padding" id="free-module-preview">
+      <div class="container">
+        <div class="reader-shell glass-panel" data-reader-shell hidden>
+          <div class="reader-header">
+            <div>
+              <p class="eyebrow">Free Module Preview</p>
+              <h2 data-reader-course-title>Course Free Module</h2>
+            </div>
+
+            <span class="reader-badge">Preview Mode</span>
+          </div>
+
+          <article class="reader-content" data-reader-content>
+            <h3>Welcome to Your Free Lesson</h3>
+            <p>
+              Select a course from the course section to start reading the free
+              module.
+            </p>
+          </article>
+
+          <div class="reader-footer">
+            <button type="button" class="secondary-btn" data-close-reader>
+              Back to Courses
+            </button>
+
+            <button type="button" class="primary-btn" data-unlock-full-access>
+              Unlock Full Access
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
     <section class="workflow-section section-padding" id="how-it-works">
       <div class="container">
         <div class="section-header">
           <p class="eyebrow">Student Workflow</p>
           <h2>Simple Enrollment System</h2>
           <p>
-            The journey is designed for high conversion: preview first, unlock
-            second, confirm payment through WhatsApp.
+            The learning flow is designed for easy access and quick payment
+            verification.
           </p>
         </div>
 
@@ -328,8 +288,7 @@
             <span>Step 02</span>
             <h3>Read Free Module</h3>
             <p>
-              The first lesson builds trust and helps the student understand the
-              value before paying.
+              The first lesson builds trust and explains the value of the course.
             </p>
           </article>
 
@@ -337,8 +296,8 @@
             <span>Step 03</span>
             <h3>Unlock Full Access</h3>
             <p>
-              Student clicks unlock and sees the secure glassmorphism payment
-              vault.
+              Student clicks unlock and sees the payment vault with account
+              details.
             </p>
           </article>
 
@@ -346,59 +305,14 @@
             <span>Step 04</span>
             <h3>Send Screenshot</h3>
             <p>
-              After payment, student sends the payment screenshot to admin on
-              WhatsApp.
+              Student sends payment screenshot to admin on WhatsApp for approval.
             </p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="free-module-section section-padding" id="free-module-preview">
-      <div class="container">
-        <div class="reader-shell glass-panel" data-reader-shell hidden>
-          <div class="reader-header">
-            <div>
-              <p class="eyebrow">Free Module Preview</p>
-              <h2 data-reader-course-title>Course Free Module</h2>
-            </div>
-
-            <span class="reader-badge">Preview Mode</span>
-          </div>
-
-          <article class="reader-content" data-reader-content>
-            <h3>Welcome to Your Free Lesson</h3>
-            <p>
-              This reading area will be filled dynamically by main.js when the
-              student clicks the Start Reading button on any course card.
-            </p>
-            <p>
-              Admin-managed course data can control the module title, lesson
-              body, video link, resources, duration, and full access price.
-            </p>
-          </article>
-
-          <div class="reader-footer">
-            <button
-              type="button"
-              class="secondary-btn"
-              data-close-reader
-            >
-              Back to Courses
-            </button>
-
-            <button
-              type="button"
-              class="primary-btn"
-              data-unlock-full-access
-            >
-              Unlock Full Access
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Mentor -->
     <section class="mentor-section section-padding" id="mentor">
       <div class="container mentor-grid">
         <div class="mentor-image-card glass-panel">
@@ -414,6 +328,7 @@
 
         <div class="mentor-content">
           <p class="eyebrow">Meet Your Mentor</p>
+
           <h2>Shahzad Hassan</h2>
 
           <p>
@@ -450,11 +365,14 @@
       </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section section-padding">
       <div class="container">
         <div class="final-cta glass-panel">
           <p class="eyebrow">Launch Offer Ending Soon</p>
+
           <h2>Start With a Free Module Today</h2>
+
           <p>
             Choose a course, read the free module, and unlock full access before
             the launch offer price increases.
@@ -469,6 +387,7 @@
     </section>
   </main>
 
+  <!-- Payment Modal -->
   <div
     class="modal-backdrop"
     id="paymentModal"
@@ -476,7 +395,6 @@
     role="dialog"
     aria-modal="true"
     aria-labelledby="paymentModalTitle"
-    aria-describedby="paymentModalDescription"
     hidden
   >
     <div class="payment-vault glass-panel">
@@ -491,10 +409,12 @@
 
       <div class="vault-header">
         <p class="eyebrow">The Vault</p>
+
         <h2 id="paymentModalTitle">Unlock Full Course Access</h2>
-        <p id="paymentModalDescription">
-          Send payment using Bank Transfer or Easypaisa. After payment, upload
-          or send your screenshot to admin on WhatsApp for access approval.
+
+        <p>
+          Send payment using Bank Transfer or Easypaisa. After payment, send
+          your screenshot to admin on WhatsApp for access approval.
         </p>
       </div>
 
@@ -513,17 +433,20 @@
               <span>Account Title</span>
               <strong data-bank-title>NextGen Digital Academy</strong>
             </li>
+
             <li>
               <span>Bank Name</span>
-              <strong data-bank-name>Your Bank Name</strong>
+              <strong data-bank-name>Meezan Bank</strong>
             </li>
+
             <li>
               <span>Account Number</span>
               <strong data-bank-account>0000-0000000000</strong>
             </li>
+
             <li>
               <span>IBAN</span>
-              <strong data-bank-iban>PK00 XXXX 0000 0000 0000 0000</strong>
+              <strong data-bank-iban>PK00 MEZN 0000 0000 0000 0000</strong>
             </li>
           </ul>
         </article>
@@ -536,10 +459,12 @@
               <span>Account Title</span>
               <strong data-easypaisa-title>NextGen Digital Academy</strong>
             </li>
+
             <li>
               <span>Mobile Number</span>
               <strong data-easypaisa-number>03XX-XXXXXXX</strong>
             </li>
+
             <li>
               <span>Payment Type</span>
               <strong>Course Access Fee</strong>
@@ -550,10 +475,11 @@
 
       <div class="upload-instruction glass-panel">
         <h3>Upload Screenshot Instruction</h3>
+
         <p>
-          After completing your payment, take a clear screenshot of the payment
-          receipt. Then click the WhatsApp button below and send the screenshot
-          to admin with your name and selected course.
+          After payment, take a clear screenshot of your payment receipt. Then
+          click the WhatsApp button below and send the screenshot to admin with
+          your name and selected course.
         </p>
 
         <label for="paymentScreenshot" class="upload-label">
@@ -569,7 +495,7 @@
       </div>
 
       <a
-        href="https://wa.me/923000000000?text=Assalamualaikum%20Admin%2C%20I%20have%20paid%20for%20NextGen%20Digital%20Academy%20course.%20Please%20verify%20my%20screenshot%20and%20unlock%20my%20access."
+        href="https://wa.me/923000000000"
         class="whatsapp-btn"
         target="_blank"
         rel="noopener noreferrer"
@@ -579,16 +505,17 @@
       </a>
 
       <p class="vault-note">
-        Note: Replace the WhatsApp number and payment details from admin data or
-        inside main.js before going live.
+        Note: Admin will verify your screenshot and unlock your full course
+        access manually.
       </p>
     </div>
   </div>
 
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div>
-        <a href="/" class="brand footer-brand" aria-label="NextGen Digital Academy Home">
+        <a href="/" class="brand footer-brand">
           <span class="brand-mark">N</span>
           <span class="brand-text">
             <strong>NextGen</strong>
@@ -611,7 +538,7 @@
 
       <div>
         <h3>Access</h3>
-        <a href="/admin">Admin Login</a>
+        <a href="/admin.html">Admin Login</a>
         <a href="#free-module-preview">Free Module</a>
         <a href="#courses">Launch Offers</a>
       </div>
@@ -619,12 +546,13 @@
       <div>
         <h3>Contact</h3>
         <a
-          href="https://wa.me/923000000000"
+          href="https://wa.me/923044520157"
           target="_blank"
           rel="noopener noreferrer"
         >
           WhatsApp Admin
         </a>
+
         <a href="mailto:admin@nextgendigitalacademy.com">
           admin@nextgendigitalacademy.com
         </a>
@@ -639,7 +567,7 @@
     </div>
   </footer>
 
-  <!-- CRITICAL VERCEL JS PATH -->
+  <!-- Main JS: must be before closing body -->
   <script src="/js/main.js"></script>
 </body>
 </html>
