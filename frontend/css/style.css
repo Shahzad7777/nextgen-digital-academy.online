@@ -1517,3 +1517,37 @@ ul {
     transition-duration: 0.001ms !important;
   }
 }
+.site-header.is-scrolled {
+  background: rgba(11, 15, 25, 0.78);
+  border-color: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 18px 55px rgba(0, 0, 0, 0.4);
+}
+
+.form-message {
+  margin-top: 6px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-message[data-type="success"] {
+  color: #c7ffe7;
+  background: rgba(46, 229, 157, 0.12);
+  border: 1px solid rgba(46, 229, 157, 0.3);
+}
+
+.form-message[data-type="error"] {
+  color: #ffd1d9;
+  background: rgba(255, 77, 109, 0.12);
+  border: 1px solid rgba(255, 77, 109, 0.32);
+}
+
+.outcome-card {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    border-color 260ms ease;
+}
