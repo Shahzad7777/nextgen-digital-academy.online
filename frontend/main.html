@@ -1,518 +1,742 @@
-<link rel="stylesheet" href="/css/style.css">
+(function () {
+  "use strict";
 
-<script src="/js/main.js"></script>
-<!DOCTYPE html>
-<html lang="en-PK">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  const COURSES_KEY = "nda_courses";
+  const LEADS_KEY = "nda_leads";
+  const WHATSAPP_NUMBER = "923001234567";
 
-  <title>Student Dashboard | NextGen Digital Academy</title>
+  const DEFAULT_COURSES = [
+    {
+      id: cryptoId(),
+      title: "Digital Marketing Mastery",
+      category: "Digital Marketing",
+      imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200&auto=format&fit=crop",
+      syllabus: [
+        "Week 1: Digital Marketing Foundations",
+        "Week 2: Social Media Strategy & Content Planning",
+        "Week 3: Paid Ads, Funnels & Lead Generation",
+        "Week 4: Campaign Reporting & Client Presentation"
+      ],
+      originalPrice: 999,
+      offerPrice: 99,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: cryptoId(),
+      title: "SEO & Content Ranking Bootcamp",
+      category: "SEO",
+      imageUrl: "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?q=80&w=1200&auto=format&fit=crop",
+      syllabus: [
+        "Week 1: Keyword Research & Search Intent",
+        "Week 2: On-Page SEO & Content Structure",
+        "Week 3: Technical SEO Basics",
+        "Week 4: SEO Reporting & Ranking Roadmap"
+      ],
+      originalPrice: 1499,
+      offerPrice: 499,
+      createdAt: new Date().toISOString()
+    },
+    {
+      id: cryptoId(),
+      title: "Freelancing & Client Hunting",
+      category: "Freelancing",
+      imageUrl: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop",
+      syllabus: [
+        "Week 1: Freelancing Platforms & Profile Setup",
+        "Week 2: Proposal Writing & Service Packaging",
+        "Week 3: Client Communication & Pricing",
+        "Week 4: Portfolio, Outreach & Closing Strategy"
+      ],
+      originalPrice: 1999,
+      offerPrice: 799,
+      createdAt: new Date().toISOString()
+    }
+  ];
 
-  <meta name="description" content="Access your NextGen Digital Academy student dashboard, course progress, lessons, assignments, certificates, mentor support, and upcoming batch updates.">
-  <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#0B0F19">
+  document.addEventListener("DOMContentLoaded", init);
 
-  <link rel="canonical" href="https://nextgendigitalacademy.com/main.html">
-  <link rel="icon" href="/images/favicon.png" type="image/png">
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+  function init() {
+    seedCourses();
+    injectCourseStyles();
+    ensureCourseSection();
+    renderCoursesOnFrontend();
+    initLeadModal();
+    initCountdown();
+    initTestimonials();
+    initCookies();
+    setFooterYear();
 
-<body class="dashboard-body">
-  <a class="skip-link" href="/main.html#student-dashboard">Skip to dashboard</a>
+    window.addEventListener("storage", renderCoursesOnFrontend);
+  }
 
-  <header class="site-header glass-nav" id="top">
-    <nav class="navbar container" aria-label="Student dashboard navigation">
-      <a class="brand-logo" href="/" aria-label="NextGen Digital Academy home">
-        <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
-      </a>
+  function seedCourses() {
+    const existingCourses = getCourses();
 
-      <button class="nav-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
+    if (!Array.isArray(existingCourses) || existingCourses.length === 0) {
+      localStorage.setItem(COURSES_KEY, JSON.stringify(DEFAULT_COURSES));
+    }
 
-      <ul class="nav-menu" id="primary-navigation">
-        <li><a href="/main.html#overview">Overview</a></li>
-        <li><a href="/main.html#my-courses">My Courses</a></li>
-        <li><a href="/main.html#lessons">Lessons</a></li>
-        <li><a href="/main.html#assignments">Assignments</a></li>
-        <li><a href="/main.html#certificate">Certificate</a></li>
-        <li><a href="/main.html#support">Support</a></li>
-      </ul>
+    const existingLeads = getLeads();
 
-      <div class="nav-actions">
-        <a class="btn btn-ghost" href="/admin.html">Admin</a>
-        <a class="btn btn-glow login-btn" href="/login.html">Logout</a>
-      </div>
-    </nav>
-  </header>
+    if (!Array.isArray(existingLeads)) {
+      localStorage.setItem(LEADS_KEY, JSON.stringify([]));
+    }
+  }
 
-  <main id="student-dashboard">
-    <section class="dashboard-hero section-padding" id="overview" aria-labelledby="dashboard-title">
-      <div class="container dashboard-hero-grid">
-        <div class="dashboard-welcome">
-          <p class="eyebrow">Student Learning Portal</p>
+  function getCourses() {
+    try {
+      return JSON.parse(localStorage.getItem(COURSES_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
 
-          <h1 id="dashboard-title" class="hero-title">
-            Welcome Back,
-            <span class="gradient-text">Future Digital Expert</span>
-          </h1>
+  function getLeads() {
+    try {
+      return JSON.parse(localStorage.getItem(LEADS_KEY)) || [];
+    } catch {
+      return [];
+    }
+  }
 
-          <p class="hero-description">
-            Track your learning progress, continue lessons, submit assignments, access mentor support, and prepare for your certificate from one clean dashboard.
-          </p>
+  function saveLeads(leads) {
+    localStorage.setItem(LEADS_KEY, JSON.stringify(leads));
+  }
 
-          <div class="hero-cta-group">
-            <a class="btn btn-primary btn-large" href="/main.html#lessons">Continue Learning</a>
-            <a class="btn btn-secondary btn-large" href="/main.html#assignments">View Assignments</a>
-          </div>
-        </div>
+  function ensureCourseSection() {
+    if (document.getElementById("coursesGrid")) return;
 
-        <aside class="student-profile-card glass-card" aria-label="Student profile summary">
-          <div class="student-avatar-wrap">
-            <img src="/images/students/student-avatar.webp" alt="Student profile avatar" width="120" height="120">
-          </div>
+    const main = document.querySelector("main") || document.body;
+    const pricingSection = document.getElementById("pricing");
 
-          <h2>Student Account</h2>
-          <p class="student-id">ID: NGDA-2026-001</p>
+    const courseSection = document.createElement("section");
+    courseSection.className = "section frontend-courses";
+    courseSection.id = "courses";
 
-          <div class="profile-info-list">
-            <div>
-              <span>Current Course</span>
-              <strong>Digital Marketing Pro</strong>
-            </div>
-            <div>
-              <span>Batch</span>
-              <strong>June 2026</strong>
-            </div>
-            <div>
-              <span>Learning Mode</span>
-              <strong>Online + Lahore Support</strong>
-            </div>
-            <div>
-              <span>Status</span>
-              <strong>Active Student</strong>
-            </div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="dashboard-stats-section section-small" aria-labelledby="stats-title">
+    courseSection.innerHTML = `
       <div class="container">
-        <h2 id="stats-title" class="section-title-small">Your Learning Progress</h2>
-
-        <div class="dashboard-stats-grid">
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">📘</span>
-            <strong>18</strong>
-            <p>Lessons Completed</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">✅</span>
-            <strong>07</strong>
-            <p>Assignments Submitted</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🔥</span>
-            <strong>72%</strong>
-            <p>Course Progress</p>
-          </article>
-
-          <article class="dashboard-stat-card glass-card">
-            <span class="stat-icon" aria-hidden="true">🎓</span>
-            <strong>28</strong>
-            <p>Days to Certificate</p>
-          </article>
+        <div class="section-head">
+          <span class="eyebrow">Live Courses</span>
+          <h2>Choose Your High-Income Skill Course</h2>
+          <p>Course details, syllabus, and discounted pricing are synced directly from the admin panel.</p>
         </div>
+
+        <div class="frontend-course-grid" id="coursesGrid"></div>
       </div>
-    </section>
+    `;
 
-    <section class="my-courses-section section-padding" id="my-courses" aria-labelledby="my-courses-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">My Courses</p>
-          <h2 id="my-courses-title">Continue Your Active Learning Tracks</h2>
-          <p>
-            Your enrolled courses are organized by progress, mentor feedback, assignment status, and certificate eligibility.
-          </p>
+    if (pricingSection) {
+      pricingSection.insertAdjacentElement("afterend", courseSection);
+    } else {
+      main.appendChild(courseSection);
+    }
+  }
+
+  function renderCoursesOnFrontend() {
+    const coursesGrid = document.getElementById("coursesGrid");
+
+    if (!coursesGrid) return;
+
+    const courses = getCourses();
+
+    if (courses.length === 0) {
+      coursesGrid.innerHTML = `
+        <div class="frontend-empty">
+          No courses are available right now. Please check again soon.
         </div>
+      `;
+      return;
+    }
 
-        <div class="student-course-grid">
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/digital-marketing-course.webp" alt="Digital Marketing Pro course dashboard card" width="640" height="420">
-              <span class="discount-badge">Active</span>
-            </div>
+    coursesGrid.innerHTML = courses.map(course => {
+      const hasDiscount = Number(course.offerPrice) < Number(course.originalPrice);
+      const discountPercent = hasDiscount
+        ? Math.round(((Number(course.originalPrice) - Number(course.offerPrice)) / Number(course.originalPrice)) * 100)
+        : 0;
 
-            <div class="course-content">
-              <p class="course-category">Current Course</p>
-              <h3>Digital Marketing Pro Course</h3>
-              <p>SEO, Meta Ads, Google Ads, funnels, analytics, content strategy, and lead generation.</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Progress</span>
-                  <strong>72%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Course progress 72 percent">
-                  <span style="width: 72%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/main.html#lessons">Open Lessons</a>
-            </div>
-          </article>
-
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/freelancing-course.webp" alt="Freelancing course dashboard card" width="640" height="420">
-              <span class="discount-badge">Unlocked</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Bonus Track</p>
-              <h3>Freelancing Mastery Basics</h3>
-              <p>Client hunting, profile optimization, proposal writing, service packaging, and communication.</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Progress</span>
-                  <strong>35%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Course progress 35 percent">
-                  <span style="width: 35%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/main.html#lessons">Continue Track</a>
-            </div>
-          </article>
-
-          <article class="student-course-card glass-card">
-            <div class="course-image-wrap">
-              <img src="/images/courses/ai-tools-course.webp" alt="AI tools course dashboard card" width="640" height="420">
-              <span class="discount-badge">Upcoming</span>
-            </div>
-
-            <div class="course-content">
-              <p class="course-category">Future Skill</p>
-              <h3>AI Tools for Digital Work</h3>
-              <p>Prompting, AI content workflows, productivity systems, research, and business automation.</p>
-
-              <div class="progress-block">
-                <div class="progress-label">
-                  <span>Progress</span>
-                  <strong>0%</strong>
-                </div>
-                <div class="progress-bar" aria-label="Course progress 0 percent">
-                  <span style="width: 0%;"></span>
-                </div>
-              </div>
-
-              <a class="btn btn-course" href="/main.html#support">Request Access</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="lessons-section section-padding" id="lessons" aria-labelledby="lessons-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Lesson Library</p>
-          <h2 id="lessons-title">Your Weekly Learning Roadmap</h2>
-          <p>
-            Follow lessons in order, complete assignments, and keep your progress consistent for certificate eligibility.
-          </p>
-        </div>
-
-        <div class="lesson-roadmap">
-          <article class="lesson-card glass-card completed">
-            <span class="lesson-status">Completed</span>
-            <h3>Week 1: Digital Marketing Foundation</h3>
-            <p>Understand marketing basics, buyer psychology, digital channels, funnels, and online business models.</p>
-            <div class="lesson-meta">
-              <span>8 Lessons</span>
-              <span>2 Assignments</span>
-              <span>Mentor Feedback</span>
-            </div>
-            <a class="btn btn-secondary" href="/lessons/week-1.html">Review Week 1</a>
-          </article>
-
-          <article class="lesson-card glass-card completed">
-            <span class="lesson-status">Completed</span>
-            <h3>Week 2: SEO and Content Strategy</h3>
-            <p>Learn keyword research, page structure, content planning, ranking basics, and on-page SEO.</p>
-            <div class="lesson-meta">
-              <span>10 Lessons</span>
-              <span>3 Assignments</span>
-              <span>Portfolio Task</span>
-            </div>
-            <a class="btn btn-secondary" href="/lessons/week-2.html">Review Week 2</a>
-          </article>
-
-          <article class="lesson-card glass-card active">
-            <span class="lesson-status">In Progress</span>
-            <h3>Week 3: Paid Ads and Lead Generation</h3>
-            <p>Build Meta Ads campaigns, understand targeting, write ad copy, create landing pages, and track leads.</p>
-            <div class="lesson-meta">
-              <span>12 Lessons</span>
-              <span>3 Assignments</span>
-              <span>Live Practice</span>
-            </div>
-            <a class="btn btn-primary" href="/lessons/week-3.html">Continue Week 3</a>
-          </article>
-
-          <article class="lesson-card glass-card locked">
-            <span class="lesson-status">Locked</span>
-            <h3>Week 4: Analytics, Reporting and Client Delivery</h3>
-            <p>Prepare reports, present campaign results, improve performance, and deliver professional client work.</p>
-            <div class="lesson-meta">
-              <span>9 Lessons</span>
-              <span>Final Project</span>
-              <span>Certificate Review</span>
-            </div>
-            <a class="btn btn-secondary" href="/main.html#support">Unlock Soon</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="assignments-section section-padding" id="assignments" aria-labelledby="assignments-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Assignments</p>
-          <h2 id="assignments-title">Submit Work and Receive Mentor Feedback</h2>
-          <p>
-            Assignments help you build proof of work, improve confidence, and prepare your portfolio for freelancing or job opportunities.
-          </p>
-        </div>
-
-        <div class="assignment-table-wrap glass-card">
-          <table class="assignment-table">
-            <thead>
-              <tr>
-                <th scope="col">Assignment</th>
-                <th scope="col">Course Module</th>
-                <th scope="col">Due Date</th>
-                <th scope="col">Status</th>
-                <th scope="col">Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td>Buyer Persona Research</td>
-                <td>Marketing Foundation</td>
-                <td>Completed</td>
-                <td><span class="status-badge status-approved">Approved</span></td>
-                <td><a href="/assignments/buyer-persona.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>SEO Keyword Plan</td>
-                <td>SEO Strategy</td>
-                <td>Completed</td>
-                <td><span class="status-badge status-approved">Approved</span></td>
-                <td><a href="/assignments/seo-keyword-plan.html">View</a></td>
-              </tr>
-
-              <tr>
-                <td>Meta Ads Campaign Draft</td>
-                <td>Paid Ads</td>
-                <td>18 June 2026</td>
-                <td><span class="status-badge status-pending">Pending</span></td>
-                <td><a href="/assignments/meta-ads-draft.html">Submit</a></td>
-              </tr>
-
-              <tr>
-                <td>Final Client Report</td>
-                <td>Reporting</td>
-                <td>25 June 2026</td>
-                <td><span class="status-badge status-locked">Locked</span></td>
-                <td><a href="/main.html#lessons">Locked</a></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <form class="assignment-upload-form glass-card" action="/assignment-submitted.html" method="post" enctype="multipart/form-data" aria-label="Assignment upload form">
-          <h3>Upload New Assignment</h3>
-
-          <div class="form-row">
-            <label for="assignment-title">Assignment Title</label>
-            <input type="text" id="assignment-title" name="assignment_title" placeholder="Example: Meta Ads Campaign Draft" required>
+      return `
+        <article class="frontend-course-card">
+          <div class="frontend-course-image">
+            <img src="${escapeHTML(course.imageUrl)}" alt="${escapeHTML(course.title)}" loading="lazy" />
+            <span>${escapeHTML(course.category)}</span>
           </div>
 
-          <div class="form-row">
-            <label for="assignment-module">Course Module</label>
-            <select id="assignment-module" name="assignment_module" required>
-              <option value="">Select module</option>
-              <option value="marketing-foundation">Marketing Foundation</option>
-              <option value="seo-content">SEO and Content Strategy</option>
-              <option value="paid-ads">Paid Ads and Lead Generation</option>
-              <option value="analytics-reporting">Analytics and Reporting</option>
-            </select>
+          <div class="frontend-course-body">
+            <h3>${escapeHTML(course.title)}</h3>
+
+            <div class="frontend-price-row">
+              ${hasDiscount ? `<del>PKR ${formatPrice(course.originalPrice)}</del>` : ""}
+              <strong>PKR ${formatPrice(course.offerPrice)}</strong>
+              ${hasDiscount ? `<em>${discountPercent}% OFF</em>` : ""}
+            </div>
+
+            <div class="frontend-syllabus">
+              <h4>Week-by-Week Syllabus</h4>
+              <ul>
+                ${course.syllabus.map(item => `<li>${escapeHTML(item)}</li>`).join("")}
+              </ul>
+            </div>
+
+            <button class="frontend-course-btn" data-enroll="${escapeHTML(course.id)}">
+              Enroll via WhatsApp
+            </button>
+          </div>
+        </article>
+      `;
+    }).join("");
+
+    coursesGrid.querySelectorAll("[data-enroll]").forEach(button => {
+      button.addEventListener("click", () => {
+        const course = courses.find(item => item.id === button.dataset.enroll);
+        openLeadModal(course);
+      });
+    });
+  }
+
+  function initLeadModal() {
+    if (document.getElementById("leadModal")) return;
+
+    const modal = document.createElement("div");
+    modal.className = "lead-modal";
+    modal.id = "leadModal";
+    modal.hidden = true;
+
+    modal.innerHTML = `
+      <div class="lead-modal-backdrop" data-close-modal></div>
+
+      <div class="lead-modal-card" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+        <button class="lead-close" type="button" data-close-modal aria-label="Close modal">×</button>
+
+        <span class="eyebrow">Enrollment Form</span>
+        <h2 id="leadModalTitle">Join This Course</h2>
+        <p id="leadModalCourse">Submit your details and continue to WhatsApp.</p>
+
+        <form id="leadForm">
+          <input type="hidden" id="selectedCourseId" />
+
+          <div class="lead-form-group">
+            <label for="studentName">Student Name</label>
+            <input type="text" id="studentName" required />
           </div>
 
-          <div class="form-row">
-            <label for="assignment-file">Upload File</label>
-            <input type="file" id="assignment-file" name="assignment_file" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png" required>
+          <div class="lead-form-group">
+            <label for="studentEmail">Email Address</label>
+            <input type="email" id="studentEmail" required />
           </div>
 
-          <div class="form-row">
-            <label for="assignment-note">Note for Mentor</label>
-            <textarea id="assignment-note" name="assignment_note" rows="4" placeholder="Write any question or explanation for your mentor"></textarea>
-          </div>
-
-          <button class="btn btn-primary btn-full" type="submit">Submit Assignment</button>
+          <button type="submit" class="frontend-course-btn full">
+            Continue to WhatsApp
+          </button>
         </form>
       </div>
-    </section>
+    `;
 
-    <section class="certificate-section section-padding" id="certificate" aria-labelledby="student-certificate-title">
-      <div class="container certificate-grid">
-        <div class="certificate-content">
-          <p class="eyebrow">Certificate Progress</p>
-          <h2 id="student-certificate-title">Your Certificate Is Almost Ready</h2>
-          <p>
-            Complete all required lessons, assignments, and the final project to become eligible for your official NextGen Digital Academy certificate.
-          </p>
+    document.body.appendChild(modal);
 
-          <ul class="certificate-benefits">
-            <li>Minimum 90% lesson completion required</li>
-            <li>All required assignments must be submitted</li>
-            <li>Final project must be approved by mentor</li>
-            <li>Certificate will be available for download after approval</li>
-          </ul>
+    modal.querySelectorAll("[data-close-modal]").forEach(button => {
+      button.addEventListener("click", closeLeadModal);
+    });
 
-          <div class="progress-block certificate-progress">
-            <div class="progress-label">
-              <span>Certificate Eligibility</span>
-              <strong>68%</strong>
-            </div>
-            <div class="progress-bar" aria-label="Certificate eligibility 68 percent">
-              <span style="width: 68%;"></span>
-            </div>
-          </div>
+    document.getElementById("leadForm").addEventListener("submit", handleLeadSubmit);
+  }
 
-          <a class="btn btn-secondary" href="/main.html#assignments">Complete Requirements</a>
-        </div>
+  function openLeadModal(course) {
+    if (!course) return;
 
-        <div class="certificate-preview glass-card">
-          <img src="/images/certificate/certificate-sample.webp" alt="NextGen Digital Academy student certificate preview" width="900" height="640">
-          <div class="certificate-preview-meta">
-            <strong>Certificate Preview</strong>
-            <span>Locked until course completion</span>
-          </div>
-        </div>
-      </div>
-    </section>
+    const modal = document.getElementById("leadModal");
 
-    <section class="support-section section-padding" id="support" aria-labelledby="support-title">
-      <div class="container">
-        <div class="section-header">
-          <p class="eyebrow">Mentor Support</p>
-          <h2 id="support-title">Need Help with Your Learning?</h2>
-          <p>
-            Contact support, ask your mentor, join the student WhatsApp group, or book a guidance session for your course progress.
-          </p>
-        </div>
+    document.getElementById("selectedCourseId").value = course.id;
+    document.getElementById("leadModalTitle").textContent = course.title;
+    document.getElementById("leadModalCourse").textContent = `Discounted Price: PKR ${formatPrice(course.offerPrice)}`;
 
-        <div class="support-grid">
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">💬</span>
-            <h3>WhatsApp Support</h3>
-            <p>Ask questions, get batch updates, and receive guidance from the support team.</p>
-            <a class="btn btn-course" href="https://wa.me/923001234567">Open WhatsApp</a>
-          </article>
+    modal.hidden = false;
+    document.body.classList.add("modal-open");
 
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">👨‍🏫</span>
-            <h3>Mentor Feedback</h3>
-            <p>Submit your work and receive improvement suggestions from your mentor.</p>
-            <a class="btn btn-course" href="/main.html#assignments">Submit Work</a>
-          </article>
+    setTimeout(() => {
+      document.getElementById("studentName").focus();
+    }, 60);
+  }
 
-          <article class="support-card glass-card">
-            <span class="support-icon" aria-hidden="true">📅</span>
-            <h3>Book Guidance Call</h3>
-            <p>Request a short progress discussion for course direction and learning clarity.</p>
-            <a class="btn btn-course" href="mailto:support@nextgendigitalacademy.com">Request Call</a>
-          </article>
-        </div>
-      </div>
-    </section>
-  </main>
+  function closeLeadModal() {
+    const modal = document.getElementById("leadModal");
 
-  <footer class="site-footer" id="contact">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <a class="footer-logo" href="/" aria-label="NextGen Digital Academy home">
-          <img src="/images/nextgen-logo.svg" alt="NextGen Digital Academy logo" width="180" height="48">
-        </a>
+    modal.hidden = true;
+    document.body.classList.remove("modal-open");
 
-        <p>
-          Student dashboard for NextGen Digital Academy learners. Continue lessons, submit assignments, track progress, and connect with mentor support.
-        </p>
+    const form = document.getElementById("leadForm");
 
-        <address>
-          Office: Lahore, Punjab, Pakistan<br>
-          Phone: <a href="tel:+923001234567">+92 300 1234567</a><br>
-          Email: <a href="mailto:support@nextgendigitalacademy.com">support@nextgendigitalacademy.com</a>
-        </address>
-      </div>
+    if (form) form.reset();
+  }
 
-      <div class="footer-links">
-        <h2>Dashboard</h2>
-        <ul>
-          <li><a href="/main.html#overview">Overview</a></li>
-          <li><a href="/main.html#my-courses">My Courses</a></li>
-          <li><a href="/main.html#lessons">Lessons</a></li>
-          <li><a href="/main.html#assignments">Assignments</a></li>
-          <li><a href="/main.html#certificate">Certificate</a></li>
-        </ul>
-      </div>
+  function handleLeadSubmit(event) {
+    event.preventDefault();
 
-      <div class="footer-links">
-        <h2>Academy</h2>
-        <ul>
-          <li><a href="/">Homepage</a></li>
-          <li><a href="/freelancing-course-pakistan">Freelancing Course</a></li>
-          <li><a href="/digital-marketing-course-pakistan">Digital Marketing Course</a></li>
-          <li><a href="/content-creation-course-pakistan">Content Creation Course</a></li>
-          <li><a href="/privacy-policy.html">Privacy Policy</a></li>
-        </ul>
-      </div>
+    const selectedCourseId = document.getElementById("selectedCourseId").value;
+    const studentName = document.getElementById("studentName").value.trim();
+    const studentEmail = document.getElementById("studentEmail").value.trim();
 
-      <div class="footer-social">
-        <h2>Student Support</h2>
-        <p>Need help with your course, assignment, certificate, or mentor feedback?</p>
+    const course = getCourses().find(item => item.id === selectedCourseId);
 
-        <div class="social-links">
-          <a href="https://www.facebook.com/nextgendigitalacademy">Facebook</a>
-          <a href="https://www.instagram.com/nextgendigitalacademy">Instagram</a>
-          <a href="https://www.linkedin.com/company/nextgendigitalacademy">LinkedIn</a>
-          <a href="https://www.youtube.com/@nextgendigitalacademy">YouTube</a>
-        </div>
+    if (!course || !studentName || !studentEmail) {
+      alert("Please complete your details correctly.");
+      return;
+    }
 
-        <a class="btn btn-glow btn-full" href="https://wa.me/923001234567">Contact Support</a>
-      </div>
-    </div>
+    const discountedPrice = Number(course.offerPrice);
 
-    <div class="footer-bottom">
-      <div class="container footer-bottom-inner">
-        <p>© 2026 NextGen Digital Academy. Student Portal.</p>
-        <a href="/main.html#top">Back to top</a>
-      </div>
-    </div>
-  </footer>
+    const whatsappMessage = generateWhatsAppMessage({
+      studentName,
+      courseTitle: course.title,
+      discountedPrice
+    });
 
-  <script src="/js/main.js"></script>
-</body>
-</html>
+    const lead = {
+      id: cryptoId(),
+      name: studentName,
+      email: studentEmail,
+      courseId: course.id,
+      courseTitle: course.title,
+      discountedPrice,
+      whatsappMessage,
+      createdAt: new Date().toISOString()
+    };
+
+    const leads = getLeads();
+    saveLeads([lead, ...leads]);
+
+    const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappMessage)}`;
+
+    closeLeadModal();
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  }
+
+  function generateWhatsAppMessage({ studentName, courseTitle, discountedPrice }) {
+    return [
+      "Hi NextGen Digital Academy,",
+      "",
+      `My name is ${studentName}.`,
+      `I want to enroll in: ${courseTitle}.`,
+      `Discounted Price: PKR ${formatPrice(discountedPrice)}.`,
+      "",
+      "Please send me admission details, class timing, and payment method."
+    ].join("\n");
+  }
+
+  function injectCourseStyles() {
+    if (document.getElementById("frontendCourseStyles")) return;
+
+    const style = document.createElement("style");
+    style.id = "frontendCourseStyles";
+
+    style.textContent = `
+      .frontend-courses {
+        background: #ffffff;
+      }
+
+      .frontend-course-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      .frontend-course-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 28px;
+        overflow: hidden;
+        box-shadow: 0 18px 52px rgba(15, 23, 42, 0.08);
+      }
+
+      .frontend-course-image {
+        height: 220px;
+        position: relative;
+        overflow: hidden;
+        background: #e2e8f0;
+      }
+
+      .frontend-course-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.35s ease;
+      }
+
+      .frontend-course-card:hover img {
+        transform: scale(1.06);
+      }
+
+      .frontend-course-image span {
+        position: absolute;
+        left: 16px;
+        top: 16px;
+        background: #ffffff;
+        color: #1d4ed8;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 900;
+        box-shadow: 0 10px 30px rgba(15, 23, 42, 0.15);
+      }
+
+      .frontend-course-body {
+        padding: 24px;
+      }
+
+      .frontend-course-body h3 {
+        color: #0f172a;
+        font-size: 24px;
+        line-height: 1.15;
+        margin-bottom: 14px;
+      }
+
+      .frontend-price-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+
+      .frontend-price-row del {
+        color: #94a3b8;
+        font-weight: 900;
+      }
+
+      .frontend-price-row strong {
+        color: #16a34a;
+        font-size: 26px;
+        font-weight: 950;
+      }
+
+      .frontend-price-row em {
+        background: #fee2e2;
+        color: #b91c1c;
+        padding: 6px 9px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 950;
+      }
+
+      .frontend-syllabus {
+        margin: 18px 0 22px;
+      }
+
+      .frontend-syllabus h4 {
+        color: #0f172a;
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
+
+      .frontend-syllabus ul {
+        display: grid;
+        gap: 8px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .frontend-syllabus li {
+        color: #475569;
+        font-size: 14px;
+        font-weight: 700;
+        padding-left: 22px;
+        position: relative;
+      }
+
+      .frontend-syllabus li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: #16a34a;
+        font-weight: 950;
+      }
+
+      .frontend-course-btn {
+        width: 100%;
+        border: 0;
+        min-height: 52px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 950;
+        cursor: pointer;
+        box-shadow: 0 16px 36px rgba(37, 99, 235, 0.24);
+      }
+
+      .frontend-course-btn.full {
+        margin-top: 6px;
+      }
+
+      .frontend-empty {
+        grid-column: 1 / -1;
+        background: #f8fafc;
+        border: 1px dashed #cbd5e1;
+        color: #64748b;
+        padding: 34px;
+        border-radius: 24px;
+        text-align: center;
+        font-weight: 800;
+      }
+
+      .lead-modal[hidden] {
+        display: none !important;
+      }
+
+      .lead-modal {
+        position: fixed;
+        inset: 0;
+        z-index: 200;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+      }
+
+      .lead-modal-backdrop {
+        position: absolute;
+        inset: 0;
+        background: rgba(15, 23, 42, 0.68);
+        backdrop-filter: blur(8px);
+      }
+
+      .lead-modal-card {
+        position: relative;
+        z-index: 2;
+        width: min(520px, 100%);
+        background: #ffffff;
+        border-radius: 28px;
+        padding: 30px;
+        box-shadow: 0 28px 90px rgba(15, 23, 42, 0.28);
+      }
+
+      .lead-modal-card h2 {
+        color: #0f172a;
+        font-size: 34px;
+        line-height: 1.05;
+        margin-bottom: 8px;
+      }
+
+      .lead-modal-card p {
+        color: #64748b;
+        margin-bottom: 22px;
+      }
+
+      .lead-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: #f1f5f9;
+        color: #0f172a;
+        font-size: 24px;
+        cursor: pointer;
+      }
+
+      .lead-form-group {
+        display: grid;
+        gap: 8px;
+        margin-bottom: 14px;
+      }
+
+      .lead-form-group label {
+        color: #0f172a;
+        font-weight: 900;
+      }
+
+      .lead-form-group input {
+        width: 100%;
+        border: 1px solid #e2e8f0;
+        border-radius: 16px;
+        padding: 14px 15px;
+        font-size: 15px;
+        outline: none;
+      }
+
+      .lead-form-group input:focus {
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.12);
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      @media (max-width: 980px) {
+        .frontend-course-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .frontend-course-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .frontend-course-image {
+          height: 190px;
+        }
+
+        .lead-modal-card {
+          padding: 24px;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  function initCountdown() {
+    const countdown = document.getElementById("countdown");
+
+    if (!countdown) return;
+
+    const batchDate = new Date("2026-06-01T10:00:00+05:00").getTime();
+
+    const daysElement = document.getElementById("days");
+    const hoursElement = document.getElementById("hours");
+    const minutesElement = document.getElementById("minutes");
+    const secondsElement = document.getElementById("seconds");
+
+    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) return;
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = batchDate - now;
+
+      if (distance <= 0) {
+        countdown.innerHTML = "<strong class='expired'>Enrollment Closing Soon</strong>";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((distance / (1000 * 60)) % 60);
+      const seconds = Math.floor((distance / 1000) % 60);
+
+      daysElement.textContent = String(days).padStart(2, "0");
+      hoursElement.textContent = String(hours).padStart(2, "0");
+      minutesElement.textContent = String(minutes).padStart(2, "0");
+      secondsElement.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  }
+
+  function initTestimonials() {
+    const testimonialText = document.getElementById("testimonialText");
+    const testimonialName = document.getElementById("testimonialName");
+    const testimonialRole = document.getElementById("testimonialRole");
+    const nextButton = document.getElementById("nextTestimonial");
+    const prevButton = document.getElementById("prevTestimonial");
+
+    if (!testimonialText || !testimonialName || !testimonialRole || !nextButton || !prevButton) {
+      return;
+    }
+
+    const testimonials = [
+      {
+        text: "“The course helped me understand how digital marketing actually works. The assignments were practical and easy to follow.”",
+        name: "Areeba Khan",
+        role: "Digital Marketing Student"
+      },
+      {
+        text: "“I learned SEO, content planning, and freelancing basics in a clear way. The WhatsApp support made the learning process easy.”",
+        name: "Hamza Ali",
+        role: "Freelancing Student"
+      },
+      {
+        text: "“Shahzad Hassan explains concepts with real examples. I liked the practical approach and confidence-building sessions.”",
+        name: "Maham Raza",
+        role: "Social Media Learner"
+      }
+    ];
+
+    let currentTestimonial = 0;
+
+    function renderTestimonial(index) {
+      testimonialText.textContent = testimonials[index].text;
+      testimonialName.textContent = testimonials[index].name;
+      testimonialRole.textContent = testimonials[index].role;
+    }
+
+    nextButton.addEventListener("click", () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    });
+
+    prevButton.addEventListener("click", () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    });
+
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      renderTestimonial(currentTestimonial);
+    }, 6000);
+  }
+
+  function initCookies() {
+    const cookieBanner = document.getElementById("cookieBanner");
+
+    if (!cookieBanner) return;
+
+    const acceptCookies = document.getElementById("acceptCookies");
+    const rejectCookies = document.getElementById("rejectCookies");
+    const cookieChoice = localStorage.getItem("nextgenCookieChoice");
+
+    if (cookieChoice) {
+      cookieBanner.style.display = "none";
+    }
+
+    if (acceptCookies) {
+      acceptCookies.addEventListener("click", () => {
+        localStorage.setItem("nextgenCookieChoice", "accepted");
+        cookieBanner.style.display = "none";
+      });
+    }
+
+    if (rejectCookies) {
+      rejectCookies.addEventListener("click", () => {
+        localStorage.setItem("nextgenCookieChoice", "rejected");
+        cookieBanner.style.display = "none";
+      });
+    }
+  }
+
+  function setFooterYear() {
+    const year = document.getElementById("year");
+
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+  }
+
+  function formatPrice(value) {
+    return Number(value || 0).toLocaleString("en-PK");
+  }
+
+  function cryptoId() {
+    if (window.crypto && crypto.randomUUID) {
+      return crypto.randomUUID();
+    }
+
+    return `item_${Date.now()}_${Math.random().toString(16).slice(2)}`;
+  }
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+})();
+
+
