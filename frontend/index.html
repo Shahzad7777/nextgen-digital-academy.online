@@ -4,302 +4,571 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>NextGen Digital Academy | Become a Digital Millionaire</title>
+  <title>NextGen Digital Academy | Practical Online Courses in Pakistan</title>
 
   <meta
     name="description"
-    content="Master high-conversion digital marketing, Google Ads, Facebook Sales Funnels, mentorship funnels, and online business growth with Shahzad Hassan — 10+ years expert."
+    content="Join Pakistan's most practical academy. Learn digital skills, freelancing, SEO, web design, WordPress, and digital marketing with launch offer pricing."
   />
-
   <meta
     name="keywords"
-    content="NextGen Digital Academy, digital marketing Pakistan, Google Ads course Pakistan, Facebook ads course, sales funnel training, Shahzad Hassan, online earning Pakistan"
+    content="NextGen Digital Academy, online courses Pakistan, digital skills Pakistan, freelancing course, SEO course, web design course, WordPress course"
   />
-
-  <meta name="author" content="Shahzad Hassan" />
+  <meta name="author" content="NextGen Digital Academy" />
   <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#001233" />
 
-  <meta property="og:title" content="NextGen Digital Academy" />
+  <meta property="og:title" content="NextGen Digital Academy | Practical Online Courses" />
   <meta
     property="og:description"
-    content="Don’t just learn marketing. Master high-conversion sales with Shahzad Hassan."
+    content="Start learning practical digital skills with free module previews and launch offer pricing."
   />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://nextgen-digital-academy-online.vercel.app/" />
 
   <link rel="canonical" href="https://nextgen-digital-academy-online.vercel.app/" />
-  <link rel="stylesheet" href="style.css" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="/css/style.css" />
 </head>
 
 <body>
-  <!-- ================= HEADER ================= -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <div class="site-bg" aria-hidden="true">
+    <span class="mesh mesh-one"></span>
+    <span class="mesh mesh-two"></span>
+    <span class="mesh mesh-three"></span>
+  </div>
+
+  <!-- Header -->
   <header class="site-header">
-    <nav class="navbar">
-      <a href="index.html" class="brand" aria-label="NextGen Digital Academy Home">
-        <span class="brand-dot"></span>
-        <span>NextGen Digital Academy</span>
+    <nav class="navbar glass-panel" aria-label="Main navigation">
+      <a href="/" class="brand" aria-label="NextGen Digital Academy Home">
+        <span class="brand-mark">N</span>
+        <span class="brand-text">
+          <strong>NextGen</strong>
+          <small>Digital Academy</small>
+        </span>
       </a>
 
-      <button class="nav-toggle" id="navToggle" aria-label="Open navigation menu">
-        ☰
-      </button>
+      <div class="flash-sale-ticker">
+        <span class="ticker-label">Flash Sale</span>
+        <div class="ticker-track">
+          <p>
+            Launch offer active for 1 month only — prices will increase soon —
+            enroll early and save more.
+          </p>
+        </div>
+      </div>
 
-      <div class="nav-links" id="navLinks">
+      <div class="nav-actions">
         <a href="#courses" class="nav-link">Courses</a>
-        <a href="#insights" class="nav-link">Insights</a>
-        <a href="#authority" class="nav-link">Mentorship</a>
-        <a href="#contact" class="btn btn-primary btn-small">Enroll Now</a>
+        <a href="#mentor" class="nav-link">Mentor</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="/admin.html" class="login-btn">Login</a>
+
+        <button
+          type="button"
+          class="mobile-menu-btn"
+          aria-label="Open mobile menu"
+          aria-expanded="false"
+          data-menu-toggle
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </nav>
+
+    <div class="mobile-menu glass-panel" data-mobile-menu hidden>
+      <a href="#courses">Courses</a>
+      <a href="#mentor">Mentor</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="/admin.html">Login</a>
+    </div>
   </header>
 
-  <!-- ================= HERO ================= -->
-  <main>
-    <section class="hero">
-      <div class="hero-shell">
-        <h1 class="hero-title">
-          <span class="text-gradient">Become a Digital Millionaire</span>
-        </h1>
+  <main id="main-content">
+    <!-- Hero -->
+    <section class="hero-section section-padding">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="eyebrow">Pakistan’s Practical Learning Platform</p>
 
-        <p class="hero-subtitle">
-          Don’t just learn marketing. Master high-conversion sales with
-          <strong>Shahzad Hassan</strong> — 10+ Years Expert.
-        </p>
+          <h1>
+            Join Pakistan's Most Practical Academy
+            <span>and Start Learning Skills That Pay.</span>
+          </h1>
 
-        <div class="hero-actions">
-          <a href="#courses" class="btn btn-outline pulse-neon">
-            Start Learning for Free
-          </a>
-
-          <a href="#contact" class="btn">
-            Book a Consultation
-          </a>
-
-          <div class="trust-badge">
-            <strong>🛡 Trust Batch</strong>
-            <span>Trusted by 5000+ Pakistani Students</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= COURSES ================= -->
-    <section class="courses-section" id="courses">
-      <div class="container">
-        <p class="section-kicker">Dynamic Course Grid</p>
-        <h2 class="section-title">Start Your Journey Now</h2>
-
-        <p class="section-subtitle">
-          Choose from high-demand digital skills built for Pakistan’s online business market.
-          Courses are loaded dynamically from the NextGen course engine.
-        </p>
-
-        <div class="course-toolbar">
-          <input
-            type="search"
-            id="courseSearch"
-            class="course-search"
-            placeholder="Search courses..."
-            aria-label="Search courses"
-          />
-
-          <select id="courseFilter" class="course-filter" aria-label="Filter courses">
-            <option value="all">All Categories</option>
-            <option value="ads">Paid Ads</option>
-            <option value="funnels">Funnels</option>
-            <option value="mentorship">Mentorship</option>
-            <option value="business">Online Business</option>
-          </select>
-        </div>
-
-        <div class="dynamic-course-grid" id="courseGrid">
-          <div class="loader" aria-label="Loading courses"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= AUTHORITY MODULE ================= -->
-    <section class="section" id="authority">
-      <div class="container">
-        <p class="section-kicker">Authority Mentorship</p>
-        <h2 class="section-title">Learn From a 10+ Years Expert</h2>
-
-        <p class="section-subtitle">
-          Shahzad Hassan helps Pakistani students, freelancers, and business owners
-          build conversion-first digital systems using ads, funnels, offers, and automation.
-        </p>
-
-        <div class="blog-article">
-          <h2>Why NextGen Digital Academy Exists</h2>
-
-          <p>
-            Most students learn random tools. NextGen focuses on the complete money path:
-            traffic, landing pages, offers, follow-up, trust, and closing.
-          </p>
-
-          <blockquote>
-            “The goal is not only to teach marketing. The goal is to build students who can sell,
-            scale, and survive in the real digital economy.”
-          </blockquote>
-
-          <p>
-            Every course is designed around practical implementation, Pakistani payment behavior,
-            mobile-first browsing, and direct-response conversion psychology.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= PAYMENT TRUST ================= -->
-    <section class="section-sm">
-      <div class="container">
-        <p class="section-kicker">Pakistani Market Ready</p>
-        <h2 class="section-title">Easy Local Payments</h2>
-
-        <p class="section-subtitle">
-          Designed for Pakistani students with familiar payment trust signals and WhatsApp-based proof flow.
-        </p>
-
-        <div class="payment-card" style="margin-inline:auto;">
-          <div class="payment-logos">
-            <div class="payment-logo">Bank Alfalah</div>
-            <div class="payment-logo">easypaisa</div>
-          </div>
-
-          <div class="whatsapp-payment">
-            WhatsApp Payment Screenshot 📷
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= INSIGHTS BLOG ================= -->
-    <section class="insights-section" id="insights">
-      <div class="container">
-        <p class="section-kicker">Authority Blog</p>
-        <h2 class="section-title">NextGen Insights</h2>
-
-        <p class="section-subtitle">
-          Premium digital marketing insights, sales psychology, and funnel lessons for serious learners.
-        </p>
-
-        <div class="blog-grid" id="blogGrid">
-          <div class="loader" aria-label="Loading blog posts"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= COMMENTS ================= -->
-    <section class="comments-section" id="comments">
-      <div class="comments-header">
-        <div>
-          <h2 class="comments-title">Student Discussion</h2>
-          <p class="comments-note">
-            Comments appear after admin approval.
-          </p>
-        </div>
-      </div>
-
-      <form class="comment-form" id="commentForm">
-        <div class="form-row">
-          <input
-            type="text"
-            id="commentName"
-            class="comment-input"
-            placeholder="Your name"
-            required
-          />
-
-          <input
-            type="email"
-            id="commentEmail"
-            class="comment-input"
-            placeholder="Your email"
-            required
-          />
-        </div>
-
-        <textarea
-          id="commentMessage"
-          class="comment-textarea"
-          placeholder="Write your question or feedback..."
-          required
-        ></textarea>
-
-        <button type="submit" class="btn btn-primary">
-          Submit for Approval
-        </button>
-      </form>
-
-      <div class="comment-list" id="commentList">
-        <div class="comment-bubble approved">
-          <div class="comment-topline">
-            <p class="comment-author">NextGen Team</p>
-            <span class="comment-date">Pinned</span>
-          </div>
-
-          <p class="comment-text">
-            Welcome to the student discussion area. Approved comments will appear here.
-          </p>
-
-          <span class="comment-status approved">Approved</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= CONTACT / CTA ================= -->
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="blog-article" style="text-align:center;">
-          <h2>Ready to Start Learning?</h2>
-
-          <p>
-            Enroll today or book a consultation to choose the right course path for your goals.
+          <p class="hero-description">
+            Learn career-focused digital skills with easy lessons, free module
+            previews, launch offer pricing, and direct payment access through
+            Bank Transfer or Easypaisa.
           </p>
 
           <div class="hero-actions">
-            <a href="https://wa.me/923000000000" class="btn btn-primary" target="_blank" rel="noopener">
-              Enroll on WhatsApp
-            </a>
+            <a href="#courses" class="primary-btn">Explore Courses</a>
+            <a href="#how-it-works" class="secondary-btn">How It Works</a>
+          </div>
 
-            <a href="#courses" class="btn btn-outline">
-              Explore Courses
-            </a>
+          <div class="hero-stats">
+            <div class="stat-card glass-panel">
+              <strong>10+</strong>
+              <span>Years Expert Mentor</span>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <strong>1 Month</strong>
+              <span>Launch Offer Window</span>
+            </div>
+
+            <div class="stat-card glass-panel">
+              <strong>Free</strong>
+              <span>Module Preview</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card glass-panel">
+          <p class="card-kicker">Limited Launch Offer</p>
+
+          <h2>Start Reading Before You Pay</h2>
+
+          <p>
+            Open any course, read the free module, then unlock full access using
+            secure manual payment confirmation.
+          </p>
+
+          <div class="price-preview">
+            <span class="old-price">Standard Price: Rs. 15,000</span>
+            <strong>Launch Offer: From Rs. 999</strong>
+          </div>
+
+          <div class="countdown-preview">
+            <span>Price Increases in...</span>
+            <strong data-global-countdown>00d : 00h : 00m : 00s</strong>
+          </div>
+
+          <a href="#courses" class="full-width-btn">View Launch Courses</a>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Trust Strip -->
+    <section class="trust-strip">
+      <div class="container trust-grid">
+        <div class="trust-item glass-panel">
+          <span>01</span>
+          <p>Free module preview before buying</p>
+        </div>
+
+        <div class="trust-item glass-panel">
+          <span>02</span>
+          <p>Low launch offer for early students</p>
+        </div>
+
+        <div class="trust-item glass-panel">
+          <span>03</span>
+          <p>Direct WhatsApp payment verification</p>
+        </div>
+
+        <div class="trust-item glass-panel">
+          <span>04</span>
+          <p>Practical lessons by expert mentor</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses -->
+    <section class="courses-section section-padding" id="courses">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Dynamic Course Library</p>
+          <h2>Choose Your Course and Start Reading</h2>
+          <p>
+            Select a course, read the free module, then unlock full access after
+            payment confirmation.
+          </p>
+        </div>
+
+        <div class="course-toolbar glass-panel">
+          <div>
+            <strong>Launch Offer Courses</strong>
+            <span>Admin can add, edit, delete, and update course pricing.</span>
+          </div>
+
+          <div class="course-filters">
+            <button type="button" class="filter-btn active" data-filter="all">
+              All
+            </button>
+            <button type="button" class="filter-btn" data-filter="beginner">
+              Beginner
+            </button>
+            <button type="button" class="filter-btn" data-filter="advanced">
+              Advanced
+            </button>
+          </div>
+        </div>
+
+        <!-- JS will inject course cards here -->
+        <div
+          class="course-grid"
+          id="coursesGrid"
+          data-course-container
+          aria-live="polite"
+        >
+          <div class="course-loading glass-panel">
+            <div>
+              <span class="loader"></span>
+              <p>Loading latest courses...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Free Module Reader -->
+    <section class="free-module-section section-padding" id="free-module-preview">
+      <div class="container">
+        <div class="reader-shell glass-panel" data-reader-shell hidden>
+          <div class="reader-header">
+            <div>
+              <p class="eyebrow">Free Module Preview</p>
+              <h2 data-reader-course-title>Course Free Module</h2>
+            </div>
+
+            <span class="reader-badge">Preview Mode</span>
+          </div>
+
+          <article class="reader-content" data-reader-content>
+            <h3>Welcome to Your Free Lesson</h3>
+            <p>
+              Select a course from the course section to start reading the free
+              module.
+            </p>
+          </article>
+
+          <div class="reader-footer">
+            <button type="button" class="secondary-btn" data-close-reader>
+              Back to Courses
+            </button>
+
+            <button type="button" class="primary-btn" data-unlock-full-access>
+              Unlock Full Access
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="workflow-section section-padding" id="how-it-works">
+      <div class="container">
+        <div class="section-header">
+          <p class="eyebrow">Student Workflow</p>
+          <h2>Simple Enrollment System</h2>
+          <p>
+            The learning flow is designed for easy access and quick payment
+            verification.
+          </p>
+        </div>
+
+        <div class="workflow-grid">
+          <article class="workflow-card glass-panel">
+            <span>Step 01</span>
+            <h3>Start Reading</h3>
+            <p>
+              Student clicks the course card and opens the free module preview.
+            </p>
+          </article>
+
+          <article class="workflow-card glass-panel">
+            <span>Step 02</span>
+            <h3>Read Free Module</h3>
+            <p>
+              The first lesson builds trust and explains the value of the course.
+            </p>
+          </article>
+
+          <article class="workflow-card glass-panel">
+            <span>Step 03</span>
+            <h3>Unlock Full Access</h3>
+            <p>
+              Student clicks unlock and sees the payment vault with account
+              details.
+            </p>
+          </article>
+
+          <article class="workflow-card glass-panel">
+            <span>Step 04</span>
+            <h3>Send Screenshot</h3>
+            <p>
+              Student sends payment screenshot to admin on WhatsApp for approval.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mentor -->
+    <section class="mentor-section section-padding" id="mentor">
+      <div class="container mentor-grid">
+        <div class="mentor-image-card glass-panel">
+          <div class="mentor-avatar" aria-hidden="true">
+            <span>SH</span>
+          </div>
+
+          <div class="mentor-highlight">
+            <strong>10+ Years</strong>
+            <span>Expert Experience</span>
+          </div>
+        </div>
+
+        <div class="mentor-content">
+          <p class="eyebrow">Meet Your Mentor</p>
+
+          <h2>Shahzad Hassan</h2>
+
+          <p>
+            Shahzad Hassan is a practical digital skills mentor with more than
+            10 years of experience helping students, beginners, freelancers, and
+            business owners understand real-world digital work.
+          </p>
+
+          <p>
+            His teaching style focuses on clear lessons, practical examples,
+            step-by-step learning, and skills that students can apply in actual
+            projects.
+          </p>
+
+          <div class="mentor-points">
+            <div class="mentor-point glass-panel">
+              <strong>Practical</strong>
+              <span>Real-world course structure</span>
+            </div>
+
+            <div class="mentor-point glass-panel">
+              <strong>Simple</strong>
+              <span>Beginner-friendly lessons</span>
+            </div>
+
+            <div class="mentor-point glass-panel">
+              <strong>Focused</strong>
+              <span>Career and earning skills</span>
+            </div>
+          </div>
+
+          <a href="#courses" class="primary-btn">Learn With Shahzad</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section section-padding">
+      <div class="container">
+        <div class="final-cta glass-panel">
+          <p class="eyebrow">Launch Offer Ending Soon</p>
+
+          <h2>Start With a Free Module Today</h2>
+
+          <p>
+            Choose a course, read the free module, and unlock full access before
+            the launch offer price increases.
+          </p>
+
+          <div class="cta-actions">
+            <a href="#courses" class="primary-btn">Browse Courses</a>
+            <a href="#mentor" class="secondary-btn">View Mentor</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="section-sm">
-    <div class="container" style="text-align:center;">
-      <p style="color:#53627b;">
-        © <span id="year"></span> NextGen Digital Academy. All rights reserved.
-      </p>
+  <!-- Payment Modal -->
+  <div
+    class="modal-backdrop"
+    id="paymentModal"
+    data-payment-modal
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="paymentModalTitle"
+    hidden
+  >
+    <div class="payment-vault glass-panel">
+      <button
+        type="button"
+        class="modal-close"
+        aria-label="Close payment modal"
+        data-close-payment-modal
+      >
+        &times;
+      </button>
 
-      <p style="color:#53627b;">
-        <a href="privacy.html">Privacy Policy</a> ·
-        <a href="terms.html">Terms</a> ·
-        <a href="sitemap.xml">Sitemap</a>
+      <div class="vault-header">
+        <p class="eyebrow">The Vault</p>
+
+        <h2 id="paymentModalTitle">Unlock Full Course Access</h2>
+
+        <p>
+          Send payment using Bank Transfer or Easypaisa. After payment, send
+          your screenshot to admin on WhatsApp for access approval.
+        </p>
+      </div>
+
+      <div class="selected-course-summary glass-panel">
+        <span>Selected Course</span>
+        <strong data-selected-course-name>Course Name</strong>
+        <p data-selected-course-price>Launch Offer: Rs. 999</p>
+      </div>
+
+      <div class="payment-methods">
+        <article class="payment-method glass-panel">
+          <h3>Bank Transfer</h3>
+
+          <ul>
+            <li>
+              <span>Account Title</span>
+              <strong data-bank-title>NextGen Digital Academy</strong>
+            </li>
+
+            <li>
+              <span>Bank Name</span>
+              <strong data-bank-name>Meezan Bank</strong>
+            </li>
+
+            <li>
+              <span>Account Number</span>
+              <strong data-bank-account>0000-0000000000</strong>
+            </li>
+
+            <li>
+              <span>IBAN</span>
+              <strong data-bank-iban>PK00 MEZN 0000 0000 0000 0000</strong>
+            </li>
+          </ul>
+        </article>
+
+        <article class="payment-method glass-panel">
+          <h3>Easypaisa</h3>
+
+          <ul>
+            <li>
+              <span>Account Title</span>
+              <strong data-easypaisa-title>NextGen Digital Academy</strong>
+            </li>
+
+            <li>
+              <span>Mobile Number</span>
+              <strong data-easypaisa-number>03XX-XXXXXXX</strong>
+            </li>
+
+            <li>
+              <span>Payment Type</span>
+              <strong>Course Access Fee</strong>
+            </li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="upload-instruction glass-panel">
+        <h3>Upload Screenshot Instruction</h3>
+
+        <p>
+          After payment, take a clear screenshot of your payment receipt. Then
+          click the WhatsApp button below and send the screenshot to admin with
+          your name and selected course.
+        </p>
+
+        <label for="paymentScreenshot" class="upload-label">
+          <span>Optional Screenshot Upload Preview</span>
+          <input
+            type="file"
+            id="paymentScreenshot"
+            name="paymentScreenshot"
+            accept="image/png, image/jpeg, image/webp"
+            data-payment-screenshot
+          />
+        </label>
+      </div>
+
+      <a
+        href="https://wa.me/923000000000"
+        class="whatsapp-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+        data-whatsapp-payment-link
+      >
+        Send SS to Admin
+      </a>
+
+      <p class="vault-note">
+        Note: Admin will verify your screenshot and unlock your full course
+        access manually.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="/" class="brand footer-brand">
+          <span class="brand-mark">N</span>
+          <span class="brand-text">
+            <strong>NextGen</strong>
+            <small>Digital Academy</small>
+          </span>
+        </a>
+
+        <p>
+          Practical online learning platform for students, freelancers, and
+          digital skill learners in Pakistan.
+        </p>
+      </div>
+
+      <div>
+        <h3>Academy</h3>
+        <a href="#courses">Courses</a>
+        <a href="#mentor">Mentor</a>
+        <a href="#how-it-works">How It Works</a>
+      </div>
+
+      <div>
+        <h3>Access</h3>
+        <a href="/admin.html">Admin Login</a>
+        <a href="#free-module-preview">Free Module</a>
+        <a href="#courses">Launch Offers</a>
+      </div>
+
+      <div>
+        <h3>Contact</h3>
+        <a
+          href="https://wa.me/923044520157"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          WhatsApp Admin
+        </a>
+
+        <a href="mailto:admin@nextgendigitalacademy.com">
+          admin@nextgendigitalacademy.com
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        &copy; <span data-current-year>2026</span> NextGen Digital Academy. All
+        rights reserved.
       </p>
     </div>
   </footer>
 
-  <!-- ================= FLOATING WHATSAPP ================= -->
-  <a
-    href="https://wa.me/923000000000"
-    class="live-support"
-    target="_blank"
-    rel="noopener"
-    aria-label="Chat with live expert support on WhatsApp"
-  >
-    <span class="live-support-text">Live Expert Support</span>
-    <span class="whatsapp-btn">☘</span>
-  </a>
-
-  <div class="toast hidden" id="toast"></div>
-
-  <script src="js/app.js"></script>
+  <!-- Main JS: must be before closing body -->
+  <script src="/js/main.js"></script>
 </body>
 </html>
+
