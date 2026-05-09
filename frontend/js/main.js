@@ -1,310 +1,593 @@
 "use strict";
 
-/* =========================================================
-   NextGen Digital Academy — Public Dynamic Engine
-   Location: /frontend/main.js
-   Shared Admin Data Source: /frontend/admin.js via LocalStorage keys
-========================================================= */
+/* =============================:contentReference[oaicite:0]{index=0}==
+   NextGen Digital Academy - Frontend Main JS
+   File: /frontend/js/main.js
+   Works with:
+   - /frontend/index.html
+   - /frontend/css/style.css
+   - Admin localStorage key: nextgen_courses
+===================================================== */
 
-/* ---------- Shared Keys: Must Match admin.js ---------- */
-const NEXTGEN_KEYS = {
-  courses: "nextgen_courses",
-  blogs: "nextgen_blogs",
-  comments: "nextgen_comments",
-  dbVersion: "nextgen_db_version"
+/* -----------------------------
+   Settings
+----------------------------- */
+
+const NEXTGEN = {
+  coursesKey: "nextgen_courses",
+  countdownKey: "nextgen_launch_deadline",
+  launchDays: 30,
+
+  whatsappNumber: "923000000000",
+
+  bank: {
+    title: "NextGen Digital Academy",
+    name: "Meezan Bank",
+    account: "0000-0000000000",
+    iban: "PK00 MEZN 0000 0000 0000 0000"
+  },
+
+  easypaisa: {
+    title: "NextGen Digital Academy",
+    number: "03XX-XXXXXXX"
+  }
 };
 
-/* ---------- Lightweight Default Data ---------- */
-const NEXTGEN_DEFAULT_DB = {
-  version: "6.0.0",
+/* -----------------------------
+   Default Courses
+----------------------------- */
 
-  courses: [
-    {
-      id: "google-ads-mastery",
-      title: "Master Google Ads",
-      shortTitle: "Google Ads",
-      category: "ads",
-      categoryLabel: "Paid Ads",
-      level: "Beginner to Advanced",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Launch profitable Google Search campaigns for leads, calls, sales, and local service businesses.",
-      standardPrice: 99,
-      vipPrice: 199,
-      oldVipPrice: 199,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "High Intent",
-      featured: true,
-      gradient: "linear-gradient(135deg, #102f5f, #05122b 58%, #0a2144)"
-    },
-    {
-      id: "facebook-sales-funnels",
-      title: "FB Sales Funnels",
-      shortTitle: "FB Funnels",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Build Facebook ad funnels that convert cold Pakistani traffic into qualified leads and buyers.",
-      standardPrice: 99,
-      vipPrice: 149,
-      oldVipPrice: 149,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Conversion",
-      featured: true,
-      gradient: "linear-gradient(135deg, #111b4d, #05122b 55%, #12376b)"
-    },
-    {
-      id: "mentorship-funnels",
-      title: "Mentorship Funnels",
-      shortTitle: "Mentorship",
-      category: "mentorship",
-      categoryLabel: "Mentorship",
-      level: "Advanced",
-      duration: "6 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Create premium coaching and mentorship funnels with trust, proof, offer strategy, and closing systems.",
-      standardPrice: 99,
-      vipPrice: 199,
-      oldVipPrice: 199,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Premium",
-      featured: true,
-      gradient: "linear-gradient(135deg, #071936, #020716 55%, #102f5f)"
-    },
-    {
-      id: "tiktok-ads-growth",
-      title: "TikTok Ads Growth",
-      shortTitle: "TikTok Ads",
-      category: "ads",
-      categoryLabel: "Paid Ads",
-      level: "Beginner",
-      duration: "3 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Use short-form creatives and TikTok ads to generate attention, leads, and sales.",
-      standardPrice: 79,
-      vipPrice: 129,
-      oldVipPrice: 179,
-      mentorshipPrice: 179,
-      discount: "Launch Offer",
-      badge: "Trending",
-      featured: false,
-      gradient: "linear-gradient(135deg, #05243d, #05122b 55%, #12376b)"
-    },
-    {
-      id: "landing-page-mastery",
-      title: "Landing Page Mastery",
-      shortTitle: "Landing Pages",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Design landing pages with hooks, proof, urgency, offers, and WhatsApp conversion flow.",
-      standardPrice: 89,
-      vipPrice: 149,
-      oldVipPrice: 199,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "CRO",
-      featured: false,
-      gradient: "linear-gradient(135deg, #0a2144, #05122b 58%, #062c55)"
-    },
-    {
-      id: "whatsapp-closing-system",
-      title: "WhatsApp Closing System",
-      shortTitle: "WhatsApp Sales",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner to Intermediate",
-      duration: "2 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Turn WhatsApp chats into paid enrollments using scripts, follow-ups, and proof.",
-      standardPrice: 49,
-      vipPrice: 99,
-      oldVipPrice: 149,
-      mentorshipPrice: 149,
-      discount: "Student Special",
-      badge: "Pakistan Ready",
-      featured: false,
-      gradient: "linear-gradient(135deg, #063c39, #05122b 58%, #0a2144)"
-    },
-    {
-      id: "seo-blog-authority",
-      title: "SEO Blog Authority",
-      shortTitle: "SEO Authority",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Intermediate",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Build search authority with topic clusters, helpful blogs, and conversion-focused SEO.",
-      standardPrice: 89,
-      vipPrice: 159,
-      oldVipPrice: 199,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Organic Growth",
-      featured: false,
-      gradient: "linear-gradient(135deg, #0b2f4d, #05122b 58%, #102f5f)"
-    },
-    {
-      id: "agency-launch-blueprint",
-      title: "Agency Launch Blueprint",
-      shortTitle: "Agency Launch",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Advanced",
-      duration: "6 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Start a digital agency with service offers, pricing, outreach, and delivery systems.",
-      standardPrice: 129,
-      vipPrice: 199,
-      oldVipPrice: 299,
-      mentorshipPrice: 299,
-      discount: "Mentorship Deal",
-      badge: "Business",
-      featured: false,
-      gradient: "linear-gradient(135deg, #102f5f, #030816 58%, #071936)"
-    },
-    {
-      id: "email-automation-mastery",
-      title: "Email Automation Mastery",
-      shortTitle: "Email Automation",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "3 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Create nurture sequences that educate leads, build trust, and recover missed sales.",
-      standardPrice: 69,
-      vipPrice: 129,
-      oldVipPrice: 179,
-      mentorshipPrice: 179,
-      discount: "Automation Offer",
-      badge: "Follow-Up",
-      featured: false,
-      gradient: "linear-gradient(135deg, #071936, #05122b 55%, #0e3c77)"
-    },
-    {
-      id: "copywriting-for-sales",
-      title: "Copywriting for Sales",
-      shortTitle: "Copywriting",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner to Advanced",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Write hooks, ad copy, landing page copy, and WhatsApp scripts that convert.",
-      standardPrice: 79,
-      vipPrice: 139,
-      oldVipPrice: 199,
-      mentorshipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Sales Skill",
-      featured: false,
-      gradient: "linear-gradient(135deg, #152452, #05122b 58%, #102f5f)"
-    },
-    {
-      id: "youtube-growth-engine",
-      title: "YouTube Growth Engine",
-      shortTitle: "YouTube Growth",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Plan content, titles, thumbnails, and funnels that turn attention into business growth.",
-      standardPrice: 89,
-      vipPrice: 159,
-      oldVipPrice: 219,
-      mentorshipPrice: 219,
-      discount: "Creator Offer",
-      badge: "Creator",
-      featured: false,
-      gradient: "linear-gradient(135deg, #122e5c, #05122b 58%, #061832)"
-    },
-    {
-      id: "freelancing-client-acquisition",
-      title: "Freelancing Client Acquisition",
-      shortTitle: "Freelancing",
-      category: "mentorship",
-      categoryLabel: "Mentorship",
-      level: "Beginner to Intermediate",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description: "Find clients, pitch services, build proof, close deals, and create repeat income.",
-      standardPrice: 79,
-      vipPrice: 149,
-      oldVipPrice: 249,
-      mentorshipPrice: 249,
-      discount: "Pakistan Student Deal",
-      badge: "Career",
-      featured: false,
-      gradient: "linear-gradient(135deg, #082a46, #05122b 58%, #12376b)"
+const DEFAULT_COURSES = [
+  {
+    id: "web-design-masterclass",
+    title: "Web Design Masterclass",
+    category: "beginner",
+    level: "Beginner",
+    duration: "4 Weeks",
+    badge: "Launch Offer",
+    standardPrice: 15000,
+    launchPrice: 999,
+    image: "",
+    description:
+      "Learn modern website structure, landing pages, responsive layout, CTA sections, and client-ready web design basics.",
+    freeModuleTitle: "Introduction to Modern Web Design",
+    freeModule: `
+      <h3>Introduction to Modern Web Design</h3>
+      <p>This free module explains how professional websites are planned before design and coding.</p>
+      <ul>
+        <li>Website structure basics</li>
+        <li>Hero section planning</li>
+        <li>Call-to-action placement</li>
+        <li>Responsive layout basics</li>
+      </ul>
+      <p>After this module, you will understand how a modern course or business website is planned.</p>
+    `
+  },
+  {
+    id: "freelancing-starter-course",
+    title: "Freelancing Starter Course",
+    category: "beginner",
+    level: "Beginner",
+    duration: "3 Weeks",
+    badge: "Best Seller",
+    standardPrice: 12000,
+    launchPrice: 799,
+    image: "",
+    description:
+      "Start freelancing with profile setup, service selection, client communication, pricing, and order handling.",
+    freeModuleTitle: "How Freelancing Really Works",
+    freeModule: `
+      <h3>How Freelancing Really Works</h3>
+      <p>This free module explains how beginners can start freelancing with the right mindset and service.</p>
+      <ul>
+        <li>How clients search for freelancers</li>
+        <li>How to select your first service</li>
+        <li>How to write a simple offer</li>
+        <li>How to avoid beginner mistakes</li>
+      </ul>
+      <p>This course is made for students who want practical earning skills.</p>
+    `
+  },
+  {
+    id: "seo-practical-course",
+    title: "Practical SEO Course",
+    category: "advanced",
+    level: "Advanced",
+    duration: "5 Weeks",
+    badge: "High Demand",
+    standardPrice: 18000,
+    launchPrice: 1499,
+    image: "",
+    description:
+      "Learn keyword research, on-page SEO, technical SEO, local SEO, content planning, and ranking strategy.",
+    freeModuleTitle: "SEO Foundation and Search Intent",
+    freeModule: `
+      <h3>SEO Foundation and Search Intent</h3>
+      <p>SEO is not only about adding keywords. It is about understanding what people search and why they search it.</p>
+      <ul>
+        <li>What SEO means</li>
+        <li>How Google understands pages</li>
+        <li>What search intent means</li>
+        <li>How to plan useful content</li>
+      </ul>
+      <p>This course helps you understand SEO in a practical and simple way.</p>
+    `
+  }
+];
+
+/* -----------------------------
+   State
+----------------------------- */
+
+let courses = [];
+let selectedCourse = null;
+let countdownTimer = null;
+
+/* -----------------------------
+   Init
+----------------------------- */
+
+document.addEventListener("DOMContentLoaded", () => {
+  courses = getCourses();
+
+  setupYear();
+  setupMobileMenu();
+  setupPaymentDetails();
+  setupFilters();
+  setupReaderButtons();
+  setupPaymentModal();
+
+  renderCourses("all");
+  startCountdown();
+
+  console.log("NextGen frontend loaded successfully.");
+});
+
+/* =====================================================
+   Course Data
+===================================================== */
+
+function getCourses() {
+  const saved = localStorage.getItem(NEXTGEN.coursesKey);
+
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    } catch (error) {
+      console.warn("Invalid localStorage course data. Loading default courses.", error);
     }
-  ],
+  }
 
-  blogs: [
-    {
-      id: "digital-marketing-pakistan",
-      title: "Why Digital Marketing Is Exploding in Pakistan",
-      tag: "Market Insight",
-      date: "Latest",
-      readTime: "5 min read",
-      excerpt: "Pakistan’s online business economy is growing fast, but only skilled marketers can convert attention into income.",
-      featured: true
-    },
-    {
-      id: "funnels-vs-websites",
-      title: "Funnels vs Websites: What Actually Converts?",
-      tag: "Funnels",
-      date: "Guide",
-      readTime: "4 min read",
-      excerpt: "A beautiful website is not enough. Conversion comes from a guided path: hook, offer, trust, proof, and action.",
-      featured: false
-    },
-    {
-      id: "google-ads-buyer-intent",
-      title: "Google Ads and Buyer Intent",
-      tag: "Paid Ads",
-      date: "Strategy",
-      readTime: "6 min read",
-      excerpt: "Google Ads works because people are already searching. The skill is knowing which searches deserve your money.",
-      featured: false
-    },
-    {
-      id: "whatsapp-sales-proof",
-      title: "Why WhatsApp Proof Increases Course Sales",
-      tag: "Sales Psychology",
-      date: "Conversion",
-      readTime: "4 min read",
-      excerpt: "For Pakistani buyers, trust often happens inside WhatsApp. Screenshots, replies, and payment proof reduce hesitation.",
-      featured: false
+  localStorage.setItem(NEXTGEN.coursesKey, JSON.stringify(DEFAULT_COURSES));
+  return DEFAULT_COURSES;
+}
+
+/* =====================================================
+   Render Courses
+===================================================== */
+
+function renderCourses(filter = "all") {
+  const grid = document.querySelector("#coursesGrid");
+
+  if (!grid) {
+    console.error("coursesGrid not found in index.html");
+    return;
+  }
+
+  const filteredCourses =
+    filter === "all"
+      ? courses
+      : courses.filter((course) => course.category === filter);
+
+  if (!filteredCourses.length) {
+    grid.innerHTML = `
+      <div class="course-empty glass-panel">
+        <div>
+          <h3>No courses found</h3>
+          <p>No courses are available in this category right now.</p>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filteredCourses.map(createCourseCard).join("");
+
+  grid.querySelectorAll("[data-start-reading]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.courseId;
+      const course = courses.find((item) => item.id === id);
+      if (course) openReader(course);
+    });
+  });
+
+  grid.querySelectorAll("[data-view-details]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const id = button.dataset.courseId;
+      const course = courses.find((item) => item.id === id);
+      if (course) openReader(course);
+    });
+  });
+}
+
+function createCourseCard(course) {
+  const imageHTML = course.image
+    ? `<img src="${escapeHTML(course.image)}" alt="${escapeHTML(course.title)}" class="course-image" loading="lazy" />`
+    : "";
+
+  return `
+    <article class="course-card glass-panel" data-course-id="${escapeHTML(course.id)}">
+      <div class="course-image-wrap">
+        ${imageHTML}
+        <span class="course-badge">${escapeHTML(course.badge || "Launch Offer")}</span>
+      </div>
+
+      <div class="course-content">
+        <div class="course-meta">
+          <span>${escapeHTML(course.level || "Beginner")}</span>
+          <span>${escapeHTML(course.duration || "Self Paced")}</span>
+        </div>
+
+        <h3>${escapeHTML(course.title || "Untitled Course")}</h3>
+
+        <p>${escapeHTML(course.description || "Course description will be added soon.")}</p>
+
+        <div class="pricing-box">
+          <span class="standard-price">
+            Standard Price: ${formatPrice(course.standardPrice)}
+          </span>
+          <strong class="launch-price">
+            Launch Offer: ${formatPrice(course.launchPrice)}
+          </strong>
+        </div>
+
+        <div class="course-countdown">
+          <span>Price Increases in...</span>
+          <strong data-course-countdown>00d : 00h : 00m : 00s</strong>
+        </div>
+
+        <div class="course-actions">
+          <button type="button" class="primary-btn" data-start-reading data-course-id="${escapeHTML(course.id)}">
+            Start Reading
+          </button>
+
+          <button type="button" class="ghost-btn" data-view-details data-course-id="${escapeHTML(course.id)}">
+            Details
+          </button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+/* =====================================================
+   Filters
+===================================================== */
+
+function setupFilters() {
+  const buttons = document.querySelectorAll("[data-filter]");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter || "all";
+
+      buttons.forEach((btn) => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      renderCourses(filter);
+      updateCountdown();
+    });
+  });
+}
+
+/* =====================================================
+   Reader
+===================================================== */
+
+function openReader(course) {
+  selectedCourse = course;
+
+  const readerShell = document.querySelector("[data-reader-shell]");
+  const readerTitle = document.querySelector("[data-reader-course-title]");
+  const readerContent = document.querySelector("[data-reader-content]");
+
+  if (!readerShell || !readerTitle || !readerContent) {
+    console.error("Reader elements missing in index.html");
+    return;
+  }
+
+  readerTitle.textContent = course.freeModuleTitle || `${course.title} Free Module`;
+
+  readerContent.innerHTML =
+    course.freeModule ||
+    `
+      <h3>Free Module Coming Soon</h3>
+      <p>This course module will be updated soon.</p>
+    `;
+
+  readerShell.hidden = false;
+
+  const readerSection = document.querySelector("#free-module-preview");
+
+  if (readerSection) {
+    readerSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+function closeReader() {
+  const readerShell = document.querySelector("[data-reader-shell]");
+
+  if (readerShell) {
+    readerShell.hidden = true;
+  }
+
+  const coursesSection = document.querySelector("#courses");
+
+  if (coursesSection) {
+    coursesSection.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
+function setupReaderButtons() {
+  const closeReaderBtn = document.querySelector("[data-close-reader]");
+  const unlockBtn = document.querySelector("[data-unlock-full-access]");
+
+  if (closeReaderBtn) {
+    closeReaderBtn.addEventListener("click", closeReader);
+  }
+
+  if (unlockBtn) {
+    unlockBtn.addEventListener("click", () => {
+      if (!selectedCourse) {
+        selectedCourse = courses[0];
+      }
+
+      openPaymentModal(selectedCourse);
+    });
+  }
+}
+
+/* =====================================================
+   Payment Modal
+===================================================== */
+
+function setupPaymentModal() {
+  const modal = document.querySelector("[data-payment-modal]");
+  const closeBtn = document.querySelector("[data-close-payment-modal]");
+
+  if (closeBtn) {
+    closeBtn.addEventListener("click", closePaymentModal);
+  }
+
+  if (modal) {
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closePaymentModal();
+      }
+    });
+  }
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closePaymentModal();
     }
-  ],
+  });
 
-  comments: []
-};
+  const screenshotInput = document.querySelector("[data-payment-screenshot]");
 
-/* ---------- State ---------- */
-const App = {
-  courses: [],
-  blogs: [],
-  comments: [],
-  visibleCourseLimit: 6,
-  elements: {}
-};
+  if (screenshotInput) {
+    screenshotInput.addEventListener("change", () => {
+      const label = screenshotInput.closest(".upload-label");
+      const text = label ? label.querySelector("span") : null;
 
-/* ---------- Utilities ---------- */
-const $ = (selector) => document.querySelector(selector);
+      if (text && screenshotInput.files.length > 0) {
+        text.textContent = `Selected: ${screenshotInput.files[0].name}`;
+      }
+    });
+  }
+}
+
+function openPaymentModal(course) {
+  const modal = document.querySelector("[data-payment-modal]");
+  const courseName = document.querySelector("[data-selected-course-name]");
+  const coursePrice = document.querySelector("[data-selected-course-price]");
+  const whatsappBtn = document.querySelector("[data-whatsapp-payment-link]");
+
+  if (!modal) {
+    console.error("Payment modal not found in index.html");
+    return;
+  }
+
+  selectedCourse = course;
+
+  if (courseName) {
+    courseName.textContent = course.title || "Selected Course";
+  }
+
+  if (coursePrice) {
+    coursePrice.textContent = `Launch Offer: ${formatPrice(course.launchPrice)}`;
+  }
+
+  if (whatsappBtn) {
+    whatsappBtn.href = createWhatsappURL(course);
+  }
+
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+}
+
+function closePaymentModal() {
+  const modal = document.querySelector("[data-payment-modal]");
+
+  if (modal) {
+    modal.hidden = true;
+  }
+
+  document.body.classList.remove("modal-open");
+}
+
+function setupPaymentDetails() {
+  setText("[data-bank-title]", NEXTGEN.bank.title);
+  setText("[data-bank-name]", NEXTGEN.bank.name);
+  setText("[data-bank-account]", NEXTGEN.bank.account);
+  setText("[data-bank-iban]", NEXTGEN.bank.iban);
+
+  setText("[data-easypaisa-title]", NEXTGEN.easypaisa.title);
+  setText("[data-easypaisa-number]", NEXTGEN.easypaisa.number);
+
+  const whatsappFooter = document.querySelector(".site-footer a[href*='wa.me']");
+
+  if (whatsappFooter) {
+    whatsappFooter.href = `https://wa.me/${NEXTGEN.whatsappNumber}`;
+  }
+}
+
+function createWhatsappURL(course) {
+  const message = `
+Assalamualaikum Admin,
+
+I have paid for NextGen Digital Academy course.
+
+Course: ${course.title}
+Launch Offer Price: ${formatPrice(course.launchPrice)}
+
+I will send my payment screenshot here.
+Please verify my payment and unlock my full course access.
+
+Thank you.
+  `.trim();
+
+  return `https://wa.me/${NEXTGEN.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+/* =====================================================
+   Countdown
+===================================================== */
+
+function getDeadline() {
+  const saved = localStorage.getItem(NEXTGEN.countdownKey);
+
+  if (saved) {
+    return saved;
+  }
+
+  const date = new Date();
+  date.setDate(date.getDate() + NEXTGEN.launchDays);
+  date.setHours(23, 59, 59, 999);
+
+  const deadline = date.toISOString();
+  localStorage.setItem(NEXTGEN.countdownKey, deadline);
+
+  return deadline;
+}
+
+function startCountdown() {
+  updateCountdown();
+
+  if (countdownTimer) {
+    clearInterval(countdownTimer);
+  }
+
+  countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+function updateCountdown() {
+  const deadline = getDeadline();
+  const text = countdownText(deadline);
+
+  document.querySelectorAll("[data-global-countdown]").forEach((el) => {
+    el.textContent = text;
+  });
+
+  document.querySelectorAll("[data-course-countdown]").forEach((el) => {
+    el.textContent = text;
+  });
+}
+
+function countdownText(deadline) {
+  const end = new Date(deadline).getTime();
+  const now = Date.now();
+  const diff = end - now;
+
+  if (diff <= 0) {
+    return "Offer Expired";
+  }
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  return `${pad(days)}d : ${pad(hours)}h : ${pad(minutes)}m : ${pad(seconds)}s`;
+}
+
+function pad(value) {
+  return String(value).padStart(2, "0");
+}
+
+/* =====================================================
+   Mobile Menu
+===================================================== */
+
+function setupMobileMenu() {
+  const toggle = document.querySelector("[data-menu-toggle]");
+  const menu = document.querySelector("[data-mobile-menu]");
+
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.getAttribute("aria-expanded") === "true";
+
+    toggle.setAttribute("aria-expanded", String(!isOpen));
+    menu.hidden = isOpen;
+  });
+
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      toggle.setAttribute("aria-expanded", "false");
+      menu.hidden = true;
+    });
+  });
+}
+
+/* =====================================================
+   Helpers
+===================================================== */
+
+function formatPrice(price) {
+  const number = Number(price || 0);
+
+  return `Rs. ${number.toLocaleString("en-PK")}`;
+}
+
+function setText(selector, value) {
+  const element = document.querySelector(selector);
+
+  if (element) {
+    element.textContent = value;
+  }
+}
+
+function setupYear() {
+  const year = document.querySelector("[data-current-year]");
+
+  if (year) {
+    year.textContent = new Date().getFullYear();
+  }
+}
 
 function escapeHTML(value) {
-  return String(value ?? "")
+  return String(value || "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
     .replaceAll(">", "&gt;")
@@ -312,401 +595,22 @@ function escapeHTML(value) {
     .replaceAll("'", "&#039;");
 }
 
-function readJSON(key, fallback) {
-  try {
-    const saved = localStorage.getItem(key);
-    return saved ? JSON.parse(saved) : fallback;
-  } catch {
-    return fallback;
+/* =====================================================
+   Public Helper
+===================================================== */
+
+window.NextGenFrontend = {
+  reloadCourses() {
+    courses = getCourses();
+    renderCourses("all");
+    updateCountdown();
+  },
+
+  resetCourses() {
+    localStorage.removeItem(NEXTGEN.coursesKey);
+    courses = getCourses();
+    renderCourses("all");
+    updateCountdown();
   }
-}
+};
 
-function writeJSON(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch {
-    showToast("Storage unavailable. Please check browser settings.");
-  }
-}
-
-function formatPrice(value) {
-  return `$${Number(value || 0).toLocaleString("en-US")}`;
-}
-
-function isMobileConnection() {
-  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-  const slowNetwork = connection && /2g|3g|slow-2g/i.test(connection.effectiveType || "");
-  return window.matchMedia("(max-width: 760px)").matches || slowNetwork;
-}
-
-function debounce(callback, delay = 180) {
-  let timer;
-  return (...args) => {
-    window.clearTimeout(timer);
-    timer = window.setTimeout(() => callback(...args), delay);
-  };
-}
-
-function showToast(message) {
-  const toast = App.elements.toast;
-  if (!toast) return;
-
-  toast.textContent = message;
-  toast.classList.remove("hidden");
-
-  window.setTimeout(() => {
-    toast.classList.add("hidden");
-  }, 2800);
-}
-
-/* ---------- Data Sync With Admin ---------- */
-function seedIfEmpty() {
-  if (!localStorage.getItem(NEXTGEN_KEYS.courses)) {
-    writeJSON(NEXTGEN_KEYS.courses, NEXTGEN_DEFAULT_DB.courses);
-  }
-
-  if (!localStorage.getItem(NEXTGEN_KEYS.blogs)) {
-    writeJSON(NEXTGEN_KEYS.blogs, NEXTGEN_DEFAULT_DB.blogs);
-  }
-
-  if (!localStorage.getItem(NEXTGEN_KEYS.comments)) {
-    writeJSON(NEXTGEN_KEYS.comments, NEXTGEN_DEFAULT_DB.comments);
-  }
-
-  if (!localStorage.getItem(NEXTGEN_KEYS.dbVersion)) {
-    localStorage.setItem(NEXTGEN_KEYS.dbVersion, NEXTGEN_DEFAULT_DB.version);
-  }
-}
-
-function loadData() {
-  seedIfEmpty();
-
-  App.courses = readJSON(NEXTGEN_KEYS.courses, NEXTGEN_DEFAULT_DB.courses);
-  App.blogs = readJSON(NEXTGEN_KEYS.blogs, NEXTGEN_DEFAULT_DB.blogs);
-  App.comments = readJSON(NEXTGEN_KEYS.comments, []);
-}
-
-/* ---------- DOM Cache ---------- */
-function cacheElements() {
-  App.elements = {
-    year: $("#year"),
-    navToggle: $("#navToggle"),
-    navLinks: $("#navLinks"),
-    courseGrid: $("#courseGrid"),
-    courseSearch: $("#courseSearch"),
-    courseFilter: $("#courseFilter"),
-    blogGrid: $("#blogGrid"),
-    commentForm: $("#commentForm"),
-    commentName: $("#commentName"),
-    commentEmail: $("#commentEmail"),
-    commentMessage: $("#commentMessage"),
-    commentList: $("#commentList"),
-    toast: $("#toast")
-  };
-}
-
-/* ---------- Course Rendering ---------- */
-function getFilteredCourses() {
-  const searchValue = App.elements.courseSearch
-    ? App.elements.courseSearch.value.toLowerCase().trim()
-    : "";
-
-  const category = App.elements.courseFilter
-    ? App.elements.courseFilter.value
-    : "all";
-
-  return App.courses.filter((course) => {
-    const text = [
-      course.title,
-      course.shortTitle,
-      course.category,
-      course.categoryLabel,
-      course.level,
-      course.duration,
-      course.instructor,
-      course.description,
-      course.badge
-    ].join(" ").toLowerCase();
-
-    return text.includes(searchValue) && (category === "all" || course.category === category);
-  });
-}
-
-function courseTemplate(course) {
-  return `
-    <article class="course-card" data-course-id="${escapeHTML(course.id)}">
-      <div class="course-thumb" style="background:${escapeHTML(course.gradient)};">
-        <span class="course-category">${escapeHTML(course.categoryLabel || course.category)}</span>
-
-        <div style="position:absolute;inset:auto 1rem 1rem 1rem;z-index:2;">
-          <strong style="display:block;max-width:78%;color:#fff;font-size:clamp(1.35rem,3vw,2rem);line-height:1.02;letter-spacing:-.04em;text-shadow:0 6px 18px rgba(0,0,0,.35);">
-            ${escapeHTML(course.shortTitle || course.title)}
-          </strong>
-
-          <span style="display:inline-flex;margin-top:.55rem;padding:.28rem .62rem;border-radius:999px;color:#05122b;background:linear-gradient(135deg,#00afff,#39d8ff);font-size:.72rem;font-weight:900;text-transform:uppercase;letter-spacing:.04em;">
-            ${escapeHTML(course.badge || "NextGen")}
-          </span>
-        </div>
-      </div>
-
-      <h3 class="course-title">${escapeHTML(course.title)}</h3>
-      <p class="course-desc">${escapeHTML(course.description)}</p>
-
-      <div class="course-meta">
-        <span>${escapeHTML(course.level)}</span>
-        <span>${escapeHTML(course.duration)}</span>
-        <span>${escapeHTML(course.instructor || "Shahzad Hassan")}</span>
-      </div>
-
-      <div class="course-pricing">
-        <div class="price-tier">
-          <small>Standard</small>
-          <strong>${formatPrice(course.standardPrice)}</strong>
-        </div>
-
-        <div class="price-tier">
-          <small>VIP</small>
-          <strong>
-            ${course.oldVipPrice ? `<del>${formatPrice(course.oldVipPrice)}</del> ` : ""}
-            ${formatPrice(course.vipPrice)}
-          </strong>
-        </div>
-
-        <div class="price-tier">
-          <small>Mentorship</small>
-          <strong>${formatPrice(course.mentorshipPrice)}</strong>
-        </div>
-      </div>
-
-      <div class="discount-pill">${escapeHTML(course.discount)}</div>
-
-      <a href="#contact" class="course-cta btn" data-course-enroll="${escapeHTML(course.id)}">
-        Start Reading Free ▶
-      </a>
-    </article>
-  `;
-}
-
-function renderCourses(resetLimit = false) {
-  const grid = App.elements.courseGrid;
-  if (!grid) return;
-
-  if (resetLimit) {
-    App.visibleCourseLimit = isMobileConnection() ? 6 : App.courses.length;
-  }
-
-  const filtered = getFilteredCourses();
-  const visible = filtered.slice(0, App.visibleCourseLimit);
-
-  if (!filtered.length) {
-    grid.innerHTML = `<div class="course-empty">No courses found. Try another search or category.</div>`;
-    return;
-  }
-
-  const cards = visible.map(courseTemplate).join("");
-  const needsLoadMore = visible.length < filtered.length;
-
-  grid.innerHTML = `
-    ${cards}
-    ${
-      needsLoadMore
-        ? `<div class="course-empty" style="padding:1rem;">
-            <button type="button" class="btn btn-primary" id="loadMoreCourses">
-              Load More Courses
-            </button>
-          </div>`
-        : ""
-    }
-  `;
-}
-
-/* ---------- Blog Rendering ---------- */
-function renderBlogs() {
-  const grid = App.elements.blogGrid;
-  if (!grid) return;
-
-  if (!App.blogs.length) {
-    grid.innerHTML = `<div class="course-empty">No insights published yet.</div>`;
-    return;
-  }
-
-  grid.innerHTML = App.blogs.map((blog) => `
-    <article class="blog-card ${blog.featured ? "featured" : ""}" data-blog-id="${escapeHTML(blog.id)}">
-      <div>
-        <div class="blog-meta">
-          <span class="blog-tag">${escapeHTML(blog.tag)}</span>
-          <span>${escapeHTML(blog.date)}</span>
-          <span>${escapeHTML(blog.readTime)}</span>
-        </div>
-
-        <h3 class="blog-title">${escapeHTML(blog.title)}</h3>
-        <p class="blog-excerpt">${escapeHTML(blog.excerpt)}</p>
-
-        <a href="#comments" class="blog-read-more">Read Insight →</a>
-      </div>
-    </article>
-  `).join("");
-}
-
-/* ---------- Comments ---------- */
-function createComment(name, email, message) {
-  return {
-    id: `comment-${Date.now()}`,
-    name,
-    email,
-    message,
-    date: new Date().toLocaleDateString("en-PK", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    }),
-    status: "pending",
-    replies: []
-  };
-}
-
-function renderComments() {
-  const list = App.elements.commentList;
-  if (!list) return;
-
-  const approved = App.comments.filter((comment) => comment.status === "approved");
-
-  const pinned = `
-    <div class="comment-bubble approved">
-      <div class="comment-topline">
-        <p class="comment-author">NextGen Team</p>
-        <span class="comment-date">Pinned</span>
-      </div>
-      <p class="comment-text">Welcome to the student discussion area. Approved comments will appear here after admin review.</p>
-      <span class="comment-status approved">Approved</span>
-    </div>
-  `;
-
-  const studentComments = approved.map((comment) => {
-    const replies = Array.isArray(comment.replies)
-      ? comment.replies
-          .filter((reply) => reply.status === "approved")
-          .map((reply) => `
-            <div class="comment-bubble reply approved">
-              <div class="comment-topline">
-                <p class="comment-author">${escapeHTML(reply.name || "NextGen Team")}</p>
-                <span class="comment-date">${escapeHTML(reply.date || "")}</span>
-              </div>
-              <p class="comment-text">${escapeHTML(reply.message)}</p>
-              <span class="comment-status approved">Approved</span>
-            </div>
-          `)
-          .join("")
-      : "";
-
-    return `
-      <div class="comment-bubble approved">
-        <div class="comment-topline">
-          <p class="comment-author">${escapeHTML(comment.name)}</p>
-          <span class="comment-date">${escapeHTML(comment.date)}</span>
-        </div>
-        <p class="comment-text">${escapeHTML(comment.message)}</p>
-        <span class="comment-status approved">Approved</span>
-      </div>
-      ${replies}
-    `;
-  }).join("");
-
-  list.innerHTML = pinned + studentComments;
-}
-
-/* ---------- Events ---------- */
-function bindEvents() {
-  const {
-    navToggle,
-    navLinks,
-    courseSearch,
-    courseFilter,
-    commentForm,
-    commentName,
-    commentEmail,
-    commentMessage
-  } = App.elements;
-
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
-
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => navLinks.classList.remove("open"));
-    });
-  }
-
-  const rerenderCourses = debounce(() => renderCourses(true), 180);
-
-  courseSearch?.addEventListener("input", rerenderCourses);
-  courseFilter?.addEventListener("change", () => renderCourses(true));
-
-  commentForm?.addEventListener("submit", (event) => {
-    event.preventDefault();
-
-    const name = commentName.value.trim();
-    const email = commentEmail.value.trim();
-    const message = commentMessage.value.trim();
-
-    if (!name || !email || !message) {
-      showToast("Please complete all comment fields.");
-      return;
-    }
-
-    App.comments.unshift(createComment(name, email, message));
-    writeJSON(NEXTGEN_KEYS.comments, App.comments);
-
-    commentForm.reset();
-    showToast("Comment submitted. It will appear after admin approval.");
-  });
-
-  document.addEventListener("click", (event) => {
-    const loadMore = event.target.closest("#loadMoreCourses");
-    if (loadMore) {
-      App.visibleCourseLimit += 6;
-      renderCourses(false);
-      return;
-    }
-
-    const enrollButton = event.target.closest("[data-course-enroll]");
-    if (enrollButton) {
-      const courseId = enrollButton.getAttribute("data-course-enroll");
-      const course = App.courses.find((item) => item.id === courseId);
-
-      if (course) {
-        showToast(`Selected: ${course.title}. Continue on WhatsApp to enroll.`);
-      }
-    }
-  });
-
-  window.addEventListener("storage", (event) => {
-    if (!Object.values(NEXTGEN_KEYS).includes(event.key)) return;
-
-    loadData();
-    renderCourses(true);
-    renderBlogs();
-    renderComments();
-  });
-}
-
-/* ---------- Init ---------- */
-function init() {
-  cacheElements();
-
-  if (App.elements.year) {
-    App.elements.year.textContent = new Date().getFullYear();
-  }
-
-  App.visibleCourseLimit = isMobileConnection() ? 6 : 99;
-
-  loadData();
-  bindEvents();
-
-  renderCourses(true);
-  renderBlogs();
-  renderComments();
-}
-
-document.addEventListener("DOMContentLoaded", init);
