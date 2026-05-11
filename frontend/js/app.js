@@ -1,880 +1,1253 @@
-/* =========================================================
-   NextGen Digital Academy — Phase 3 Dynamic Engine
-   10+ Course Database + Blog Engine + Comment Approval Flow
-   LocalStorage Ready / Firebase Ready Architecture
-========================================================= */
+Haan, ye line **`backend/app.js`** file ke end side par hoti hai. Neeche main **complete `backend/app.js`** de raha hoon. Aap apni purani `backend/app.js` ko full replace kar dein.
 
+Is file mein safer version already added hai:
+
+```js
+app.use(/^\/api\/.*$/, function apiNotFound(req, res) {
+```
+
+---
+
+## `backend/app.js`
+
+```js
 "use strict";
 
-/* ---------- Central App Database ---------- */
-const NEXTGEN_DEFAULT_DB = {
-  courses: [
-    {
-      id: "google-ads-mastery",
-      title: "Master Google Ads",
-      shortTitle: "Google Ads",
-      category: "ads",
-      categoryLabel: "Paid Ads",
-      level: "Beginner to Advanced",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Launch profitable Google Search campaigns for leads, calls, sales, and local service businesses.",
-      standardPrice: 99,
-      vipPrice: 199,
-      mentorshipPrice: 199,
-      oldVipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "High Intent",
-      featured: true,
-      gradient: "linear-gradient(135deg, #102f5f, #05122b 58%, #0a2144)"
-    },
-    {
-      id: "facebook-sales-funnels",
-      title: "FB Sales Funnels",
-      shortTitle: "FB Funnels",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Build Facebook ad funnels that convert cold Pakistani traffic into qualified leads and buyers.",
-      standardPrice: 99,
-      vipPrice: 149,
-      mentorshipPrice: 199,
-      oldVipPrice: 149,
-      discount: "90% Off for 1 Month",
-      badge: "Conversion",
-      featured: true,
-      gradient: "linear-gradient(135deg, #111b4d, #05122b 55%, #12376b)"
-    },
-    {
-      id: "mentorship-funnels",
-      title: "Mentorship Funnels",
-      shortTitle: "Mentorship",
-      category: "mentorship",
-      categoryLabel: "Mentorship",
-      level: "Advanced",
-      duration: "6 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Create premium coaching and mentorship funnels with strong trust, proof, and closing systems.",
-      standardPrice: 99,
-      vipPrice: 199,
-      mentorshipPrice: 199,
-      oldVipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Premium",
-      featured: true,
-      gradient: "linear-gradient(135deg, #071936, #020716 55%, #102f5f)"
-    },
-    {
-      id: "tiktok-ads-growth",
-      title: "TikTok Ads Growth",
-      shortTitle: "TikTok Ads",
-      category: "ads",
-      categoryLabel: "Paid Ads",
-      level: "Beginner",
-      duration: "3 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Use TikTok ads and short-form creatives to generate attention, leads, and direct-response sales.",
-      standardPrice: 79,
-      vipPrice: 129,
-      mentorshipPrice: 179,
-      oldVipPrice: 179,
-      discount: "Launch Offer",
-      badge: "Trending",
-      featured: false,
-      gradient: "linear-gradient(135deg, #05243d, #05122b 55%, #12376b)"
-    },
-    {
-      id: "landing-page-mastery",
-      title: "Landing Page Mastery",
-      shortTitle: "Landing Pages",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Design landing pages with strong hooks, social proof, urgency, and WhatsApp conversion flow.",
-      standardPrice: 89,
-      vipPrice: 149,
-      mentorshipPrice: 199,
-      oldVipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "CRO",
-      featured: false,
-      gradient: "linear-gradient(135deg, #0a2144, #05122b 58%, #062c55)"
-    },
-    {
-      id: "whatsapp-closing-system",
-      title: "WhatsApp Closing System",
-      shortTitle: "WhatsApp Sales",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner to Intermediate",
-      duration: "2 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Turn WhatsApp chats into paid enrollments using scripts, follow-ups, proof, and objection handling.",
-      standardPrice: 49,
-      vipPrice: 99,
-      mentorshipPrice: 149,
-      oldVipPrice: 149,
-      discount: "Student Special",
-      badge: "Pakistan Ready",
-      featured: false,
-      gradient: "linear-gradient(135deg, #063c39, #05122b 58%, #0a2144)"
-    },
-    {
-      id: "seo-blog-authority",
-      title: "SEO Blog Authority",
-      shortTitle: "SEO Authority",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Intermediate",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Build long-term search visibility with authority blogs, topic clusters, and conversion-focused SEO.",
-      standardPrice: 89,
-      vipPrice: 159,
-      mentorshipPrice: 199,
-      oldVipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Organic Growth",
-      featured: false,
-      gradient: "linear-gradient(135deg, #0b2f4d, #05122b 58%, #102f5f)"
-    },
-    {
-      id: "agency-launch-blueprint",
-      title: "Agency Launch Blueprint",
-      shortTitle: "Agency Launch",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Advanced",
-      duration: "6 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Start a digital marketing agency with service offers, pricing, client outreach, and delivery systems.",
-      standardPrice: 129,
-      vipPrice: 199,
-      mentorshipPrice: 299,
-      oldVipPrice: 299,
-      discount: "Mentorship Deal",
-      badge: "Business",
-      featured: false,
-      gradient: "linear-gradient(135deg, #102f5f, #030816 58%, #071936)"
-    },
-    {
-      id: "email-automation-mastery",
-      title: "Email Automation Mastery",
-      shortTitle: "Email Automation",
-      category: "funnels",
-      categoryLabel: "Funnels",
-      level: "Intermediate",
-      duration: "3 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Create automated nurture sequences that educate leads, build trust, and recover missed sales.",
-      standardPrice: 69,
-      vipPrice: 129,
-      mentorshipPrice: 179,
-      oldVipPrice: 179,
-      discount: "Automation Offer",
-      badge: "Follow-Up",
-      featured: false,
-      gradient: "linear-gradient(135deg, #071936, #05122b 55%, #0e3c77)"
-    },
-    {
-      id: "copywriting-for-sales",
-      title: "Copywriting for Sales",
-      shortTitle: "Copywriting",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner to Advanced",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Write hooks, offers, ad copy, landing page copy, and WhatsApp scripts that move people to action.",
-      standardPrice: 79,
-      vipPrice: 139,
-      mentorshipPrice: 199,
-      oldVipPrice: 199,
-      discount: "90% Off for 1 Month",
-      badge: "Sales Skill",
-      featured: false,
-      gradient: "linear-gradient(135deg, #152452, #05122b 58%, #102f5f)"
-    },
-    {
-      id: "youtube-growth-engine",
-      title: "YouTube Growth Engine",
-      shortTitle: "YouTube Growth",
-      category: "business",
-      categoryLabel: "Online Business",
-      level: "Beginner",
-      duration: "5 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Plan content, thumbnails, titles, and funnels that turn YouTube attention into business growth.",
-      standardPrice: 89,
-      vipPrice: 159,
-      mentorshipPrice: 219,
-      oldVipPrice: 219,
-      discount: "Creator Offer",
-      badge: "Creator",
-      featured: false,
-      gradient: "linear-gradient(135deg, #122e5c, #05122b 58%, #061832)"
-    },
-    {
-      id: "freelancing-client-acquisition",
-      title: "Freelancing Client Acquisition",
-      shortTitle: "Freelancing",
-      category: "mentorship",
-      categoryLabel: "Mentorship",
-      level: "Beginner to Intermediate",
-      duration: "4 Weeks",
-      instructor: "Shahzad Hassan",
-      description:
-        "Find clients, pitch services, create proof, close deals, and build repeat income as a freelancer.",
-      standardPrice: 79,
-      vipPrice: 149,
-      mentorshipPrice: 249,
-      oldVipPrice: 249,
-      discount: "Pakistan Student Deal",
-      badge: "Career",
-      featured: false,
-      gradient: "linear-gradient(135deg, #082a46, #05122b 58%, #12376b)"
-    }
-  ],
+/**
+ * NextGen Digital Academy Backend App
+ * Express + MongoDB Atlas + Vercel Serverless Ready
+ */
 
-  blogs: [
-    {
-      id: "digital-marketing-pakistan",
-      title: "Why Digital Marketing Is Exploding in Pakistan",
-      tag: "Market Insight",
-      date: "Latest",
-      readTime: "5 min read",
-      excerpt:
-        "Pakistan’s online business economy is growing fast, but only skilled marketers can convert attention into income.",
-      featured: true
-    },
-    {
-      id: "funnels-vs-websites",
-      title: "Funnels vs Websites: What Actually Converts?",
-      tag: "Funnels",
-      date: "Guide",
-      readTime: "4 min read",
-      excerpt:
-        "A beautiful website is not enough. Conversion comes from a guided path: hook, offer, trust, proof, and action.",
-      featured: false
-    },
-    {
-      id: "google-ads-buyer-intent",
-      title: "Google Ads and Buyer Intent",
-      tag: "Paid Ads",
-      date: "Strategy",
-      readTime: "6 min read",
-      excerpt:
-        "Google Ads works because people are already searching. The skill is knowing which searches deserve your money.",
-      featured: false
-    },
-    {
-      id: "pakistani-student-online-income",
-      title: "The Real Online Income Path for Pakistani Students",
-      tag: "Students",
-      date: "Mentorship",
-      readTime: "7 min read",
-      excerpt:
-        "Avoid random shortcuts. Build one monetizable skill, one offer, one audience, and one repeatable sales system.",
-      featured: false
-    },
-    {
-      id: "whatsapp-sales-proof",
-      title: "Why WhatsApp Proof Increases Course Sales",
-      tag: "Sales Psychology",
-      date: "Conversion",
-      readTime: "4 min read",
-      excerpt:
-        "For Pakistani buyers, trust often happens inside WhatsApp. Screenshots, replies, and payment proof reduce hesitation.",
-      featured: false
-    },
-    {
-      id: "mentor-vs-course",
-      title: "Course or Mentor: What Do You Actually Need?",
-      tag: "Mentorship",
-      date: "Advice",
-      readTime: "5 min read",
-      excerpt:
-        "Courses teach frameworks. Mentorship corrects execution. The best students use both at the right stage.",
-      featured: false
-    }
-  ],
+require("dotenv").config();
 
-  comments: []
-};
+const express = require("express");
+const mongoose = require("mongoose");
+const cors = require("cors");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
-/* ---------- App State ---------- */
-const NextGenApp = {
-  version: "3.0.0",
+const app = express();
 
-  storageKeys: {
-    courses: "nextgen_courses",
-    blogs: "nextgen_blogs",
-    comments: "nextgen_comments",
-    dbVersion: "nextgen_db_version"
+/* -------------------------------------------------------
+   ENV CONFIG
+------------------------------------------------------- */
+
+const NODE_ENV = process.env.NODE_ENV || "development";
+const IS_PRODUCTION = NODE_ENV === "production";
+
+const WHATSAPP_NUMBER = normalizeWhatsAppNumber(
+  process.env.WHATSAPP_NUMBER || "923044520157"
+);
+
+const PAYMENT_DETAILS = {
+  jazzCash: {
+    label: "JazzCash",
+    accountTitle: process.env.JAZZCASH_TITLE || "NextGen Digital Academy",
+    accountNumber: process.env.JAZZCASH_NUMBER || "03044520157",
   },
-
-  courses: [],
-  blogs: [],
-  comments: [],
-  elements: {}
+  easyPaisa: {
+    label: "EasyPaisa",
+    accountTitle: process.env.EASYPAISA_TITLE || "NextGen Digital Academy",
+    accountNumber: process.env.EASYPAISA_NUMBER || "03044520157",
+  },
+  bank: {
+    label: "Bank Transfer",
+    bankName: process.env.BANK_NAME || "Your Bank Name",
+    accountTitle: process.env.BANK_ACCOUNT_TITLE || "NextGen Digital Academy",
+    accountNumber: process.env.BANK_ACCOUNT_NUMBER || "0000000000000000",
+    iban: process.env.BANK_IBAN || "PK00XXXX0000000000000000",
+  },
 };
 
-/* ---------- Element Cache ---------- */
-function cacheElements() {
-  NextGenApp.elements = {
-    year: document.getElementById("year"),
+/* -------------------------------------------------------
+   HELPERS
+------------------------------------------------------- */
 
-    navToggle: document.getElementById("navToggle"),
-    navLinks: document.getElementById("navLinks"),
+function getAllowedOrigins() {
+  const raw = process.env.CORS_ORIGIN || process.env.FRONTEND_URL || "";
 
-    courseGrid: document.getElementById("courseGrid"),
-    courseSearch: document.getElementById("courseSearch"),
-    courseFilter: document.getElementById("courseFilter"),
-
-    blogGrid: document.getElementById("blogGrid"),
-
-    commentForm: document.getElementById("commentForm"),
-    commentName: document.getElementById("commentName"),
-    commentEmail: document.getElementById("commentEmail"),
-    commentMessage: document.getElementById("commentMessage"),
-    commentList: document.getElementById("commentList"),
-
-    toast: document.getElementById("toast")
-  };
+  return raw
+    .split(",")
+    .map((origin) => origin.trim())
+    .filter(Boolean);
 }
 
-/* ---------- Storage Layer ---------- */
-function getFromStorage(key, fallback) {
-  try {
-    const saved = localStorage.getItem(key);
-    return saved ? JSON.parse(saved) : fallback;
-  } catch (error) {
-    console.warn(`NextGen storage read failed: ${key}`, error);
-    return fallback;
-  }
+function normalizeWhatsAppNumber(value) {
+  return String(value || "")
+    .replace(/[^\d]/g, "")
+    .replace(/^00/, "");
 }
 
-function saveToStorage(key, value) {
-  try {
-    localStorage.setItem(key, JSON.stringify(value));
-  } catch (error) {
-    console.warn(`NextGen storage save failed: ${key}`, error);
-  }
+function buildWhatsAppUrl(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-function seedDefaultData() {
-  const savedVersion = localStorage.getItem(NextGenApp.storageKeys.dbVersion);
-
-  if (!savedVersion) {
-    saveToStorage(NextGenApp.storageKeys.courses, NEXTGEN_DEFAULT_DB.courses);
-    saveToStorage(NextGenApp.storageKeys.blogs, NEXTGEN_DEFAULT_DB.blogs);
-    saveToStorage(NextGenApp.storageKeys.comments, NEXTGEN_DEFAULT_DB.comments);
-    localStorage.setItem(NextGenApp.storageKeys.dbVersion, NextGenApp.version);
-  }
-
-  NextGenApp.courses = getFromStorage(
-    NextGenApp.storageKeys.courses,
-    NEXTGEN_DEFAULT_DB.courses
-  );
-
-  NextGenApp.blogs = getFromStorage(
-    NextGenApp.storageKeys.blogs,
-    NEXTGEN_DEFAULT_DB.blogs
-  );
-
-  NextGenApp.comments = getFromStorage(
-    NextGenApp.storageKeys.comments,
-    NEXTGEN_DEFAULT_DB.comments
-  );
+function makeSlug(input) {
+  return String(input || "")
+    .toLowerCase()
+    .trim()
+    .replace(/['"]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .slice(0, 90);
 }
 
-/* ---------- Utilities ---------- */
-function escapeHTML(value) {
-  return String(value ?? "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-
-function formatPrice(price) {
-  return `$${Number(price).toLocaleString("en-US")}`;
-}
-
-function formatCategory(value) {
-  const labels = {
-    ads: "Paid Ads",
-    funnels: "Funnels",
-    mentorship: "Mentorship",
-    business: "Online Business"
-  };
-
-  return labels[value] || value;
-}
-
-function showToast(message) {
-  const { toast } = NextGenApp.elements;
-
-  if (!toast) return;
-
-  toast.textContent = message;
-  toast.classList.remove("hidden");
-
-  window.setTimeout(() => {
-    toast.classList.add("hidden");
-  }, 3000);
-}
-
-/* ---------- Course Engine ---------- */
-function getFilteredCourses() {
-  const { courseSearch, courseFilter } = NextGenApp.elements;
-
-  const searchValue = courseSearch
-    ? courseSearch.value.toLowerCase().trim()
-    : "";
-
-  const selectedCategory = courseFilter ? courseFilter.value : "all";
-
-  return NextGenApp.courses.filter((course) => {
-    const searchableText = [
-      course.title,
-      course.shortTitle,
-      course.category,
-      course.categoryLabel,
-      course.level,
-      course.duration,
-      course.instructor,
-      course.description,
-      course.badge
-    ]
-      .join(" ")
-      .toLowerCase();
-
-    const matchesSearch = searchableText.includes(searchValue);
-    const matchesCategory =
-      selectedCategory === "all" || course.category === selectedCategory;
-
-    return matchesSearch && matchesCategory;
+function sendSuccess(res, statusCode, message, data = {}) {
+  return res.status(statusCode).json({
+    success: true,
+    message,
+    data,
   });
 }
 
-function renderCourseThumbnail(course) {
-  const title = escapeHTML(course.shortTitle || course.title);
-  const badge = escapeHTML(course.badge || "NextGen");
-
-  return `
-    <div
-      class="course-thumb"
-      style="background:${escapeHTML(course.gradient)};"
-    >
-      <span class="course-category">${escapeHTML(course.categoryLabel || formatCategory(course.category))}</span>
-
-      <div style="
-        position:absolute;
-        inset:auto 1rem 1rem 1rem;
-        z-index:2;
-      ">
-        <strong style="
-          display:block;
-          max-width:78%;
-          color:#ffffff;
-          font-size:clamp(1.35rem, 3vw, 2rem);
-          line-height:1.02;
-          letter-spacing:-0.04em;
-          text-shadow:0 6px 18px rgba(0,0,0,.35);
-        ">
-          ${title}
-        </strong>
-
-        <span style="
-          display:inline-flex;
-          margin-top:.55rem;
-          padding:.28rem .62rem;
-          border-radius:999px;
-          color:#05122b;
-          background:linear-gradient(135deg, #00afff, #39d8ff);
-          font-size:.72rem;
-          font-weight:900;
-          text-transform:uppercase;
-          letter-spacing:.04em;
-        ">
-          ${badge}
-        </span>
-      </div>
-
-      <div style="
-        position:absolute;
-        right:1rem;
-        bottom:.7rem;
-        width:82px;
-        height:82px;
-        border-radius:999px;
-        background:
-          radial-gradient(circle at 35% 28%, rgba(255,255,255,.45), transparent 18%),
-          linear-gradient(145deg, rgba(0,175,255,.85), rgba(255,255,255,.16));
-        box-shadow:0 0 28px rgba(0,175,255,.38);
-        opacity:.9;
-      "></div>
-    </div>
-  `;
-}
-
-function renderCourses() {
-  const { courseGrid } = NextGenApp.elements;
-
-  if (!courseGrid) return;
-
-  const filteredCourses = getFilteredCourses();
-
-  if (!filteredCourses.length) {
-    courseGrid.innerHTML = `
-      <div class="course-empty">
-        No courses found. Try a different search or category.
-      </div>
-    `;
-    return;
-  }
-
-  courseGrid.innerHTML = filteredCourses
-    .map((course) => {
-      return `
-        <article class="course-card" data-course-id="${escapeHTML(course.id)}">
-          ${renderCourseThumbnail(course)}
-
-          <h3 class="course-title">${escapeHTML(course.title)}</h3>
-
-          <p class="course-desc">${escapeHTML(course.description)}</p>
-
-          <div class="course-meta">
-            <span>${escapeHTML(course.level)}</span>
-            <span>${escapeHTML(course.duration)}</span>
-            <span>${escapeHTML(course.instructor)}</span>
-          </div>
-
-          <div class="course-pricing">
-            <div class="price-tier">
-              <small>Standard</small>
-              <strong>${formatPrice(course.standardPrice)}</strong>
-            </div>
-
-            <div class="price-tier">
-              <small>VIP</small>
-              <strong>
-                ${
-                  course.oldVipPrice
-                    ? `<del>${formatPrice(course.oldVipPrice)}</del> `
-                    : ""
-                }
-                ${formatPrice(course.vipPrice)}
-              </strong>
-            </div>
-
-            <div class="price-tier">
-              <small>Mentorship</small>
-              <strong>${formatPrice(course.mentorshipPrice)}</strong>
-            </div>
-          </div>
-
-          <div class="discount-pill">${escapeHTML(course.discount)}</div>
-
-          <a
-            href="#contact"
-            class="course-cta btn"
-            data-course-enroll="${escapeHTML(course.id)}"
-          >
-            Start Reading Free ▶
-          </a>
-        </article>
-      `;
-    })
-    .join("");
-}
-
-/* ---------- Blog Engine ---------- */
-function renderBlogs() {
-  const { blogGrid } = NextGenApp.elements;
-
-  if (!blogGrid) return;
-
-  if (!NextGenApp.blogs.length) {
-    blogGrid.innerHTML = `
-      <div class="course-empty">
-        No blog posts available yet.
-      </div>
-    `;
-    return;
-  }
-
-  blogGrid.innerHTML = NextGenApp.blogs
-    .map((blog) => {
-      const featuredClass = blog.featured ? "featured" : "";
-
-      return `
-        <article class="blog-card ${featuredClass}" data-blog-id="${escapeHTML(blog.id)}">
-          <div>
-            <div class="blog-meta">
-              <span class="blog-tag">${escapeHTML(blog.tag)}</span>
-              <span>${escapeHTML(blog.date)}</span>
-              <span>${escapeHTML(blog.readTime)}</span>
-            </div>
-
-            <h3 class="blog-title">${escapeHTML(blog.title)}</h3>
-
-            <p class="blog-excerpt">${escapeHTML(blog.excerpt)}</p>
-
-            <a href="#comments" class="blog-read-more">
-              Read Insight →
-            </a>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
-}
-
-/* ---------- Comment Engine ---------- */
-function createComment({ name, email, message }) {
-  return {
-    id: `comment-${Date.now()}`,
-    name,
-    email,
+function sendError(res, statusCode, message, details = null) {
+  return res.status(statusCode).json({
+    success: false,
     message,
-    date: new Date().toLocaleDateString("en-PK", {
-      year: "numeric",
-      month: "short",
-      day: "numeric"
-    }),
-    status: "pending",
-    replies: []
+    ...(details ? { details } : {}),
+  });
+}
+
+function asyncHandler(fn) {
+  return function wrappedAsyncHandler(req, res, next) {
+    Promise.resolve(fn(req, res, next)).catch(next);
   };
 }
 
-function renderComments() {
-  const { commentList } = NextGenApp.elements;
+/* -------------------------------------------------------
+   MONGODB CONNECTION
+------------------------------------------------------- */
 
-  if (!commentList) return;
+let cachedConnectionPromise = null;
 
-  const approvedComments = NextGenApp.comments.filter(
-    (comment) => comment.status === "approved"
-  );
+async function connectDB() {
+  const mongoUri = process.env.MONGODB_URI || process.env.MONGO_URI;
 
-  const defaultComment = `
-    <div class="comment-bubble approved">
-      <div class="comment-topline">
-        <p class="comment-author">NextGen Team</p>
-        <span class="comment-date">Pinned</span>
-      </div>
+  if (!mongoUri) {
+    const error = new Error(
+      "Missing MONGODB_URI. Add your MongoDB Atlas URL in .env or Vercel Environment Variables."
+    );
+    error.statusCode = 500;
+    throw error;
+  }
 
-      <p class="comment-text">
-        Welcome to the student discussion area. Approved student comments will appear here after admin review.
-      </p>
+  if (mongoose.connection.readyState === 1) {
+    return mongoose.connection;
+  }
 
-      <span class="comment-status approved">Approved</span>
-    </div>
-  `;
+  if (!cachedConnectionPromise) {
+    mongoose.set("strictQuery", true);
 
-  const renderedComments = approvedComments
-    .map((comment) => {
-      const replies = Array.isArray(comment.replies)
-        ? comment.replies
-            .filter((reply) => reply.status === "approved")
-            .map((reply) => {
-              return `
-                <div class="comment-bubble reply approved">
-                  <div class="comment-topline">
-                    <p class="comment-author">${escapeHTML(reply.name || "NextGen Team")}</p>
-                    <span class="comment-date">${escapeHTML(reply.date || "")}</span>
-                  </div>
+    cachedConnectionPromise = mongoose
+      .connect(mongoUri, {
+        dbName: process.env.MONGODB_DB_NAME || undefined,
+        maxPoolSize: 10,
+        serverSelectionTimeoutMS: 10000,
+        socketTimeoutMS: 45000,
+        bufferCommands: false,
+      })
+      .then((mongooseInstance) => {
+        console.log("[MongoDB] Connected successfully");
+        return mongooseInstance.connection;
+      })
+      .catch((error) => {
+        cachedConnectionPromise = null;
+        console.error("[MongoDB] Connection failed:", error.message);
+        throw error;
+      });
+  }
 
-                  <p class="comment-text">${escapeHTML(reply.message)}</p>
-
-                  <span class="comment-status approved">Approved</span>
-                </div>
-              `;
-            })
-            .join("")
-        : "";
-
-      return `
-        <div class="comment-bubble approved">
-          <div class="comment-topline">
-            <p class="comment-author">${escapeHTML(comment.name)}</p>
-            <span class="comment-date">${escapeHTML(comment.date)}</span>
-          </div>
-
-          <p class="comment-text">${escapeHTML(comment.message)}</p>
-
-          <span class="comment-status approved">Approved</span>
-        </div>
-
-        ${replies}
-      `;
-    })
-    .join("");
-
-  commentList.innerHTML = defaultComment + renderedComments;
+  return cachedConnectionPromise;
 }
 
-/* ---------- Event Binding ---------- */
-function bindEvents() {
-  const {
-    navToggle,
-    navLinks,
-    courseSearch,
-    courseFilter,
-    commentForm,
-    commentName,
-    commentEmail,
-    commentMessage
-  } = NextGenApp.elements;
+/* -------------------------------------------------------
+   GLOBAL MIDDLEWARE
+------------------------------------------------------- */
 
-  if (navToggle && navLinks) {
-    navToggle.addEventListener("click", () => {
-      navLinks.classList.toggle("open");
-    });
+const allowedOrigins = getAllowedOrigins();
 
-    navLinks.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("open");
-      });
-    });
-  }
+app.set("trust proxy", 1);
+app.disable("x-powered-by");
 
-  if (courseSearch) {
-    courseSearch.addEventListener("input", renderCourses);
-  }
+app.use(
+  helmet({
+    crossOriginResourcePolicy: {
+      policy: "cross-origin",
+    },
+  })
+);
 
-  if (courseFilter) {
-    courseFilter.addEventListener("change", renderCourses);
-  }
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin) return callback(null, true);
 
-  if (commentForm) {
-    commentForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const name = commentName.value.trim();
-      const email = commentEmail.value.trim();
-      const message = commentMessage.value.trim();
-
-      if (!name || !email || !message) {
-        showToast("Please complete all comment fields.");
-        return;
+      if (!IS_PRODUCTION && allowedOrigins.length === 0) {
+        return callback(null, true);
       }
 
-      const newComment = createComment({ name, email, message });
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
 
-      NextGenApp.comments.unshift(newComment);
-      saveToStorage(NextGenApp.storageKeys.comments, NextGenApp.comments);
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "x-admin-secret"],
+    credentials: false,
+  })
+);
 
-      commentForm.reset();
+app.use(
+  express.json({
+    limit: "1mb",
+    strict: true,
+  })
+);
 
-      showToast("Comment submitted. It will appear after admin approval.");
-    });
+app.use(
+  express.urlencoded({
+    extended: true,
+    limit: "1mb",
+  })
+);
+
+app.use(sanitizeMongoPayload);
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: IS_PRODUCTION ? 120 : 1000,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    message: "Too many requests. Please try again later.",
+  },
+});
+
+app.use("/api", apiLimiter);
+
+app.use(
+  "/api",
+  asyncHandler(async function attachDatabase(req, res, next) {
+    await connectDB();
+    next();
+  })
+);
+
+/* -------------------------------------------------------
+   MONGOOSE MODELS
+------------------------------------------------------- */
+
+const CourseSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: [true, "Course title is required"],
+      trim: true,
+      maxlength: 140,
+    },
+
+    slug: {
+      type: String,
+      unique: true,
+      index: true,
+      trim: true,
+      lowercase: true,
+    },
+
+    category: {
+      type: String,
+      trim: true,
+      default: "Digital Skills",
+      maxlength: 80,
+    },
+
+    thumbnailUrl: {
+      type: String,
+      trim: true,
+      required: [true, "Course thumbnail URL is required"],
+    },
+
+    originalPrice: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0,
+    },
+
+    discountedPrice: {
+      type: Number,
+      required: true,
+      min: 0,
+      default: 0,
+    },
+
+    currency: {
+      type: String,
+      enum: ["PKR"],
+      default: "PKR",
+    },
+
+    shortDescription: {
+      type: String,
+      trim: true,
+      maxlength: 260,
+      default: "",
+    },
+
+    description: {
+      type: String,
+      trim: true,
+      maxlength: 3000,
+      default: "",
+    },
+
+    level: {
+      type: String,
+      trim: true,
+      default: "Beginner",
+    },
+
+    durationLabel: {
+      type: String,
+      trim: true,
+      default: "Self-paced",
+    },
+
+    freeModule: {
+      enabled: {
+        type: Boolean,
+        default: false,
+      },
+      title: {
+        type: String,
+        trim: true,
+        default: "",
+      },
+      hook: {
+        type: String,
+        trim: true,
+        maxlength: 280,
+        default:
+          "Free videos give information. This module gives you the missing roadmap.",
+      },
+      description: {
+        type: String,
+        trim: true,
+        maxlength: 1000,
+        default: "",
+      },
+      videoUrl: {
+        type: String,
+        trim: true,
+        default: "",
+      },
+      ctaLabel: {
+        type: String,
+        trim: true,
+        default: "Watch Free Module",
+      },
+    },
+
+    modules: [
+      {
+        title: {
+          type: String,
+          required: true,
+          trim: true,
+        },
+        description: {
+          type: String,
+          trim: true,
+          default: "",
+        },
+        durationLabel: {
+          type: String,
+          trim: true,
+          default: "",
+        },
+        isPreview: {
+          type: Boolean,
+          default: false,
+        },
+        order: {
+          type: Number,
+          default: 0,
+        },
+      },
+    ],
+
+    benefits: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    outcomes: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    paymentNote: {
+      type: String,
+      trim: true,
+      default:
+        "Pay via JazzCash, EasyPaisa, or Bank Transfer, then send your payment slip on WhatsApp for manual approval.",
+    },
+
+    status: {
+      type: String,
+      enum: ["draft", "active", "archived"],
+      default: "active",
+      index: true,
+    },
+
+    featured: {
+      type: Boolean,
+      default: false,
+    },
+
+    sortOrder: {
+      type: Number,
+      default: 0,
+    },
+
+    createdBy: {
+      type: String,
+      trim: true,
+      default: "admin",
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+CourseSchema.index({
+  title: "text",
+  category: "text",
+  description: "text",
+});
+
+CourseSchema.index({
+  status: 1,
+  featured: -1,
+  sortOrder: 1,
+  createdAt: -1,
+});
+
+CourseSchema.pre("validate", function generateSlug(next) {
+  if (!this.slug && this.title) {
+    this.slug = makeSlug(this.title);
   }
 
-  document.addEventListener("click", (event) => {
-    const enrollButton = event.target.closest("[data-course-enroll]");
+  if (this.slug) {
+    this.slug = makeSlug(this.slug);
+  }
 
-    if (!enrollButton) return;
+  next();
+});
 
-    const courseId = enrollButton.getAttribute("data-course-enroll");
-    const course = NextGenApp.courses.find((item) => item.id === courseId);
+CourseSchema.pre("save", function validatePricing(next) {
+  if (this.discountedPrice > this.originalPrice && this.originalPrice > 0) {
+    const error = new Error(
+      "Discounted price cannot be greater than original price."
+    );
+    error.statusCode = 400;
+    return next(error);
+  }
 
-    if (course) {
-      showToast(`Selected: ${course.title}. Continue on WhatsApp to enroll.`);
+  next();
+});
+
+const EnrollmentSchema = new mongoose.Schema(
+  {
+    studentName: {
+      type: String,
+      required: [true, "Student name is required"],
+      trim: true,
+      maxlength: 120,
+    },
+
+    email: {
+      type: String,
+      required: [true, "Student email is required"],
+      trim: true,
+      lowercase: true,
+      maxlength: 180,
+      match: [/^\S+@\S+\.\S+$/, "Please provide a valid email address"],
+    },
+
+    phone: {
+      type: String,
+      trim: true,
+      maxlength: 40,
+      default: "",
+    },
+
+    course: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Course",
+      required: true,
+      index: true,
+    },
+
+    courseTitleSnapshot: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+
+    coursePriceSnapshot: {
+      type: Number,
+      required: true,
+      min: 0,
+    },
+
+    paymentMethod: {
+      type: String,
+      enum: ["jazzcash", "easypaisa", "bank", "free-module", "not-selected"],
+      default: "not-selected",
+    },
+
+    paymentSlipSentViaWhatsapp: {
+      type: Boolean,
+      default: false,
+    },
+
+    whatsappSlipUrl: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+
+    paymentInstructionsSnapshot: {
+      type: Object,
+      default: {},
+    },
+
+    status: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+      index: true,
+    },
+
+    accessStatus: {
+      type: String,
+      enum: ["locked", "granted"],
+      default: "locked",
+      index: true,
+    },
+
+    studentMessage: {
+      type: String,
+      trim: true,
+      maxlength: 1000,
+      default: "",
+    },
+
+    adminNote: {
+      type: String,
+      trim: true,
+      maxlength: 1000,
+      default: "",
+    },
+
+    approvedAt: {
+      type: Date,
+      default: null,
+    },
+
+    approvedBy: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+  }
+);
+
+EnrollmentSchema.index({
+  email: 1,
+  course: 1,
+});
+
+EnrollmentSchema.index({
+  status: 1,
+  createdAt: -1,
+});
+
+const Course =
+  mongoose.models.Course || mongoose.model("Course", CourseSchema);
+
+const Enrollment =
+  mongoose.models.Enrollment ||
+  mongoose.model("Enrollment", EnrollmentSchema);
+
+/* -------------------------------------------------------
+   ADMIN AUTH
+------------------------------------------------------- */
+
+function requireAdmin(req, res, next) {
+  const configuredSecret = process.env.ADMIN_API_SECRET;
+
+  if (!configuredSecret) {
+    return sendError(
+      res,
+      500,
+      "ADMIN_API_SECRET is missing in environment variables."
+    );
+  }
+
+  const bearerToken = String(req.headers.authorization || "").replace(
+    /^Bearer\s+/i,
+    ""
+  );
+
+  const providedSecret = req.headers["x-admin-secret"] || bearerToken;
+
+  if (!providedSecret || providedSecret !== configuredSecret) {
+    return sendError(res, 401, "Unauthorized admin request.");
+  }
+
+  next();
+}
+
+/* -------------------------------------------------------
+   PUBLIC ROUTES
+------------------------------------------------------- */
+
+app.get("/", function rootRoute(req, res) {
+  return sendSuccess(res, 200, "NextGen Digital Academy backend is running.", {
+    service: "nextgen-digital-academy-api",
+    apiBase: "/api",
+  });
+});
+
+app.get("/api/health", function healthRoute(req, res) {
+  return sendSuccess(res, 200, "API health check passed.", {
+    status: "ok",
+    mongoReadyState: mongoose.connection.readyState,
+    timestamp: new Date().toISOString(),
+  });
+});
+
+app.get("/api/payment-details", function paymentDetailsRoute(req, res) {
+  return sendSuccess(res, 200, "Payment details fetched successfully.", {
+    paymentDetails: PAYMENT_DETAILS,
+    whatsappNumber: WHATSAPP_NUMBER,
+  });
+});
+
+/* -------------------------------------------------------
+   COURSE ROUTES
+------------------------------------------------------- */
+
+app.get(
+  "/api/courses",
+  asyncHandler(async function getCourses(req, res) {
+    const {
+      search = "",
+      category = "",
+      featured = "",
+      includeAll = "false",
+      page = "1",
+      limit = "20",
+    } = req.query;
+
+    const bearerToken = String(req.headers.authorization || "").replace(
+      /^Bearer\s+/i,
+      ""
+    );
+
+    const isAdminView =
+      includeAll === "true" &&
+      (req.headers["x-admin-secret"] === process.env.ADMIN_API_SECRET ||
+        bearerToken === process.env.ADMIN_API_SECRET);
+
+    const query = {};
+
+    if (!isAdminView) {
+      query.status = "active";
     }
-  });
 
-  window.addEventListener("storage", (event) => {
-    const watchedKeys = Object.values(NextGenApp.storageKeys);
+    if (category) {
+      query.category = String(category).trim();
+    }
 
-    if (!watchedKeys.includes(event.key)) return;
+    if (featured === "true") {
+      query.featured = true;
+    }
 
-    seedDefaultData();
-    renderCourses();
-    renderBlogs();
-    renderComments();
-  });
+    if (search) {
+      query.$text = {
+        $search: String(search).trim(),
+      };
+    }
+
+    const currentPage = Math.max(Number(page) || 1, 1);
+    const pageSize = Math.min(Math.max(Number(limit) || 20, 1), 60);
+    const skip = (currentPage - 1) * pageSize;
+
+    const [courses, total] = await Promise.all([
+      Course.find(query)
+        .sort({
+          featured: -1,
+          sortOrder: 1,
+          createdAt: -1,
+        })
+        .skip(skip)
+        .limit(pageSize)
+        .lean(),
+
+      Course.countDocuments(query),
+    ]);
+
+    return sendSuccess(res, 200, "Courses fetched successfully.", {
+      courses,
+      pagination: {
+        page: currentPage,
+        limit: pageSize,
+        total,
+        totalPages: Math.ceil(total / pageSize),
+      },
+    });
+  })
+);
+
+app.get(
+  "/api/courses/:slug",
+  asyncHandler(async function getCourseBySlug(req, res) {
+    const { slug } = req.params;
+
+    const course = await Course.findOne({
+      slug: makeSlug(slug),
+      status: "active",
+    }).lean();
+
+    if (!course) {
+      return sendError(res, 404, "Course not found.");
+    }
+
+    return sendSuccess(res, 200, "Course fetched successfully.", {
+      course,
+      paymentDetails: PAYMENT_DETAILS,
+      whatsappNumber: WHATSAPP_NUMBER,
+    });
+  })
+);
+
+app.post(
+  "/api/courses",
+  requireAdmin,
+  asyncHandler(async function createCourse(req, res) {
+    const payload = normalizeCoursePayload(req.body);
+
+    if (!payload.thumbnailUrl) {
+      return sendError(res, 400, "Course thumbnail URL is required.");
+    }
+
+    const existing = await Course.findOne({
+      slug: payload.slug,
+    }).lean();
+
+    if (existing) {
+      return sendError(
+        res,
+        409,
+        "A course with this title or slug already exists."
+      );
+    }
+
+    const course = await Course.create(payload);
+
+    return sendSuccess(res, 201, "Course created successfully.", {
+      course,
+    });
+  })
+);
+
+/* -------------------------------------------------------
+   ENROLLMENT ROUTES
+------------------------------------------------------- */
+
+app.post(
+  "/api/enrollments",
+  asyncHandler(async function createEnrollment(req, res) {
+    const {
+      courseId,
+      courseSlug,
+      studentName,
+      email,
+      phone = "",
+      paymentMethod = "not-selected",
+      studentMessage = "",
+    } = req.body;
+
+    if (!studentName || !email) {
+      return sendError(res, 400, "Student name and email are required.");
+    }
+
+    const courseQuery = {};
+
+    if (courseId && mongoose.Types.ObjectId.isValid(courseId)) {
+      courseQuery._id = courseId;
+    } else if (courseSlug) {
+      courseQuery.slug = makeSlug(courseSlug);
+    } else {
+      return sendError(res, 400, "courseId or courseSlug is required.");
+    }
+
+    courseQuery.status = "active";
+
+    const course = await Course.findOne(courseQuery);
+
+    if (!course) {
+      return sendError(res, 404, "Selected course was not found.");
+    }
+
+    const payableAmount = Number(
+      course.discountedPrice || course.originalPrice || 0
+    );
+
+    const normalizedPaymentMethod =
+      payableAmount === 0
+        ? "free-module"
+        : ["jazzcash", "easypaisa", "bank"].includes(paymentMethod)
+        ? paymentMethod
+        : "not-selected";
+
+    const whatsappMessage =
+      payableAmount === 0
+        ? `Hi NextGen Digital Academy, I want free module access.
+
+Name: ${studentName}
+Email: ${email}
+Course: ${course.title}`
+        : `Hi NextGen Digital Academy, I want to enroll and send my payment slip.
+
+Name: ${studentName}
+Email: ${email}
+Phone: ${phone || "Not provided"}
+Course: ${course.title}
+Fee: PKR ${payableAmount}
+Payment Method: ${normalizedPaymentMethod}
+
+I will send my payment screenshot here.`;
+
+    const whatsappSlipUrl = buildWhatsAppUrl(whatsappMessage);
+
+    const enrollment = await Enrollment.create({
+      studentName,
+      email,
+      phone,
+      course: course._id,
+      courseTitleSnapshot: course.title,
+      coursePriceSnapshot: payableAmount,
+      paymentMethod: normalizedPaymentMethod,
+      whatsappSlipUrl,
+      paymentInstructionsSnapshot: PAYMENT_DETAILS,
+      studentMessage,
+      status: "pending",
+      accessStatus: "locked",
+    });
+
+    return sendSuccess(
+      res,
+      201,
+      payableAmount === 0
+        ? "Free module request submitted. Admin can approve access manually."
+        : "Enrollment request submitted. Please pay and send your payment slip on WhatsApp.",
+      {
+        enrollment,
+        nextStep:
+          payableAmount === 0
+            ? "Admin will review and grant free module access."
+            : "Pay via JazzCash, EasyPaisa, or Bank Transfer, then click the WhatsApp slip button.",
+        paymentDetails: PAYMENT_DETAILS,
+        whatsappSlipUrl,
+      }
+    );
+  })
+);
+
+app.get(
+  "/api/enrollments",
+  requireAdmin,
+  asyncHandler(async function getEnrollments(req, res) {
+    const {
+      status = "",
+      accessStatus = "",
+      page = "1",
+      limit = "30",
+    } = req.query;
+
+    const query = {};
+
+    if (status) query.status = status;
+    if (accessStatus) query.accessStatus = accessStatus;
+
+    const currentPage = Math.max(Number(page) || 1, 1);
+    const pageSize = Math.min(Math.max(Number(limit) || 30, 1), 100);
+    const skip = (currentPage - 1) * pageSize;
+
+    const [enrollments, total] = await Promise.all([
+      Enrollment.find(query)
+        .populate(
+          "course",
+          "title slug thumbnailUrl discountedPrice originalPrice"
+        )
+        .sort({
+          createdAt: -1,
+        })
+        .skip(skip)
+        .limit(pageSize)
+        .lean(),
+
+      Enrollment.countDocuments(query),
+    ]);
+
+    return sendSuccess(res, 200, "Enrollments fetched successfully.", {
+      enrollments,
+      pagination: {
+        page: currentPage,
+        limit: pageSize,
+        total,
+        totalPages: Math.ceil(total / pageSize),
+      },
+    });
+  })
+);
+
+app.patch(
+  "/api/enrollments/:id/status",
+  requireAdmin,
+  asyncHandler(async function updateEnrollmentStatus(req, res) {
+    const { id } = req.params;
+    const { status, adminNote = "", approvedBy = "admin" } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return sendError(res, 400, "Invalid enrollment ID.");
+    }
+
+    if (!["pending", "approved", "rejected"].includes(status)) {
+      return sendError(
+        res,
+        400,
+        "Invalid status. Use pending, approved, or rejected."
+      );
+    }
+
+    const update = {
+      status,
+      adminNote,
+    };
+
+    if (status === "approved") {
+      update.accessStatus = "granted";
+      update.approvedAt = new Date();
+      update.approvedBy = approvedBy;
+      update.paymentSlipSentViaWhatsapp = true;
+    }
+
+    if (status === "rejected") {
+      update.accessStatus = "locked";
+    }
+
+    if (status === "pending") {
+      update.accessStatus = "locked";
+      update.approvedAt = null;
+      update.approvedBy = "";
+    }
+
+    const enrollment = await Enrollment.findByIdAndUpdate(id, update, {
+      new: true,
+      runValidators: true,
+    }).populate("course", "title slug thumbnailUrl");
+
+    if (!enrollment) {
+      return sendError(res, 404, "Enrollment not found.");
+    }
+
+    return sendSuccess(res, 200, "Enrollment status updated successfully.", {
+      enrollment,
+    });
+  })
+);
+
+app.patch(
+  "/api/enrollments/:id/approve",
+  requireAdmin,
+  asyncHandler(async function approveEnrollment(req, res) {
+    const { id } = req.params;
+    const {
+      adminNote = "Payment slip verified on WhatsApp.",
+      approvedBy = "admin",
+    } = req.body;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return sendError(res, 400, "Invalid enrollment ID.");
+    }
+
+    const enrollment = await Enrollment.findByIdAndUpdate(
+      id,
+      {
+        status: "approved",
+        accessStatus: "granted",
+        paymentSlipSentViaWhatsapp: true,
+        approvedAt: new Date(),
+        approvedBy,
+        adminNote,
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    ).populate("course", "title slug thumbnailUrl");
+
+    if (!enrollment) {
+      return sendError(res, 404, "Enrollment not found.");
+    }
+
+    return sendSuccess(res, 200, "Student access approved successfully.", {
+      enrollment,
+    });
+  })
+);
+
+/* -------------------------------------------------------
+   NORMALIZATION
+------------------------------------------------------- */
+
+function normalizeCoursePayload(body) {
+  const title = String(body.title || "").trim();
+
+  if (!title) {
+    const error = new Error("Course title is required.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const originalPrice = Number(body.originalPrice || body.price || 0);
+  const discountedPrice = Number(body.discountedPrice || 0);
+
+  if (Number.isNaN(originalPrice) || Number.isNaN(discountedPrice)) {
+    const error = new Error("Course prices must be valid numbers.");
+    error.statusCode = 400;
+    throw error;
+  }
+
+  const finalSlug = body.slug ? makeSlug(body.slug) : makeSlug(title);
+
+  return {
+    title,
+    slug: finalSlug,
+    category: String(body.category || "Digital Skills").trim(),
+    thumbnailUrl: String(body.thumbnailUrl || body.thumbnail || "").trim(),
+    originalPrice,
+    discountedPrice,
+    currency: "PKR",
+    shortDescription: String(body.shortDescription || "").trim(),
+    description: String(body.description || "").trim(),
+    level: String(body.level || "Beginner").trim(),
+    durationLabel: String(body.durationLabel || "Self-paced").trim(),
+
+    freeModule: {
+      enabled: Boolean(body.freeModule?.enabled || body.isFreeModule || false),
+      title: String(
+        body.freeModule?.title || body.freeModuleTitle || ""
+      ).trim(),
+      hook: String(
+        body.freeModule?.hook ||
+          body.freeModuleHook ||
+          "Free videos give information. This module gives you the missing roadmap."
+      ).trim(),
+      description: String(
+        body.freeModule?.description || body.freeModuleDescription || ""
+      ).trim(),
+      videoUrl: String(
+        body.freeModule?.videoUrl || body.freeModuleVideoUrl || ""
+      ).trim(),
+      ctaLabel: String(
+        body.freeModule?.ctaLabel ||
+          body.freeModuleCtaLabel ||
+          "Watch Free Module"
+      ).trim(),
+    },
+
+    modules: normalizeArrayOfObjects(body.modules, "title"),
+    benefits: normalizeStringArray(body.benefits),
+    outcomes: normalizeStringArray(body.outcomes),
+
+    paymentNote: String(
+      body.paymentNote ||
+        "Pay via JazzCash, EasyPaisa, or Bank Transfer, then send your payment slip on WhatsApp for manual approval."
+    ).trim(),
+
+    status: ["draft", "active", "archived"].includes(body.status)
+      ? body.status
+      : "active",
+
+    featured: Boolean(body.featured),
+    sortOrder: Number(body.sortOrder || 0),
+    createdBy: String(body.createdBy || "admin").trim(),
+  };
 }
 
-/* ---------- Firebase Ready Adapter Placeholder ---------- */
-const NextGenDataAdapter = {
-  async getCourses() {
-    return getFromStorage(NextGenApp.storageKeys.courses, NEXTGEN_DEFAULT_DB.courses);
-  },
+function normalizeStringArray(value) {
+  if (!value) return [];
 
-  async getBlogs() {
-    return getFromStorage(NextGenApp.storageKeys.blogs, NEXTGEN_DEFAULT_DB.blogs);
-  },
-
-  async getComments() {
-    return getFromStorage(NextGenApp.storageKeys.comments, []);
-  },
-
-  async saveCourses(courses) {
-    saveToStorage(NextGenApp.storageKeys.courses, courses);
-  },
-
-  async saveBlogs(blogs) {
-    saveToStorage(NextGenApp.storageKeys.blogs, blogs);
-  },
-
-  async saveComments(comments) {
-    saveToStorage(NextGenApp.storageKeys.comments, comments);
-  }
-};
-
-/* ---------- Public Debug / Admin Bridge ---------- */
-window.NextGenStore = {
-  app: NextGenApp,
-  defaults: NEXTGEN_DEFAULT_DB,
-  adapter: NextGenDataAdapter,
-
-  resetToDefaults() {
-    saveToStorage(NextGenApp.storageKeys.courses, NEXTGEN_DEFAULT_DB.courses);
-    saveToStorage(NextGenApp.storageKeys.blogs, NEXTGEN_DEFAULT_DB.blogs);
-    saveToStorage(NextGenApp.storageKeys.comments, NEXTGEN_DEFAULT_DB.comments);
-    localStorage.setItem(NextGenApp.storageKeys.dbVersion, NextGenApp.version);
-
-    seedDefaultData();
-    renderCourses();
-    renderBlogs();
-    renderComments();
-
-    showToast("NextGen data reset to default.");
-  }
-};
-
-/* ---------- Init ---------- */
-function initApp() {
-  cacheElements();
-
-  if (NextGenApp.elements.year) {
-    NextGenApp.elements.year.textContent = new Date().getFullYear();
+  if (Array.isArray(value)) {
+    return value
+      .map((item) => String(item || "").trim())
+      .filter(Boolean)
+      .slice(0, 40);
   }
 
-  seedDefaultData();
-  bindEvents();
-
-  renderCourses();
-  renderBlogs();
-  renderComments();
+  return String(value)
+    .split("\n")
+    .map((item) => item.trim())
+    .filter(Boolean)
+    .slice(0, 40);
 }
 
-document.addEventListener("DOMContentLoaded", initApp);
+function normalizeArrayOfObjects(value, requiredKey) {
+  if (!value) return [];
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((item, index) => {
+      if (typeof item === "string") {
+        return {
+          title: item.trim(),
+          description: "",
+          durationLabel: "",
+          isPreview: false,
+          order: index + 1,
+        };
+      }
+
+      return {
+        title: String(item[requiredKey] || "").trim(),
+        description: String(item.description || "").trim(),
+        durationLabel: String(item.durationLabel || "").trim(),
+        isPreview: Boolean(item.isPreview),
+        order: Number(item.order || index + 1),
+      };
+    })
+    .filter((item) => item.title)
+    .slice(0, 80);
+}
+
+/* -------------------------------------------------------
+   BASIC NOSQL SANITIZATION
+------------------------------------------------------- */
+
+function sanitizeMongoPayload(req, res, next) {
+  if (req.body) req.body = sanitizeObject(req.body);
+  if (req.query) req.query = sanitizeObject(req.query);
+  if (req.params) req.params = sanitizeObject(req.params);
+
+  next();
+}
+
+function sanitizeObject(input) {
+  if (!input || typeof input !== "object") return input;
+
+  if (Array.isArray(input)) {
+    return input.map(sanitizeObject);
+  }
+
+  const clean = {};
+
+  for (const [key, value] of Object.entries(input)) {
+    if (key.includes("$") || key.includes(".")) {
+      continue;
+    }
+
+    clean[key] = sanitizeObject(value);
+  }
+
+  return clean;
+}
+
+/* -------------------------------------------------------
+   404 HANDLER
+   YAHI WO UPDATED SAFER VERSION HAI
+------------------------------------------------------- */
+
+app.use(/^\/api\/.*$/, function apiNotFound(req, res) {
+  return sendError(res, 404, `API route not found: ${req.originalUrl}`);
+});
+
+/* -------------------------------------------------------
+   GLOBAL ERROR HANDLER
+------------------------------------------------------- */
+
+app.use(function globalErrorHandler(error, req, res, next) {
+  console.error("[API Error]", {
+    message: error.message,
+    stack: IS_PRODUCTION ? undefined : error.stack,
+    path: req.originalUrl,
+    method: req.method,
+  });
+
+  if (error.name === "ValidationError") {
+    return sendError(res, 400, "Validation failed.", error.errors);
+  }
+
+  if (error.code === 11000) {
+    return sendError(res, 409, "Duplicate record found.", error.keyValue);
+  }
+
+  if (error.message && error.message.startsWith("CORS blocked")) {
+    return sendError(res, 403, error.message);
+  }
+
+  const statusCode = error.statusCode || 500;
+
+  return sendError(
+    res,
+    statusCode,
+    statusCode === 500 && IS_PRODUCTION
+      ? "Internal server error."
+      : error.message || "Internal server error."
+  );
+});
+
+/* -------------------------------------------------------
+   EXPORTS
+------------------------------------------------------- */
+
+module.exports = {
+  app,
+  connectDB,
+  models: {
+    Course,
+    Enrollment,
+  },
+  helpers: {
+    buildWhatsAppUrl,
+    PAYMENT_DETAILS,
+  },
+};
+```
+
+Bas is file ko:
+
+```txt
+backend/app.js
+```
+
+mein full replace kar dein.
+
+`server.js` ko change karne ki zaroorat nahi, agar aap ne mera previous wala `server.js` already paste kar diya hai.
