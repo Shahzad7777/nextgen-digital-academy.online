@@ -1186,7 +1186,7 @@ function sanitizeObject(input) {
 ------------------------------------------------------- */
 
 app.use(/^\/api\/.*$/, function apiNotFound(req, res) {
-  return sendError(res, 404, `API route not found: ${req.originalUrl}`);
+   return sendError(res, 404, `API route not found: ${req.originalUrl}`);
 });
 
 /* -------------------------------------------------------
