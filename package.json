@@ -1,1 +1,37 @@
-npm install express mongoose cors helmet express-rate-limit dotenv{}
+{
+  "name": "nextgen-digital-academy-online",
+  "version": "1.0.0",
+  "description": "NextGen Digital Academy - high-conversion course selling platform with simple enrollment flow.",
+  "main": "backend/server.js",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "dev": "node backend/server.js",
+    "start": "node backend/server.js",
+    "vercel-build": "echo 'No build step required for static frontend + serverless API'",
+    "health": "node -e \"fetch('http://localhost:5000/api/health').then(r=>r.json()).then(console.log).catch(console.error)\""
+  },
+  "keywords": [
+    "nextgen-digital-academy",
+    "online-courses",
+    "pakistan",
+    "express",
+    "mongodb",
+    "vercel",
+    "serverless"
+  ],
+  "author": "NextGen Digital Academy",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.1",
+    "helmet": "^8.0.0",
+    "mongoose": "^8.8.3"
+  },
+  "devDependencies": {}
+}
