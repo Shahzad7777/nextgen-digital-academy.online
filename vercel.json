@@ -5,6 +5,10 @@
     "api/index.js": {
       "maxDuration": 30,
       "memory": 1024
+    },
+    "api/[...path].js": {
+      "maxDuration": 30,
+      "memory": 1024
     }
   },
   "rewrites": [
@@ -14,7 +18,7 @@
     },
     {
       "source": "/api/:path*",
-      "destination": "/api/index.js"
+      "destination": "/api/[...path].js"
     },
     {
       "source": "/admin",
@@ -23,6 +27,10 @@
     {
       "source": "/terms",
       "destination": "/frontend/terms.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/frontend/privacy.html"
     },
     {
       "source": "/main",
@@ -37,10 +45,6 @@
     {
       "source": "/api/:path*",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Credentials",
-          "value": "false"
-        },
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
