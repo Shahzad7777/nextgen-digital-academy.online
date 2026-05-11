@@ -1,14 +1,21 @@
 "use strict";
 
 /**
- * Vercel Serverless Entry
+ * Vercel API Root Entry
  * -------------------------------------------------------
- * This file connects Vercel's /api route to the Express app.
+ * Handles:
+ * /api
  *
- * Vercel will treat this file as a serverless function.
- * All API routes are handled inside backend/app.js.
+ * Nested API routes are handled by:
+ * api/[...path].js
  */
 
 const { app } = require("../backend/app");
 
-module.exports = app;
+module.exports = function handler(req, res) {
+  return app(req, res);
+};
+
+module.exports.default = function handler(req, res) {
+  return app(req, res);
+};
