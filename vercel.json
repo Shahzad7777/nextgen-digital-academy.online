@@ -1,70 +1,23 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": null,
-  "buildCommand": null,
-  "installCommand": null,
-  "outputDirectory": "frontend",
-  "cleanUrls": true,
-  "trailingSlash": false,
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/admin",
-      "destination": "/admin"
+      "src": "backend/server.js",
+      "use": "@vercel/node"
     },
     {
-      "source": "/privacy",
-      "destination": "/privacy"
-    },
-    {
-      "source": "/terms",
-      "destination": "/terms"
+      "src": "frontend/**",
+      "use": "@vercel/static"
     }
   ],
-  "headers": [
+  "rewrites": [
     {
-      "source": "/style.css",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
+      "source": "/api/(.*)",
+      "destination": "/backend/server.js"
     },
     {
-      "source": "/main.js",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/js/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
-    },
-    {
-      "source": "/robots.txt",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    },
-    {
-      "source": "/sitemap.xml",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "source": "/(.*)",
+      "destination": "/frontend/index.html"
     }
   ]
 }
