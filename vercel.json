@@ -37,7 +37,11 @@
       "destination": "/frontend/main.html"
     },
     {
-      "source": "/:path*",
+      "source": "/",
+      "destination": "/frontend/index.html"
+    },
+    {
+      "source": "/(.*)",
       "destination": "/frontend/index.html"
     }
   ],
